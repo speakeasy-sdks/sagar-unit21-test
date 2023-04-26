@@ -71,6 +71,10 @@ const (
 	CreateEventEventOptionsOptionsLinkedEntityEnumBoth     CreateEventEventOptionsOptionsLinkedEntityEnum = "both"
 )
 
+func (e CreateEventEventOptionsOptionsLinkedEntityEnum) ToPointer() *CreateEventEventOptionsOptionsLinkedEntityEnum {
+	return &e
+}
+
 func (e *CreateEventEventOptionsOptionsLinkedEntityEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

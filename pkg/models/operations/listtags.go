@@ -21,6 +21,10 @@ const (
 	ListTagsRequestBodyObjectTypesEnumInstrument ListTagsRequestBodyObjectTypesEnum = "instrument"
 )
 
+func (e ListTagsRequestBodyObjectTypesEnum) ToPointer() *ListTagsRequestBodyObjectTypesEnum {
+	return &e
+}
+
 func (e *ListTagsRequestBodyObjectTypesEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

@@ -16,6 +16,10 @@ const (
 	AlertsAlertTypeEnumChainalysis AlertsAlertTypeEnum = "chainalysis"
 )
 
+func (e AlertsAlertTypeEnum) ToPointer() *AlertsAlertTypeEnum {
+	return &e
+}
+
 func (e *AlertsAlertTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

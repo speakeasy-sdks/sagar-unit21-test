@@ -15,6 +15,10 @@ const (
 	InstrumentBasicSourceEnumExternal InstrumentBasicSourceEnum = "external"
 )
 
+func (e InstrumentBasicSourceEnum) ToPointer() *InstrumentBasicSourceEnum {
+	return &e
+}
+
 func (e *InstrumentBasicSourceEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

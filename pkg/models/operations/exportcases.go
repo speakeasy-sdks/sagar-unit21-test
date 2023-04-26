@@ -15,6 +15,10 @@ const (
 	ExportCasesRequestBodyFiltersStatusesEnumClosed ExportCasesRequestBodyFiltersStatusesEnum = "closed"
 )
 
+func (e ExportCasesRequestBodyFiltersStatusesEnum) ToPointer() *ExportCasesRequestBodyFiltersStatusesEnum {
+	return &e
+}
+
 func (e *ExportCasesRequestBodyFiltersStatusesEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

@@ -16,6 +16,10 @@ const (
 	UserDataPropertiesGenderEnumOther  UserDataPropertiesGenderEnum = "other"
 )
 
+func (e UserDataPropertiesGenderEnum) ToPointer() *UserDataPropertiesGenderEnum {
+	return &e
+}
+
 func (e *UserDataPropertiesGenderEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

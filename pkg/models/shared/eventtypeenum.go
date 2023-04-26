@@ -15,6 +15,10 @@ const (
 	EventTypeEnumAction      EventTypeEnum = "action"
 )
 
+func (e EventTypeEnum) ToPointer() *EventTypeEnum {
+	return &e
+}
+
 func (e *EventTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

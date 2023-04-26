@@ -15,6 +15,10 @@ const (
 	InvestigationStatusEnumClosed InvestigationStatusEnum = "CLOSED"
 )
 
+func (e InvestigationStatusEnum) ToPointer() *InvestigationStatusEnum {
+	return &e
+}
+
 func (e *InvestigationStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

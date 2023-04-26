@@ -16,6 +16,10 @@ const (
 	ExportRulesRequestBodyFiltersStatusesEnumValidation ExportRulesRequestBodyFiltersStatusesEnum = "VALIDATION"
 )
 
+func (e ExportRulesRequestBodyFiltersStatusesEnum) ToPointer() *ExportRulesRequestBodyFiltersStatusesEnum {
+	return &e
+}
+
 func (e *ExportRulesRequestBodyFiltersStatusesEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

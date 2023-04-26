@@ -16,6 +16,10 @@ const (
 	ExportEntitiesRequestBodyFiltersStatusesEnumInactive ExportEntitiesRequestBodyFiltersStatusesEnum = "inactive"
 )
 
+func (e ExportEntitiesRequestBodyFiltersStatusesEnum) ToPointer() *ExportEntitiesRequestBodyFiltersStatusesEnum {
+	return &e
+}
+
 func (e *ExportEntitiesRequestBodyFiltersStatusesEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

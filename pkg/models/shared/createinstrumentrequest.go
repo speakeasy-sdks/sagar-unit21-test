@@ -15,6 +15,10 @@ const (
 	CreateInstrumentRequestSourceEnumExternal CreateInstrumentRequestSourceEnum = "external"
 )
 
+func (e CreateInstrumentRequestSourceEnum) ToPointer() *CreateInstrumentRequestSourceEnum {
+	return &e
+}
+
 func (e *CreateInstrumentRequestSourceEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

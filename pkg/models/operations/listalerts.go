@@ -25,6 +25,10 @@ const (
 	ListAlertsRequestBodyTypesEnumChainalysis ListAlertsRequestBodyTypesEnum = "chainalysis"
 )
 
+func (e ListAlertsRequestBodyTypesEnum) ToPointer() *ListAlertsRequestBodyTypesEnum {
+	return &e
+}
+
 func (e *ListAlertsRequestBodyTypesEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

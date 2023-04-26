@@ -19,6 +19,10 @@ const (
 	LinkVerificationResultVerificationTypeEnumCryptoForensics       LinkVerificationResultVerificationTypeEnum = "CRYPTO_FORENSICS"
 )
 
+func (e LinkVerificationResultVerificationTypeEnum) ToPointer() *LinkVerificationResultVerificationTypeEnum {
+	return &e
+}
+
 func (e *LinkVerificationResultVerificationTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

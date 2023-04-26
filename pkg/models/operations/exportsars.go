@@ -18,6 +18,10 @@ const (
 	ExportSarsRequestBodyFiltersReportTypeEnumNcaSar      ExportSarsRequestBodyFiltersReportTypeEnum = "NCA_SAR"
 )
 
+func (e ExportSarsRequestBodyFiltersReportTypeEnum) ToPointer() *ExportSarsRequestBodyFiltersReportTypeEnum {
+	return &e
+}
+
 func (e *ExportSarsRequestBodyFiltersReportTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
@@ -58,6 +62,10 @@ const (
 	ExportSarsRequestBodyFiltersStatusesEnumFincenStatusOther            ExportSarsRequestBodyFiltersStatusesEnum = "FINCEN_STATUS_OTHER"
 	ExportSarsRequestBodyFiltersStatusesEnumFincenAccepted               ExportSarsRequestBodyFiltersStatusesEnum = "FINCEN_ACCEPTED"
 )
+
+func (e ExportSarsRequestBodyFiltersStatusesEnum) ToPointer() *ExportSarsRequestBodyFiltersStatusesEnum {
+	return &e
+}
 
 func (e *ExportSarsRequestBodyFiltersStatusesEnum) UnmarshalJSON(data []byte) error {
 	var s string

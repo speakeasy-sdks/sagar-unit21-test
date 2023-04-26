@@ -22,6 +22,10 @@ const (
 	MediaTypeEnumImageFaceImage           MediaTypeEnum = "IMAGE_FACE_IMAGE"
 )
 
+func (e MediaTypeEnum) ToPointer() *MediaTypeEnum {
+	return &e
+}
+
 func (e *MediaTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

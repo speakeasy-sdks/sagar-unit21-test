@@ -14,6 +14,10 @@ const (
 	SourceArrayEnumExternal SourceArrayEnum = "EXTERNAL"
 )
 
+func (e SourceArrayEnum) ToPointer() *SourceArrayEnum {
+	return &e
+}
+
 func (e *SourceArrayEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

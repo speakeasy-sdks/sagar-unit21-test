@@ -18,6 +18,10 @@ const (
 	ExportAlertsRequestBodyFiltersAlertTypesEnumCar         ExportAlertsRequestBodyFiltersAlertTypesEnum = "CAR"
 )
 
+func (e ExportAlertsRequestBodyFiltersAlertTypesEnum) ToPointer() *ExportAlertsRequestBodyFiltersAlertTypesEnum {
+	return &e
+}
+
 func (e *ExportAlertsRequestBodyFiltersAlertTypesEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
@@ -47,6 +51,10 @@ const (
 	ExportAlertsRequestBodyFiltersSourcesEnumExternal ExportAlertsRequestBodyFiltersSourcesEnum = "EXTERNAL"
 )
 
+func (e ExportAlertsRequestBodyFiltersSourcesEnum) ToPointer() *ExportAlertsRequestBodyFiltersSourcesEnum {
+	return &e
+}
+
 func (e *ExportAlertsRequestBodyFiltersSourcesEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
@@ -69,6 +77,10 @@ const (
 	ExportAlertsRequestBodyFiltersStatusesEnumOpen   ExportAlertsRequestBodyFiltersStatusesEnum = "OPEN"
 	ExportAlertsRequestBodyFiltersStatusesEnumClosed ExportAlertsRequestBodyFiltersStatusesEnum = "CLOSED"
 )
+
+func (e ExportAlertsRequestBodyFiltersStatusesEnum) ToPointer() *ExportAlertsRequestBodyFiltersStatusesEnum {
+	return &e
+}
 
 func (e *ExportAlertsRequestBodyFiltersStatusesEnum) UnmarshalJSON(data []byte) error {
 	var s string
