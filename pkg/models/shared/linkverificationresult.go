@@ -24,11 +24,11 @@ func (e LinkVerificationResultVerificationTypeEnum) ToPointer() *LinkVerificatio
 }
 
 func (e *LinkVerificationResultVerificationTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "ID_VERIFICATION":
 		fallthrough
 	case "DOC_VERIFICATION":
@@ -40,10 +40,10 @@ func (e *LinkVerificationResultVerificationTypeEnum) UnmarshalJSON(data []byte) 
 	case "ADVERSE_MEDIA_SCREENING":
 		fallthrough
 	case "CRYPTO_FORENSICS":
-		*e = LinkVerificationResultVerificationTypeEnum(s)
+		*e = LinkVerificationResultVerificationTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for LinkVerificationResultVerificationTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for LinkVerificationResultVerificationTypeEnum: %v", v)
 	}
 }
 

@@ -33,12 +33,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DownloadFileExportRequest{
+    ctx := context.Background()
+    res, err := s.ExportsAPI.DownloadFileExport(ctx, operations.DownloadFileExportRequest{
         FileExportID: 675439,
-    }
-
-    res, err := s.ExportsAPI.DownloadFileExport(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -89,8 +87,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.ListExports{
+    ctx := context.Background()
+    res, err := s.ExportsAPI.ListExports(ctx, shared.ListExports{
         FileExportIds: []int64{
             249796,
             581273,
@@ -104,9 +102,7 @@ func main() {
             "nam",
             "id",
         },
-    }
-
-    res, err := s.ExportsAPI.ListExports(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

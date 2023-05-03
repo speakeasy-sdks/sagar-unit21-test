@@ -41,8 +41,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ExportSarsRequestBody{
+    ctx := context.Background()
+    res, err := s.SarsAPI.ExportSars(ctx, operations.ExportSarsRequestBody{
         Filters: &operations.ExportSarsRequestBodyFilters{
             CreatedAtEnd: sdk.String("2021-11-05 04:13:46"),
             CreatedAtStart: sdk.String("2019-11-05 04:13:46"),
@@ -69,9 +69,7 @@ func main() {
             100226,
             99569,
         },
-    }
-
-    res, err := s.SarsAPI.ExportSars(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -128,13 +126,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.ListRequest{
+    ctx := context.Background()
+    res, err := s.SarsAPI.ListSars(ctx, shared.ListRequest{
         Limit: sdk.Int64(2),
         Offset: sdk.Int64(919483),
-    }
-
-    res, err := s.SarsAPI.ListSars(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -170,12 +166,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ReadOneSarRequest{
+    ctx := context.Background()
+    res, err := s.SarsAPI.ReadOneSar(ctx, operations.ReadOneSarRequest{
         Unit21ID: "ullam",
-    }
-
-    res, err := s.SarsAPI.ReadOneSar(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

@@ -41,8 +41,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ExportRulesRequestBody{
+    ctx := context.Background()
+    res, err := s.RulesAPI.ExportRules(ctx, operations.ExportRulesRequestBody{
         Filters: &operations.ExportRulesRequestBodyFilters{
             AgentIds: []int64{
                 14,
@@ -71,9 +71,7 @@ func main() {
         RuleIds: []int64{
             367562,
         },
-    }
-
-    res, err := s.RulesAPI.ExportRules(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -112,13 +110,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.ListRequest{
+    ctx := context.Background()
+    res, err := s.RulesAPI.ListRules(ctx, shared.ListRequest{
         Limit: sdk.Int64(2),
         Offset: sdk.Int64(97260),
-    }
-
-    res, err := s.RulesAPI.ListRules(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -154,12 +150,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ReadOneRuleRequest{
+    ctx := context.Background()
+    res, err := s.RulesAPI.ReadOneRule(ctx, operations.ReadOneRuleRequest{
         Unit21ID: "iure",
-    }
-
-    res, err := s.RulesAPI.ReadOneRule(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

@@ -46,8 +46,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.AddInstrumentsRequest{
+    ctx := context.Background()
+    res, err := s.EntitiesAPI.AddInstruments(ctx, operations.AddInstrumentsRequest{
         EntityID: "u-3593dece-6642-4cdc-8547-aafc1454e0a0",
         LinkInstrument: &shared.LinkInstrument{
             InstrumentIds: []string{
@@ -55,9 +55,7 @@ func main() {
             },
         },
         OrgName: "voluptatibus",
-    }
-
-    res, err := s.EntitiesAPI.AddInstruments(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -114,8 +112,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.CreateEntityRequest{
+    ctx := context.Background()
+    res, err := s.EntitiesAPI.CreateEntity(ctx, shared.CreateEntityRequest{
         BusinessData: &shared.BusinessDataProperties{
             AccountHolderName: sdk.String("John Smith"),
             BusinessName: sdk.String("Acme"),
@@ -320,9 +318,7 @@ func main() {
             Ssn: sdk.String("733-99-5921"),
             YearOfBirth: sdk.Int64(1990),
         },
-    }
-
-    res, err := s.EntitiesAPI.CreateEntity(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -356,13 +352,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DelMediaEntityRequest{
+    ctx := context.Background()
+    res, err := s.EntitiesAPI.DelMediaEntity(ctx, operations.DelMediaEntityRequest{
         EntityID: "u-3593dece-6642-4cdc-8547-aafc1454e0a0",
         OrgName: "commodi",
-    }
-
-    res, err := s.EntitiesAPI.DelMediaEntity(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -403,8 +397,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ExportEntitiesRequestBody{
+    ctx := context.Background()
+    res, err := s.EntitiesAPI.ExportEntities(ctx, operations.ExportEntitiesRequestBody{
         EntityIds: []int64{
             64147,
             216822,
@@ -447,9 +441,7 @@ func main() {
                 9,
             },
         },
-    }
-
-    res, err := s.EntitiesAPI.ExportEntities(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -485,13 +477,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetEntityRequest{
+    ctx := context.Background()
+    res, err := s.EntitiesAPI.GetEntity(ctx, operations.GetEntityRequest{
         EntityID: "u-3593dece-6642-4cdc-8547-aafc1454e0a0",
         OrgName: "veritatis",
-    }
-
-    res, err := s.EntitiesAPI.GetEntity(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -573,14 +563,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.LinkMediaToEntityRequest{
+    ctx := context.Background()
+    res, err := s.EntitiesAPI.LinkMediaToEntity(ctx, operations.LinkMediaToEntityRequest{
         RequestBody: &operations.LinkMediaToEntityRequestBody{},
         EntityID: "u-3593dece-6642-4cdc-8547-aafc1454e0a0",
         OrgName: "itaque",
-    }
-
-    res, err := s.EntitiesAPI.LinkMediaToEntity(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -624,15 +612,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.ListEntityRequest{
+    ctx := context.Background()
+    res, err := s.EntitiesAPI.ListEntities(ctx, shared.ListEntityRequest{
         AlertID: sdk.Int64(73913),
         CaseID: sdk.Int64(10107269),
         Limit: 2,
         Offset: 277718,
-    }
-
-    res, err := s.EntitiesAPI.ListEntities(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -681,8 +667,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateEntityRequest{
+    ctx := context.Background()
+    res, err := s.EntitiesAPI.UpdateEntity(ctx, operations.UpdateEntityRequest{
         RequestBody: shared.DocumentDataArray{
             DocumentData: []shared.DocumentDataProperties{
                 shared.DocumentDataProperties{
@@ -698,9 +684,7 @@ func main() {
         },
         EntityID: "u-3593dece-6642-4cdc-8547-aafc1454e0a0",
         OrgName: "est",
-    }
-
-    res, err := s.EntitiesAPI.UpdateEntity(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

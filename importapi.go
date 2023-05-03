@@ -41,23 +41,26 @@ func newImportAPI(defaultClient, securityClient HTTPClient, serverURL, language,
 //
 // Files uploaded and processed have the following `status` value with the following definitions:
 //
-//	| Error code               | Definition                                                                                                                                 |
-//	|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
-//	| `PENDING_UPLOAD`	       | Customer is programmatically uploading via API, but the file has not landed (or not yet been detected as landed) in S3                     |
-//	| `ADDED`	                 | Customer manually uploaded to the UI, but has not attempted to process the file yet                                                        |
-//	| `QUEUED`	               | File is in a queue waiting to process                                                                                                      |
-//	| `PROCESSING`	           | File is presently being processed                                                                                                          |
-//	| `FINISHED`	             | The File finished successfully. Note that this does not mean all data is processed successfully as referenced by Hard error Handling below |
-//	| `FAILED`	               | File hit a hard failure case and was unable to process data                                                                                |
+//   | Error code               | Definition                                                                                                                                 |
+//   |--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+//   | `PENDING_UPLOAD`	       | Customer is programmatically uploading via API, but the file has not landed (or not yet been detected as landed) in S3                     |
+//   | `ADDED`	                 | Customer manually uploaded to the UI, but has not attempted to process the file yet                                                        |
+//   | `QUEUED`	               | File is in a queue waiting to process                                                                                                      |
+//   | `PROCESSING`	           | File is presently being processed                                                                                                          |
+//   | `FINISHED`	             | The File finished successfully. Note that this does not mean all data is processed successfully as referenced by Hard error Handling below |
+//   | `FAILED`	               | File hit a hard failure case and was unable to process data                                                                                |
+//
 //
 // Hard errors refer to unprocessable datafiles, aka files that whose status end up `FAILED` are accompanied by an error code from this list:
 //
-//	| Error code               | Definition                                                                                                                                                                                                                                           |
-//	|--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-//	| `unparseable_file`	     | File failed to read (i.e. file contents was not actually csv or the contents use a non-traditional delimiter character)                                                                                                                              |
-//	| `invalid_schema`	       | By the stream configuration, the file had unexpected column headers or values present and thus the system did not process the data                                                                                                                   |
-//	| `stream_not_configured`	 | This error means that the stream has not yet been configured with all the necessary settings to ingest the data yet. Generally this should only happen if you are testing uploaded datafiles in advance of having defined landing the data in Unit21 |
-//	| `unknown`	               | This is akin to 500 server error, and Unit21 does not have a specific known cause at this time                                                                                                                                                       |
+//   | Error code               | Definition                                                                                                                                                                                                                                           |
+//   |--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+//   | `unparseable_file`	     | File failed to read (i.e. file contents was not actually csv or the contents use a non-traditional delimiter character)                                                                                                                              |
+//   | `invalid_schema`	       | By the stream configuration, the file had unexpected column headers or values present and thus the system did not process the data                                                                                                                   |
+//   | `stream_not_configured`	 | This error means that the stream has not yet been configured with all the necessary settings to ingest the data yet. Generally this should only happen if you are testing uploaded datafiles in advance of having defined landing the data in Unit21 |
+//   | `unknown`	               | This is akin to 500 server error, and Unit21 does not have a specific known cause at this time                                                                                                                                                       |
+//
+
 func (s *importAPI) DatafileStatus(ctx context.Context, request operations.DatafileStatusRequest) (*operations.DatafileStatusResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/imports/{file_id}", request, nil)
@@ -99,6 +102,7 @@ func (s *importAPI) DatafileStatus(ctx context.Context, request operations.Dataf
 // Get details your unique URL you can use to import data into the Unit21 system.
 //
 // The response will include a URL which you must use to upload your datafile. In the example below, your datafile will be uploaded to https://local-tm-uploads.s3.amazonaws.com/.
+
 func (s *importAPI) GetPreSignedURL(ctx context.Context, request operations.GetPreSignedURLRequestBody) (*operations.GetPreSignedURLResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/imports/pre-signed-url/create"
@@ -146,6 +150,8 @@ func (s *importAPI) GetPreSignedURL(ctx context.Context, request operations.GetP
 // Note `file_id` will be included in the initial request to get a presigned_url.
 //
 // This route will be limited to 1000 records ordered by upload time.
+//
+
 func (s *importAPI) ListDatafiles(ctx context.Context, request operations.ListDatafilesRequestBody) (*operations.ListDatafilesResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/imports/list"
@@ -201,6 +207,8 @@ func (s *importAPI) ListDatafiles(ctx context.Context, request operations.ListDa
 // Use `--form file` to specify the file.
 //
 // We support JSON, JSONL, CSV format only.
+//
+
 func (s *importAPI) UploadDatafiles(ctx context.Context, request operations.UploadDatafilesRequest) (*operations.UploadDatafilesResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/{pre_signed_url}", request, nil)

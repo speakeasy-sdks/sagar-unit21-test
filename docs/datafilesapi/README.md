@@ -41,16 +41,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateDatafilesRequestBody{
+    ctx := context.Background()
+    res, err := s.DatafilesAPI.CreateDatafiles(ctx, operations.CreateDatafilesRequestBody{
         Datafile: &operations.CreateDatafilesRequestBodyDatafile{
             Content: []byte("quia"),
             Datafile: "quis",
         },
         RunRules: sdk.Bool(false),
-    }
-
-    res, err := s.DatafilesAPI.CreateDatafiles(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -86,12 +84,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetDatafileByUnit21IDRequest{
+    ctx := context.Background()
+    res, err := s.DatafilesAPI.GetDatafileByUnit21ID(ctx, operations.GetDatafileByUnit21IDRequest{
         Unit21ID: "vitae",
-    }
-
-    res, err := s.DatafilesAPI.GetDatafileByUnit21ID(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -132,15 +128,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetDatafileMappingsRequest{
+    ctx := context.Background()
+    res, err := s.DatafilesAPI.GetDatafileMappings(ctx, operations.GetDatafileMappingsRequest{
         RequestBody: &operations.GetDatafileMappingsRequestBody{
             Offset: sdk.Int64(1),
         },
         Unit21ID: "laborum",
-    }
-
-    res, err := s.DatafilesAPI.GetDatafileMappings(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

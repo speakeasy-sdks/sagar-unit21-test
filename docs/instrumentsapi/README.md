@@ -53,8 +53,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.CreateInstrumentRequest{
+    ctx := context.Background()
+    res, err := s.InstrumentsAPI.CreateInstrument(ctx, shared.CreateInstrumentRequest{
         CustomData: map[string]interface{}{
             "nisi": "vel",
             "natus": "omnis",
@@ -138,9 +138,7 @@ func main() {
             "Sector:Europe",
             "Sector:Europe",
         },
-    }
-
-    res, err := s.InstrumentsAPI.CreateInstrument(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -181,8 +179,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ExportInstrumentsRequestBody{
+    ctx := context.Background()
+    res, err := s.InstrumentsAPI.ExportInstruments(ctx, operations.ExportInstrumentsRequestBody{
         Filters: &operations.ExportInstrumentsRequestBodyFilters{
             EndDate: sdk.String("2021-11-05 04:13:46"),
             EntityIds: []int64{
@@ -208,9 +206,7 @@ func main() {
         InstrumentIds: []string{
             "3234-sdghfdf-3332",
         },
-    }
-
-    res, err := s.InstrumentsAPI.ExportInstruments(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -246,13 +242,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetInstrumentRequest{
+    ctx := context.Background()
+    res, err := s.InstrumentsAPI.GetInstrument(ctx, operations.GetInstrumentRequest{
         InstrumentID: "magnam",
         OrgName: "et",
-    }
-
-    res, err := s.InstrumentsAPI.GetInstrument(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -293,14 +287,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.ListAlertRequest{
+    ctx := context.Background()
+    res, err := s.InstrumentsAPI.ListInstruments(ctx, shared.ListAlertRequest{
         AlertID: sdk.Int64(73913),
         Limit: 2,
         Offset: 569965,
-    }
-
-    res, err := s.InstrumentsAPI.ListInstruments(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -348,8 +340,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateInstrumentRequest{
+    ctx := context.Background()
+    res, err := s.InstrumentsAPI.UpdateInstrument(ctx, operations.UpdateInstrumentRequest{
         RequestBody: &shared.EntityRelations{
             Entities: []shared.EntityRelationsEntities{
                 shared.EntityRelationsEntities{
@@ -371,9 +363,7 @@ func main() {
         },
         InstrumentID: "quos",
         OrgName: "sint",
-    }
-
-    res, err := s.InstrumentsAPI.UpdateInstrument(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

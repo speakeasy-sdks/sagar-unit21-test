@@ -32,12 +32,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateVerificationFormRequestBody{
+    ctx := context.Background()
+    res, err := s.VerificationFormsAPI.CreateVerificationForm(ctx, operations.CreateVerificationFormRequestBody{
         SessionLengthMinutes: sdk.Int64(868126),
-    }
-
-    res, err := s.VerificationFormsAPI.CreateVerificationForm(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

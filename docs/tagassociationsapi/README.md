@@ -53,8 +53,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListTagsRequestBody{
+    ctx := context.Background()
+    res, err := s.TagAssociationsAPI.ListTags(ctx, operations.ListTagsRequestBody{
         CreatedAfter: sdk.Int64(1623365011),
         CreatedBefore: sdk.Int64(1623365011),
         Limit: sdk.Int64(2),
@@ -70,9 +70,7 @@ func main() {
             "Sector:Europe",
             "Sector:Europe",
         },
-    }
-
-    res, err := s.TagAssociationsAPI.ListTags(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

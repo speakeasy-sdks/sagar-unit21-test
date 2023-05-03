@@ -30,20 +30,20 @@ func (e ListAlertsRequestBodyTypesEnum) ToPointer() *ListAlertsRequestBodyTypesE
 }
 
 func (e *ListAlertsRequestBodyTypesEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "tm":
 		fallthrough
 	case "kyc":
 		fallthrough
 	case "chainalysis":
-		*e = ListAlertsRequestBodyTypesEnum(s)
+		*e = ListAlertsRequestBodyTypesEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ListAlertsRequestBodyTypesEnum: %s", s)
+		return fmt.Errorf("invalid value for ListAlertsRequestBodyTypesEnum: %v", v)
 	}
 }
 

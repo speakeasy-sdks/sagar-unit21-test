@@ -70,8 +70,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateAlertRules{
+    ctx := context.Background()
+    res, err := s.AlertsAPI.CreateAlert(ctx, operations.CreateAlertRules{
         AlertID: "alertA-028eb01a-f8d3-42fb-b398-785b596ee4cb",
         AlertType: operations.CreateAlertRulesAlertTypeEnumTm,
         CreatedAt: 1623365011,
@@ -126,9 +126,7 @@ func main() {
         },
         Title: "Account deviation for user T18029",
         VerificationResultID: sdk.Int64(42),
-    }
-
-    res, err := s.AlertsAPI.CreateAlert(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -169,8 +167,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ExportAlertsRequestBody{
+    ctx := context.Background()
+    res, err := s.AlertsAPI.ExportAlerts(ctx, operations.ExportAlertsRequestBody{
         AlertIds: []int64{
             423655,
             623564,
@@ -242,9 +240,7 @@ func main() {
                 6,
             },
         },
-    }
-
-    res, err := s.AlertsAPI.ExportAlerts(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -280,12 +276,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetAlertByUnit21IDRequest{
+    ctx := context.Background()
+    res, err := s.AlertsAPI.GetAlertByUnit21ID(ctx, operations.GetAlertByUnit21IDRequest{
         Unit21ID: "perferendis",
-    }
-
-    res, err := s.AlertsAPI.GetAlertByUnit21ID(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -357,13 +351,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.LinkMediaToAlertRequest{
+    ctx := context.Background()
+    res, err := s.AlertsAPI.LinkMediaToAlert(ctx, operations.LinkMediaToAlertRequest{
         RequestBody: &operations.LinkMediaToAlertRequestBody{},
         Unit21ID: "ipsam",
-    }
-
-    res, err := s.AlertsAPI.LinkMediaToAlert(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -434,8 +426,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListAlertsRequestBody{
+    ctx := context.Background()
+    res, err := s.AlertsAPI.ListAlerts(ctx, operations.ListAlertsRequestBody{
         AssociatedEntities: []int64{
             957156,
             778157,
@@ -493,9 +485,7 @@ func main() {
         Types: []ListAlertsRequestBodyTypesEnum{
             operations.ListAlertsRequestBodyTypesEnumChainalysis,
         },
-    }
-
-    res, err := s.AlertsAPI.ListAlerts(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -551,8 +541,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateAlertRequest{
+    ctx := context.Background()
+    res, err := s.AlertsAPI.UpdateAlert(ctx, operations.UpdateAlertRequest{
         RequestBody: &shared.CustomData{
             CustomData: map[string]interface{}{
                 "ipsum": "excepturi",
@@ -560,9 +550,7 @@ func main() {
             },
         },
         Unit21ID: "ad",
-    }
-
-    res, err := s.AlertsAPI.UpdateAlert(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

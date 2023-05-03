@@ -40,6 +40,8 @@ func newDatafilesAPI(defaultClient, securityClient HTTPClient, serverURL, langua
 // Use `--form datafile` to specify the datafile, and `run_rules` to configure whether to run Unit21 rules on the datafile after it's processed.
 //
 // We support JSON format only.
+//
+
 func (s *datafilesAPI) CreateDatafiles(ctx context.Context, request operations.CreateDatafilesRequestBody) (*operations.CreateDatafilesResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/datafiles/create"
@@ -88,6 +90,7 @@ func (s *datafilesAPI) CreateDatafiles(ctx context.Context, request operations.C
 // Get details about a datafile.
 //
 // This endpoint requires the `unit21_id` which is a unique ID created by Unit21 when the datafile is first created.
+
 func (s *datafilesAPI) GetDatafileByUnit21ID(ctx context.Context, request operations.GetDatafileByUnit21IDRequest) (*operations.GetDatafileByUnit21IDResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/datafiles/{unit21_id}", request, nil)
@@ -133,6 +136,8 @@ func (s *datafilesAPI) GetDatafileByUnit21ID(ctx context.Context, request operat
 // The total number of items can be retrieved from the GET endpoint.
 //
 // Please note that an empty response `{}` will be returned if the datafile is not yet processed.
+//
+
 func (s *datafilesAPI) GetDatafileMappings(ctx context.Context, request operations.GetDatafileMappingsRequest) (*operations.GetDatafileMappingsResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/datafiles/{unit21_id}/mappings", request, nil)

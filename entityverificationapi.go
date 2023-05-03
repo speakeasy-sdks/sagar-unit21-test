@@ -35,6 +35,7 @@ func newEntityVerificationAPI(defaultClient, securityClient HTTPClient, serverUR
 // AddVerificationResultToEntity - Link external verification
 // Add the verification result from an external ID provider to an entity on the Unit21 system.
 // You can only send 1 result per request.
+
 func (s *entityVerificationAPI) AddVerificationResultToEntity(ctx context.Context, request operations.AddVerificationResultToEntityRequest) (*operations.AddVerificationResultToEntityResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/entities/{unit21_id}/link-verification-result", request, nil)
@@ -92,6 +93,7 @@ func (s *entityVerificationAPI) AddVerificationResultToEntity(ctx context.Contex
 // Returns the verification workflow IDs for an entity.
 //
 // This endpoint requires the `unit21_id` which is a unique ID created by Unit21 when the entity is first created.
+
 func (s *entityVerificationAPI) GetEntityVerificationWorkflowExecutions(ctx context.Context, request operations.GetEntityVerificationWorkflowExecutionsRequest) (*operations.GetEntityVerificationWorkflowExecutionsResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/entities/{unit21_id}/verification_workflow_executions", request, nil)
@@ -131,6 +133,7 @@ func (s *entityVerificationAPI) GetEntityVerificationWorkflowExecutions(ctx cont
 
 // GetVerificationResult - Get verification results by result id
 // Returns all the information from the verification of a specific entity.
+
 func (s *entityVerificationAPI) GetVerificationResult(ctx context.Context, request operations.GetVerificationResultRequest) (*operations.GetVerificationResultResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/verification/result/{result_id}", request, nil)
@@ -170,6 +173,7 @@ func (s *entityVerificationAPI) GetVerificationResult(ctx context.Context, reque
 
 // GetVerificationResultFromWorkflowExecution - Get verification results from workflow
 // Returns all the information from the verification workflow execution for a specific entity.
+
 func (s *entityVerificationAPI) GetVerificationResultFromWorkflowExecution(ctx context.Context, request operations.GetVerificationResultFromWorkflowExecutionRequest) (*operations.GetVerificationResultFromWorkflowExecutionResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/verification/verification-workflow-execution/{verification_workflow_execution_id}/results", request, nil)
@@ -209,6 +213,7 @@ func (s *entityVerificationAPI) GetVerificationResultFromWorkflowExecution(ctx c
 
 // GetVerificationWorkflowExecution - Get verification workflow execution details
 // Returns all the data associated with a verification_workflow_execution_id
+
 func (s *entityVerificationAPI) GetVerificationWorkflowExecution(ctx context.Context, request operations.GetVerificationWorkflowExecutionRequest) (*operations.GetVerificationWorkflowExecutionResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/verification/verification-workflow-execution/{verification_workflow_execution_id}", request, nil)
@@ -252,6 +257,8 @@ func (s *entityVerificationAPI) GetVerificationWorkflowExecution(ctx context.Con
 // Requires a `workflow_id`. You can create a verification workflow from the Unit21 dashboard.
 //
 // This endpoint requires the `entity_id` which is a unique ID created by your organization to identify the entity. The `org_name` is your Unit21 appointed organization name such as `google` or `acme`.
+//
+
 func (s *entityVerificationAPI) RunVerificationsWorkflowThroughExternalID(ctx context.Context, request operations.RunVerificationsWorkflowThroughExternalIDRequest) (*operations.RunVerificationsWorkflowThroughExternalIDResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/{org_name}/entities/{entity_id}/verify", request, nil)
@@ -316,13 +323,13 @@ func (s *entityVerificationAPI) RunVerificationsWorkflowThroughExternalID(ctx co
 // For synchronous continous monitoring, the endpoint will always return a 200 success status response  but you should look at the `is_success = true` field to check if the result was actually successful:
 //
 // `
-//
-//	{
-//	  "error_message": "This entity has no existing continuous monitoring subscriptions to disable.",
-//	  "is_success": true
-//	}
-//
+//   {
+//     "error_message": "This entity has no existing continuous monitoring subscriptions to disable.",
+//     "is_success": true
+//   }
 // `
+//
+
 func (s *entityVerificationAPI) UpdateContinuousMonitoring(ctx context.Context, request operations.UpdateContinuousMonitoringRequest) (*operations.UpdateContinuousMonitoringResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/entities/{unit21_id}/continuous-monitoring", request, nil)
@@ -369,6 +376,8 @@ func (s *entityVerificationAPI) UpdateContinuousMonitoring(ctx context.Context, 
 
 // UpdateSuppressedProviderEntities - Suppress provider entity
 // Mute Socure continuous monitoring for an entity. 1 - Suppress 0 - Unsuppress
+//
+
 func (s *entityVerificationAPI) UpdateSuppressedProviderEntities(ctx context.Context, request operations.UpdateSuppressedProviderEntitiesRequest) (*operations.UpdateSuppressedProviderEntitiesResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/entities/{unit21_id}/suppress-provider-entity", request, nil)

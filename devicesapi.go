@@ -50,13 +50,16 @@ func newDevicesAPI(defaultClient, securityClient HTTPClient, serverURL, language
 //   - [Batch uploads](https://docs.unit21.ai/u21/reference/batch-request-examples)
 //   - [Modifying tags](https://docs.unit21.ai/u21/reference/modifying-tags)
 //
+//
 // The response will consist of the following fields:
 //
-//	| Field                    | Type     | Description                                            |
-//	|--------------------------|----------|--------------------------------------------------------|
-//	| `device_id`	             | String   | 	Unique identifier of the device on your platform     |
-//	| `unit21_id`	             | String   | 	Internal ID of the device within Unit21's system     |
-//	| `previously_existed`	   | Boolean  | 	If entity (with the same `device_id`) already exists |
+//   | Field                    | Type     | Description                                            |
+//   |--------------------------|----------|--------------------------------------------------------|
+//   | `device_id`	             | String   | 	Unique identifier of the device on your platform     |
+//   | `unit21_id`	             | String   | 	Internal ID of the device within Unit21's system     |
+//   | `previously_existed`	   | Boolean  | 	If entity (with the same `device_id`) already exists |
+//
+
 func (s *devicesAPI) CreateDevice(ctx context.Context, request operations.CreateDeviceDeviceData) (*operations.CreateDeviceResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/devices/create"
@@ -116,6 +119,8 @@ func (s *devicesAPI) CreateDevice(ctx context.Context, request operations.Create
 // Either the agent `ID` or `email` is required to begin the export.
 //
 // Either the `filters` or the list of `device IDs` are required for the export.
+//
+
 func (s *devicesAPI) ExportDevices(ctx context.Context, request operations.ExportDevicesRequestBody) (*operations.ExportDevicesResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/devices/bulk-export"
@@ -161,6 +166,7 @@ func (s *devicesAPI) ExportDevices(ctx context.Context, request operations.Expor
 // Returns all data objects belonging to a single device.
 //
 // This endpoint requires the `device_id` which is a unique ID created by your organization to identify the device. The `org_name` is your Unit21 appointed organization name such as `google` or `acme`.
+
 func (s *devicesAPI) GetDeviceByExternal(ctx context.Context, request operations.GetDeviceByExternalRequest) (*operations.GetDeviceByExternalResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/{org_name}/devices/{device_id}", request, nil)
@@ -205,6 +211,8 @@ func (s *devicesAPI) GetDeviceByExternal(ctx context.Context, request operations
 // * `offset` indicates the offset for pagination. An `offset` value of 1 starts with the environment's first record. The offset is relative to the number of pages (not the total count of objects).
 //
 // The `total_count` field contains the total number of devices where the  `response_count` field contains the number of devices included in the response.
+//
+
 func (s *devicesAPI) ListDevices(ctx context.Context, request shared.ListRequest) (*operations.ListDevicesResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/devices/list"
@@ -273,13 +281,15 @@ func (s *devicesAPI) ListDevices(ctx context.Context, request shared.ListRequest
 //   - [Batch uploads](https://docs.unit21.ai/u21/reference/batch-request-examples)
 //   - [Modifying tags](https://docs.unit21.ai/u21/reference/modifying-tags)
 //
+//
 // The response will consist of the following fields:
 //
-//	| Field                    | Type     | Description                                            |
-//	|--------------------------|----------|--------------------------------------------------------|
-//	| `device_id`	             | String   | 	Unique identifier of the device on your platform     |
-//	| `unit21_id`	             | String   | 	Internal ID of the device within Unit21's system     |
-//	| `previously_existed`	   | Boolean  | 	If entity (with the same `device_id`) already exists |
+//   | Field                    | Type     | Description                                            |
+//   |--------------------------|----------|--------------------------------------------------------|
+//   | `device_id`	             | String   | 	Unique identifier of the device on your platform     |
+//   | `unit21_id`	             | String   | 	Internal ID of the device within Unit21's system     |
+//   | `previously_existed`	   | Boolean  | 	If entity (with the same `device_id`) already exists |
+
 func (s *devicesAPI) UpdateDeviceByExternal(ctx context.Context, request operations.UpdateDeviceByExternalRequest) (*operations.UpdateDeviceByExternalResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/{org_name}/devices/{device_id}/update", request, nil)

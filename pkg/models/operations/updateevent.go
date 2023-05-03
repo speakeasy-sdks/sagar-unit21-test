@@ -22,20 +22,20 @@ func (e UpdateEventEventOptionsOptionsLinkedEntityEnum) ToPointer() *UpdateEvent
 }
 
 func (e *UpdateEventEventOptionsOptionsLinkedEntityEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "sender":
 		fallthrough
 	case "receiver":
 		fallthrough
 	case "both":
-		*e = UpdateEventEventOptionsOptionsLinkedEntityEnum(s)
+		*e = UpdateEventEventOptionsOptionsLinkedEntityEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for UpdateEventEventOptionsOptionsLinkedEntityEnum: %s", s)
+		return fmt.Errorf("invalid value for UpdateEventEventOptionsOptionsLinkedEntityEnum: %v", v)
 	}
 }
 

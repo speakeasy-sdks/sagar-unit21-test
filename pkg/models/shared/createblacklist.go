@@ -23,11 +23,11 @@ func (e CreateBlacklistTypeEnum) ToPointer() *CreateBlacklistTypeEnum {
 }
 
 func (e *CreateBlacklistTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "STRING":
 		fallthrough
 	case "IP_INET":
@@ -37,10 +37,10 @@ func (e *CreateBlacklistTypeEnum) UnmarshalJSON(data []byte) error {
 	case "USER":
 		fallthrough
 	case "BUSINESS":
-		*e = CreateBlacklistTypeEnum(s)
+		*e = CreateBlacklistTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreateBlacklistTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for CreateBlacklistTypeEnum: %v", v)
 	}
 }
 

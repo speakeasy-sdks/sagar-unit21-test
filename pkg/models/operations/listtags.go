@@ -26,11 +26,11 @@ func (e ListTagsRequestBodyObjectTypesEnum) ToPointer() *ListTagsRequestBodyObje
 }
 
 func (e *ListTagsRequestBodyObjectTypesEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "alert":
 		fallthrough
 	case "case":
@@ -46,10 +46,10 @@ func (e *ListTagsRequestBodyObjectTypesEnum) UnmarshalJSON(data []byte) error {
 	case "entity":
 		fallthrough
 	case "instrument":
-		*e = ListTagsRequestBodyObjectTypesEnum(s)
+		*e = ListTagsRequestBodyObjectTypesEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ListTagsRequestBodyObjectTypesEnum: %s", s)
+		return fmt.Errorf("invalid value for ListTagsRequestBodyObjectTypesEnum: %v", v)
 	}
 }
 

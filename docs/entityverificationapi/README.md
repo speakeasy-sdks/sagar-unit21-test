@@ -41,8 +41,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.AddVerificationResultToEntityRequest{
+    ctx := context.Background()
+    res, err := s.EntityVerificationAPI.AddVerificationResultToEntity(ctx, operations.AddVerificationResultToEntityRequest{
         LinkVerificationResult: &shared.LinkVerificationResult{
             Content: map[string]interface{}{
                 "explicabo": "deserunt",
@@ -55,9 +55,7 @@ func main() {
             VerificationType: shared.LinkVerificationResultVerificationTypeEnumWatchlistScreening,
         },
         Unit21ID: "quos",
-    }
-
-    res, err := s.EntityVerificationAPI.AddVerificationResultToEntity(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -93,12 +91,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetEntityVerificationWorkflowExecutionsRequest{
+    ctx := context.Background()
+    res, err := s.EntityVerificationAPI.GetEntityVerificationWorkflowExecutions(ctx, operations.GetEntityVerificationWorkflowExecutionsRequest{
         Unit21ID: "perferendis",
-    }
-
-    res, err := s.EntityVerificationAPI.GetEntityVerificationWorkflowExecutions(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -132,12 +128,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetVerificationResultRequest{
+    ctx := context.Background()
+    res, err := s.EntityVerificationAPI.GetVerificationResult(ctx, operations.GetVerificationResultRequest{
         ResultID: "magni",
-    }
-
-    res, err := s.EntityVerificationAPI.GetVerificationResult(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -171,12 +165,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetVerificationResultFromWorkflowExecutionRequest{
+    ctx := context.Background()
+    res, err := s.EntityVerificationAPI.GetVerificationResultFromWorkflowExecution(ctx, operations.GetVerificationResultFromWorkflowExecutionRequest{
         VerificationWorkflowExecutionID: 828940,
-    }
-
-    res, err := s.EntityVerificationAPI.GetVerificationResultFromWorkflowExecution(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -210,12 +202,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetVerificationWorkflowExecutionRequest{
+    ctx := context.Background()
+    res, err := s.EntityVerificationAPI.GetVerificationWorkflowExecution(ctx, operations.GetVerificationWorkflowExecutionRequest{
         VerificationWorkflowExecutionID: 369808,
-    }
-
-    res, err := s.EntityVerificationAPI.GetVerificationWorkflowExecution(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -255,8 +245,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.RunVerificationsWorkflowThroughExternalIDRequest{
+    ctx := context.Background()
+    res, err := s.EntityVerificationAPI.RunVerificationsWorkflowThroughExternalID(ctx, operations.RunVerificationsWorkflowThroughExternalIDRequest{
         EntityVerification: shared.EntityVerification{
             IncludeFullResponse: sdk.Bool(false),
             SynchronousResponse: sdk.Bool(false),
@@ -264,9 +254,7 @@ func main() {
         },
         EntityID: "u-3593dece-6642-4cdc-8547-aafc1454e0a0",
         OrgName: "alias",
-    }
-
-    res, err := s.EntityVerificationAPI.RunVerificationsWorkflowThroughExternalID(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -313,16 +301,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateContinuousMonitoringRequest{
+    ctx := context.Background()
+    res, err := s.EntityVerificationAPI.UpdateContinuousMonitoring(ctx, operations.UpdateContinuousMonitoringRequest{
         ContinuousMonitoring: &shared.ContinuousMonitoring{
             ContinuousMonitoring: false,
             SynchronousResponse: sdk.Bool(false),
         },
         Unit21ID: "fugit",
-    }
-
-    res, err := s.EntityVerificationAPI.UpdateContinuousMonitoring(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -358,8 +344,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateSuppressedProviderEntitiesRequest{
+    ctx := context.Background()
+    res, err := s.EntityVerificationAPI.UpdateSuppressedProviderEntities(ctx, operations.UpdateSuppressedProviderEntitiesRequest{
         SuppressProviderEntity: &shared.SuppressProviderEntity{
             ProviderEntityIds: []string{
                 "excepturi",
@@ -370,9 +356,7 @@ func main() {
             SynchronousResponse: sdk.Bool(false),
         },
         Unit21ID: "tempore",
-    }
-
-    res, err := s.EntityVerificationAPI.UpdateSuppressedProviderEntities(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

@@ -65,8 +65,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateCaseCaseData{
+    ctx := context.Background()
+    res, err := s.CasesAPI.CreateCase(ctx, operations.CreateCaseCaseData{
         AlertIds: []int64{
             943749,
             902599,
@@ -91,9 +91,7 @@ func main() {
             "Sector:Europe",
         },
         Title: "Active fraud investigation",
-    }
-
-    res, err := s.CasesAPI.CreateCase(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -134,8 +132,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ExportCasesRequestBody{
+    ctx := context.Background()
+    res, err := s.CasesAPI.ExportCases(ctx, operations.ExportCasesRequestBody{
         CaseIds: []int64{
             969810,
         },
@@ -171,9 +169,7 @@ func main() {
                 6,
             },
         },
-    }
-
-    res, err := s.CasesAPI.ExportCases(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -209,12 +205,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCaseByUnit21IDRequest{
+    ctx := context.Background()
+    res, err := s.CasesAPI.GetCaseByUnit21ID(ctx, operations.GetCaseByUnit21IDRequest{
         Unit21ID: "nobis",
-    }
-
-    res, err := s.CasesAPI.GetCaseByUnit21ID(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -286,13 +280,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.LinkMediaToCaseRequest{
+    ctx := context.Background()
+    res, err := s.CasesAPI.LinkMediaToCase(ctx, operations.LinkMediaToCaseRequest{
         RequestBody: &operations.LinkMediaToCaseRequestBody{},
         Unit21ID: "enim",
-    }
-
-    res, err := s.CasesAPI.LinkMediaToCase(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -361,8 +353,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListCasesRequestBody{
+    ctx := context.Background()
+    res, err := s.CasesAPI.ListCases(ctx, operations.ListCasesRequestBody{
         AssociatedEntities: []int64{
             363711,
             325047,
@@ -406,9 +398,7 @@ func main() {
             shared.InvestigationStatusEnumOpen,
             shared.InvestigationStatusEnumOpen,
         },
-    }
-
-    res, err := s.CasesAPI.ListCases(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -464,8 +454,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateCaseRequest{
+    ctx := context.Background()
+    res, err := s.CasesAPI.UpdateCase(ctx, operations.UpdateCaseRequest{
         RequestBody: &shared.Cases{
             CaseID: "CaseA-123",
             Description: sdk.String("suspected money laundering example"),
@@ -480,9 +470,7 @@ func main() {
             Title: "Active fraud investigation",
         },
         Unit21ID: "error",
-    }
-
-    res, err := s.CasesAPI.UpdateCase(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

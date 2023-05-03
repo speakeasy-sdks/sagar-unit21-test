@@ -61,8 +61,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateDeviceDeviceData{
+    ctx := context.Background()
+    res, err := s.DevicesAPI.CreateDevice(ctx, operations.CreateDeviceDeviceData{
         AppVersion: sdk.String("5.44.4"),
         DeviceID: "11b72726-18d6-43b3-a0bf-b4adf6dfd2da",
         DeviceManufacturer: sdk.String("samsung"),
@@ -90,9 +90,7 @@ func main() {
             "Sector:Europe",
         },
         Timezone: sdk.String("UTC-7"),
-    }
-
-    res, err := s.DevicesAPI.CreateDevice(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -131,8 +129,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ExportDevicesRequestBody{
+    ctx := context.Background()
+    res, err := s.DevicesAPI.ExportDevices(ctx, operations.ExportDevicesRequestBody{
         AgentEmail: sdk.String("foobar@unit21.ai"),
         AgentID: sdk.String("295"),
         DeviceIds: []int64{
@@ -143,9 +141,7 @@ func main() {
                 85,
             },
         },
-    }
-
-    res, err := s.DevicesAPI.ExportDevices(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -181,13 +177,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetDeviceByExternalRequest{
+    ctx := context.Background()
+    res, err := s.DevicesAPI.GetDeviceByExternal(ctx, operations.GetDeviceByExternalRequest{
         DeviceID: "tenetur",
         OrgName: "ipsam",
-    }
-
-    res, err := s.DevicesAPI.GetDeviceByExternal(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -227,13 +221,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.ListRequest{
+    ctx := context.Background()
+    res, err := s.DevicesAPI.ListDevices(ctx, shared.ListRequest{
         Limit: sdk.Int64(2),
         Offset: sdk.Int64(662527),
-    }
-
-    res, err := s.DevicesAPI.ListDevices(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -289,8 +281,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateDeviceByExternalRequest{
+    ctx := context.Background()
+    res, err := s.DevicesAPI.UpdateDeviceByExternal(ctx, operations.UpdateDeviceByExternalRequest{
         RequestBody: &shared.CustomData{
             CustomData: map[string]interface{}{
                 "quasi": "error",
@@ -298,9 +290,7 @@ func main() {
         },
         DeviceID: "temporibus",
         OrgName: "laborum",
-    }
-
-    res, err := s.DevicesAPI.UpdateDeviceByExternal(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

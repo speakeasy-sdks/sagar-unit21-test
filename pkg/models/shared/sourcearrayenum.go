@@ -19,17 +19,17 @@ func (e SourceArrayEnum) ToPointer() *SourceArrayEnum {
 }
 
 func (e *SourceArrayEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "INTERNAL":
 		fallthrough
 	case "EXTERNAL":
-		*e = SourceArrayEnum(s)
+		*e = SourceArrayEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SourceArrayEnum: %s", s)
+		return fmt.Errorf("invalid value for SourceArrayEnum: %v", v)
 	}
 }

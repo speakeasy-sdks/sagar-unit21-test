@@ -33,12 +33,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DeactivateAgentRequest{
+    ctx := context.Background()
+    res, err := s.AgentsAPI.DeactivateAgent(ctx, operations.DeactivateAgentRequest{
         AgentEmail: "provident",
-    }
-
-    res, err := s.AgentsAPI.DeactivateAgent(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

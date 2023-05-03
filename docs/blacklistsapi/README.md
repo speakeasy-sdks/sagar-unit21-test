@@ -53,8 +53,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.AddBlacklistValuesRequest{
+    ctx := context.Background()
+    res, err := s.BlacklistsAPI.AddBlacklistValues(ctx, operations.AddBlacklistValuesRequest{
         RequestBody: []shared.BlacklistCIDR{
             shared.BlacklistCIDR{
                 Cidr: "255.255.255.255/24",
@@ -62,9 +62,7 @@ func main() {
             },
         },
         Unit21ID: "iste",
-    }
-
-    res, err := s.BlacklistsAPI.AddBlacklistValues(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -118,14 +116,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.CreateBlacklist{
+    ctx := context.Background()
+    res, err := s.BlacklistsAPI.CreateBlacklist(ctx, shared.CreateBlacklist{
         Description: sdk.String("Unit21 rules will check against items in this list"),
         Name: sdk.String("New Blacklist"),
         Type: shared.CreateBlacklistTypeEnumIPInet.ToPointer(),
-    }
-
-    res, err := s.BlacklistsAPI.CreateBlacklist(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -166,13 +162,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.ListRequest{
+    ctx := context.Background()
+    res, err := s.BlacklistsAPI.ListBlacklists(ctx, shared.ListRequest{
         Limit: sdk.Int64(2),
         Offset: sdk.Int64(616934),
-    }
-
-    res, err := s.BlacklistsAPI.ListBlacklists(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

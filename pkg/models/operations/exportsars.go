@@ -23,11 +23,11 @@ func (e ExportSarsRequestBodyFiltersReportTypeEnum) ToPointer() *ExportSarsReque
 }
 
 func (e *ExportSarsRequestBodyFiltersReportTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "FINCEN_SAR":
 		fallthrough
 	case "ESTONIAN_FIU":
@@ -35,10 +35,10 @@ func (e *ExportSarsRequestBodyFiltersReportTypeEnum) UnmarshalJSON(data []byte) 
 	case "GOAML_STR":
 		fallthrough
 	case "NCA_SAR":
-		*e = ExportSarsRequestBodyFiltersReportTypeEnum(s)
+		*e = ExportSarsRequestBodyFiltersReportTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ExportSarsRequestBodyFiltersReportTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for ExportSarsRequestBodyFiltersReportTypeEnum: %v", v)
 	}
 }
 
@@ -68,11 +68,11 @@ func (e ExportSarsRequestBodyFiltersStatusesEnum) ToPointer() *ExportSarsRequest
 }
 
 func (e *ExportSarsRequestBodyFiltersStatusesEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "ARCHIVED":
 		fallthrough
 	case "PREFILING_VALIDATION_PENDING":
@@ -104,10 +104,10 @@ func (e *ExportSarsRequestBodyFiltersStatusesEnum) UnmarshalJSON(data []byte) er
 	case "FINCEN_STATUS_OTHER":
 		fallthrough
 	case "FINCEN_ACCEPTED":
-		*e = ExportSarsRequestBodyFiltersStatusesEnum(s)
+		*e = ExportSarsRequestBodyFiltersStatusesEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ExportSarsRequestBodyFiltersStatusesEnum: %s", s)
+		return fmt.Errorf("invalid value for ExportSarsRequestBodyFiltersStatusesEnum: %v", v)
 	}
 }
 

@@ -27,11 +27,11 @@ func (e MediaTypeEnum) ToPointer() *MediaTypeEnum {
 }
 
 func (e *MediaTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "IMAGE_PROFILE_PICTURE":
 		fallthrough
 	case "IMAGE_DRIVERS_LICENSE_FRONT":
@@ -45,9 +45,9 @@ func (e *MediaTypeEnum) UnmarshalJSON(data []byte) error {
 	case "IMAGE_ID_CARD_BACK":
 		fallthrough
 	case "IMAGE_FACE_IMAGE":
-		*e = MediaTypeEnum(s)
+		*e = MediaTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for MediaTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for MediaTypeEnum: %v", v)
 	}
 }

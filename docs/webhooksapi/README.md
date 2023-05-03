@@ -34,15 +34,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateWebhookRequest{
+    ctx := context.Background()
+    res, err := s.WebhooksAPI.UpdateWebhook(ctx, operations.UpdateWebhookRequest{
         RequestBody: &operations.UpdateWebhookRequestBody{
             URL: sdk.String("https://example.com"),
         },
         Unit21ID: "accusantium",
-    }
-
-    res, err := s.WebhooksAPI.UpdateWebhook(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

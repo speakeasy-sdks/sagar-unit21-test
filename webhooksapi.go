@@ -35,6 +35,7 @@ func newWebhooksAPI(defaultClient, securityClient HTTPClient, serverURL, languag
 // Change the URL of an existing webhook from Unit21.
 //
 // This endpoint requires the `unit21_id` which is a unique ID created by Unit21 when the webhook is first created.
+
 func (s *webhooksAPI) UpdateWebhook(ctx context.Context, request operations.UpdateWebhookRequest) (*operations.UpdateWebhookResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/webhooks/{unit21_id}/update", request, nil)

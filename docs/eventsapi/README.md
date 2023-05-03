@@ -58,8 +58,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.CreateEventEventOptions{
+    ctx := context.Background()
+    res, err := s.EventsAPI.CreateEvent(ctx, operations.CreateEventEventOptions{
         ActionData: &operations.CreateEventEventOptionsActionData{
             ActionDetails: sdk.String("Through mobile app v0.8.8"),
             ActionType: sdk.String("LOGIN"),
@@ -136,9 +136,7 @@ func main() {
             TransactionHash: sdk.String("af830da0919f9d3ebbc413040460708c4107e77c83c1d1a56c6bc76a48d"),
             UsdConversionNotes: sdk.String("pulled from forex.com at 1572672226"),
         },
-    }
-
-    res, err := s.EventsAPI.CreateEvent(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -179,8 +177,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ExportEventsRequestBody{
+    ctx := context.Background()
+    res, err := s.EventsAPI.ExportEvents(ctx, operations.ExportEventsRequestBody{
         EventIds: []int64{
             896039,
             572252,
@@ -209,9 +207,7 @@ func main() {
                 9,
             },
         },
-    }
-
-    res, err := s.EventsAPI.ExportEvents(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -252,8 +248,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ExportTransactionsRequestBody{
+    ctx := context.Background()
+    res, err := s.EventsAPI.ExportTransactions(ctx, operations.ExportTransactionsRequestBody{
         EventIds: []int64{
             447125,
             449198,
@@ -281,9 +277,7 @@ func main() {
                 9,
             },
         },
-    }
-
-    res, err := s.EventsAPI.ExportTransactions(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -319,13 +313,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetEventRequest{
+    ctx := context.Background()
+    res, err := s.EventsAPI.GetEvent(ctx, operations.GetEventRequest{
         EventID: "magnam",
         OrgName: "cumque",
-    }
-
-    res, err := s.EventsAPI.GetEvent(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -370,17 +362,15 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.ListDateRequest{
+    ctx := context.Background()
+    res, err := s.EventsAPI.ListEvents(ctx, shared.ListDateRequest{
         AlertID: sdk.Int64(73913),
         CaseID: sdk.Int64(10107269),
         EndDate: sdk.String("2021-11-05T04:13:46.000Z"),
         Limit: sdk.Int64(2),
         Offset: sdk.Int64(813798),
         StartDate: sdk.String("2019-11-05T04:13:46.000Z"),
-    }
-
-    res, err := s.EventsAPI.ListEvents(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -426,8 +416,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateEventRequest{
+    ctx := context.Background()
+    res, err := s.EventsAPI.UpdateEvent(ctx, operations.UpdateEventRequest{
         RequestBody: &operations.UpdateEventEventOptions{
             Options: &operations.UpdateEventEventOptionsOptions{
                 LinkDigitalDataToEntity: sdk.Bool(true),
@@ -440,9 +430,7 @@ func main() {
         },
         EventID: "ea",
         OrgName: "aliquid",
-    }
-
-    res, err := s.EventsAPI.UpdateEvent(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

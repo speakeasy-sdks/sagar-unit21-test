@@ -61,12 +61,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DatafileStatusRequest{
+    ctx := context.Background()
+    res, err := s.ImportAPI.DatafileStatus(ctx, operations.DatafileStatusRequest{
         FileID: 501324,
-    }
-
-    res, err := s.ImportAPI.DatafileStatus(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -102,14 +100,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetPreSignedURLRequestBody{
+    ctx := context.Background()
+    res, err := s.ImportAPI.GetPreSignedURL(ctx, operations.GetPreSignedURLRequestBody{
         FileName: "custom_data.csv",
         Md5Hash: sdk.String("352bfecf-ce8e-4c3d-64b9-ba0707fc2496"),
         StreamName: "insts",
-    }
-
-    res, err := s.ImportAPI.GetPreSignedURL(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -148,13 +144,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.ListDatafilesRequestBody{
+    ctx := context.Background()
+    res, err := s.ImportAPI.ListDatafiles(ctx, operations.ListDatafilesRequestBody{
         CreatedAfter: sdk.Int64(1623365011),
         CreatedBefore: sdk.Int64(1621365011),
-    }
-
-    res, err := s.ImportAPI.ListDatafiles(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -201,8 +195,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UploadDatafilesRequest{
+    ctx := context.Background()
+    res, err := s.ImportAPI.UploadDatafiles(ctx, operations.UploadDatafilesRequest{
         RequestBody: &operations.UploadDatafilesRequestBody{
             File: &operations.UploadDatafilesRequestBodyFile{
                 Content: []byte("deleniti"),
@@ -210,9 +204,7 @@ func main() {
             },
         },
         PreSignedURL: "amet",
-    }
-
-    res, err := s.ImportAPI.UploadDatafiles(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

@@ -23,11 +23,11 @@ func (e ExportAlertsRequestBodyFiltersAlertTypesEnum) ToPointer() *ExportAlertsR
 }
 
 func (e *ExportAlertsRequestBodyFiltersAlertTypesEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "CHAINALYSIS":
 		fallthrough
 	case "TM":
@@ -37,10 +37,10 @@ func (e *ExportAlertsRequestBodyFiltersAlertTypesEnum) UnmarshalJSON(data []byte
 	case "MANUAL":
 		fallthrough
 	case "CAR":
-		*e = ExportAlertsRequestBodyFiltersAlertTypesEnum(s)
+		*e = ExportAlertsRequestBodyFiltersAlertTypesEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ExportAlertsRequestBodyFiltersAlertTypesEnum: %s", s)
+		return fmt.Errorf("invalid value for ExportAlertsRequestBodyFiltersAlertTypesEnum: %v", v)
 	}
 }
 
@@ -56,18 +56,18 @@ func (e ExportAlertsRequestBodyFiltersSourcesEnum) ToPointer() *ExportAlertsRequ
 }
 
 func (e *ExportAlertsRequestBodyFiltersSourcesEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "INTERNAL":
 		fallthrough
 	case "EXTERNAL":
-		*e = ExportAlertsRequestBodyFiltersSourcesEnum(s)
+		*e = ExportAlertsRequestBodyFiltersSourcesEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ExportAlertsRequestBodyFiltersSourcesEnum: %s", s)
+		return fmt.Errorf("invalid value for ExportAlertsRequestBodyFiltersSourcesEnum: %v", v)
 	}
 }
 
@@ -83,18 +83,18 @@ func (e ExportAlertsRequestBodyFiltersStatusesEnum) ToPointer() *ExportAlertsReq
 }
 
 func (e *ExportAlertsRequestBodyFiltersStatusesEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "OPEN":
 		fallthrough
 	case "CLOSED":
-		*e = ExportAlertsRequestBodyFiltersStatusesEnum(s)
+		*e = ExportAlertsRequestBodyFiltersStatusesEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ExportAlertsRequestBodyFiltersStatusesEnum: %s", s)
+		return fmt.Errorf("invalid value for ExportAlertsRequestBodyFiltersStatusesEnum: %v", v)
 	}
 }
 

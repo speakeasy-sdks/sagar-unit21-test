@@ -20,18 +20,18 @@ func (e CreateInstrumentRequestSourceEnum) ToPointer() *CreateInstrumentRequestS
 }
 
 func (e *CreateInstrumentRequestSourceEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "internal":
 		fallthrough
 	case "external":
-		*e = CreateInstrumentRequestSourceEnum(s)
+		*e = CreateInstrumentRequestSourceEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreateInstrumentRequestSourceEnum: %s", s)
+		return fmt.Errorf("invalid value for CreateInstrumentRequestSourceEnum: %v", v)
 	}
 }
 
