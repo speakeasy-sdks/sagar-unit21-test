@@ -50,9 +50,6 @@ func newInstrumentsAPI(defaultClient, securityClient HTTPClient, serverURL, lang
 //   - [Custom data](https://docs.unit21.ai/reference/best-practices-for-custom-data)
 //   - [Batch uploads](https://docs.unit21.ai/reference/batch-request-examples)
 //   - [Modifying tags](https://docs.unit21.ai/reference/modifying-tags)
-//
-//
-
 func (s *instrumentsAPI) CreateInstrument(ctx context.Context, request shared.CreateInstrumentRequest) (*operations.CreateInstrumentResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/instruments/create"
@@ -136,8 +133,6 @@ func (s *instrumentsAPI) CreateInstrument(ctx context.Context, request shared.Cr
 // Either the `filters` or the list of `instrument IDs` are required for the export.
 //
 // Custom data filters are not supported for bulk exports at this time.
-//
-
 func (s *instrumentsAPI) ExportInstruments(ctx context.Context, request operations.ExportInstrumentsRequestBody) (*operations.ExportInstrumentsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/instruments/bulk-export"
@@ -217,7 +212,6 @@ func (s *instrumentsAPI) ExportInstruments(ctx context.Context, request operatio
 // Returns all data objects belonging to a single instrument.
 //
 // This endpoint requires the `instrument_id` which is a unique ID created by your organization to identify the instrument. The `org_name` is your Unit21 appointed organization name such as `google` or `acme`.
-
 func (s *instrumentsAPI) GetInstrument(ctx context.Context, request operations.GetInstrumentRequest) (*operations.GetInstrumentResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/{org_name}/instruments/{instrument_id}", request, nil)
@@ -295,8 +289,6 @@ func (s *instrumentsAPI) GetInstrument(ctx context.Context, request operations.G
 // * `alert_id` is a filter. Only instruments with the associated alert ID will be shown.
 //
 // The `total_count` field contains the total number of instruments where the  `response_count` field contains the number of instruments included in the response.
-//
-
 func (s *instrumentsAPI) ListInstruments(ctx context.Context, request shared.ListAlertRequest) (*operations.ListInstrumentsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/instruments/list"
@@ -387,7 +379,6 @@ func (s *instrumentsAPI) ListInstruments(ctx context.Context, request shared.Lis
 //   - [Custom data](https://docs.unit21.ai/reference/best-practices-for-custom-data)
 //   - [Batch uploads](https://docs.unit21.ai/reference/batch-request-examples)
 //   - [Modifying tags](https://docs.unit21.ai/reference/modifying-tags)
-
 func (s *instrumentsAPI) UpdateInstrument(ctx context.Context, request operations.UpdateInstrumentRequest) (*operations.UpdateInstrumentResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/{org_name}/instruments/{instrument_id}/update", request, nil)

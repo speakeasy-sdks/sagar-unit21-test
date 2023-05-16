@@ -35,7 +35,6 @@ func newExportsAPI(defaultClient, securityClient HTTPClient, serverURL, language
 
 // DownloadFileExport - Download export
 // Returns a signed url to download the file.
-
 func (s *exportsAPI) DownloadFileExport(ctx context.Context, request operations.DownloadFileExportRequest) (*operations.DownloadFileExportResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/file-exports/download/{file_export_id}", request, nil)
@@ -86,13 +85,12 @@ func (s *exportsAPI) DownloadFileExport(ctx context.Context, request operations.
 //
 // The `statuses` for exports address:
 //
-//   | Status                   | Description                                             |
-//   |--------------------------|---------------------------------------------------------|
-//   | READY_FOR_DOWNLOAD	     | File is ready for download                              |
-//   | GENERATING	             | File is generating                                      |
-//   | FAILED                   | File export failed                                      |
-//   | REQUESTED	               | File exort has been requested                           |
-
+//	| Status                   | Description                                             |
+//	|--------------------------|---------------------------------------------------------|
+//	| READY_FOR_DOWNLOAD	     | File is ready for download                              |
+//	| GENERATING	             | File is generating                                      |
+//	| FAILED                   | File export failed                                      |
+//	| REQUESTED	               | File exort has been requested                           |
 func (s *exportsAPI) ListExports(ctx context.Context, request shared.ListExports) (*operations.ListExportsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/file-exports/list"

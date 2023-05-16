@@ -34,7 +34,6 @@ func newAgentsAPI(defaultClient, securityClient HTTPClient, serverURL, language,
 
 // DeactivateAgent - Deactivate an agent
 // Archives an agent so that he/she can no longer log in to the dashboard.
-
 func (s *agentsAPI) DeactivateAgent(ctx context.Context, request operations.DeactivateAgentRequest) (*operations.DeactivateAgentResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/agents/{agent_email}/deactivate", request, nil)
@@ -84,7 +83,6 @@ func (s *agentsAPI) DeactivateAgent(ctx context.Context, request operations.Deac
 // ListAgents - List agents
 // Returns an array of all agents in your organization who are using the environment.
 // There are no options or filters for this endpoint. The request will return ALL agents.
-
 func (s *agentsAPI) ListAgents(ctx context.Context) (*operations.ListAgentsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/agents/list"

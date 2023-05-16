@@ -34,7 +34,6 @@ func newVerificationFormsAPI(defaultClient, securityClient HTTPClient, serverURL
 
 // CreateVerificationForm - Verification Forms API
 // If you are verifying IDs and collecting user data, this endpoint creates a temporary URL to which you can redirect users.
-
 func (s *verificationFormsAPI) CreateVerificationForm(ctx context.Context, request operations.CreateVerificationFormRequestBody) (*operations.CreateVerificationFormResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/verification-forms/create"

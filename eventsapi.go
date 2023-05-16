@@ -54,8 +54,6 @@ func newEventsAPI(defaultClient, securityClient HTTPClient, serverURL, language,
 //   - [Custom data](https://docs.unit21.ai/reference/best-practices-for-custom-data)
 //   - [Batch uploads](https://docs.unit21.ai/reference/batch-request-examples)
 //   - [Modifying tags](https://docs.unit21.ai/reference/modifying-tags)
-//
-
 func (s *eventsAPI) CreateEvent(ctx context.Context, request operations.CreateEventEventOptions) (*operations.CreateEventResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/events/create"
@@ -105,8 +103,6 @@ func (s *eventsAPI) CreateEvent(ctx context.Context, request operations.CreateEv
 // Either the `filters` or the list of `event IDs` are required for the export.
 //
 // Custom data filters are not supported for bulk exports at this time.
-//
-
 func (s *eventsAPI) ExportEvents(ctx context.Context, request operations.ExportEventsRequestBody) (*operations.ExportEventsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/events/bulk-export"
@@ -156,8 +152,6 @@ func (s *eventsAPI) ExportEvents(ctx context.Context, request operations.ExportE
 // Either the `filters` or the list of `event IDs` are required for the export.
 //
 // Custom data filters are not supported for bulk exports at this time.
-//
-
 func (s *eventsAPI) ExportTransactions(ctx context.Context, request operations.ExportTransactionsRequestBody) (*operations.ExportTransactionsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/txn-events/bulk-export"
@@ -203,7 +197,6 @@ func (s *eventsAPI) ExportTransactions(ctx context.Context, request operations.E
 // Returns all data objects belonging to a single event.
 //
 // This endpoint requires the `events_id` which is a unique ID created by your organization to identify the event. The `org_name` is your Unit21 appointed organization name such as `google` or `acme`.
-
 func (s *eventsAPI) GetEvent(ctx context.Context, request operations.GetEventRequest) (*operations.GetEventResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/{org_name}/events/{event_id}", request, nil)
@@ -262,8 +255,6 @@ func (s *eventsAPI) GetEvent(ctx context.Context, request operations.GetEventReq
 // * `end_date` is a filter. Only events that ended on or before this date will be shown.
 //
 // The `total_count` field contains the total number of events where the  `response_count` field contains the number of events included in the response.
-//
-
 func (s *eventsAPI) ListEvents(ctx context.Context, request shared.ListDateRequest) (*operations.ListEventsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/events/list"
@@ -345,7 +336,6 @@ func (s *eventsAPI) ListEvents(ctx context.Context, request shared.ListDateReque
 //   - [Custom data](https://docs.unit21.ai/reference/best-practices-for-custom-data)
 //   - [Batch uploads](https://docs.unit21.ai/reference/batch-request-examples)
 //   - [Modifying tags](https://docs.unit21.ai/reference/modifying-tags)
-
 func (s *eventsAPI) UpdateEvent(ctx context.Context, request operations.UpdateEventRequest) (*operations.UpdateEventResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/{org_name}/events/{event_id}/update", request, nil)

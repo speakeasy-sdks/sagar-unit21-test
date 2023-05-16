@@ -45,15 +45,13 @@ func newBlacklistsAPI(defaultClient, securityClient HTTPClient, serverURL, langu
 //
 // The response will consist of the following fields:
 //
-//   | Type       | Description                                                              | Example                           |
-//   |------------|--------------------------------------------------------------------------|-----------------------------------|
-//   | `STRING`	 | Plain strings to match against any text-type field.                      | 		"blacklist_value": "abcde"    |
-//   | `IP_INET`	 | IPv4 or IPv6 IP addresses to blacklist.                                  | 	"ip_address": "255.255.255.255" |
-//   | `IP_CIDR`	 | Classless Inter-Domain Routing (CIDR) [notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) IP address ranges to blacklist.  | 	"cidr": "255.255.255.255/32" |
-//   | `USER`	   | 	Series of fields that a Unit21 user entity will be matched against.     | 	user_data object                |
-//   | `BUSINESS` | Series of fields that a Unit21 business entity will be matched against.  | 	business_data object            |
-//
-
+//	| Type       | Description                                                              | Example                           |
+//	|------------|--------------------------------------------------------------------------|-----------------------------------|
+//	| `STRING`	 | Plain strings to match against any text-type field.                      | 		"blacklist_value": "abcde"    |
+//	| `IP_INET`	 | IPv4 or IPv6 IP addresses to blacklist.                                  | 	"ip_address": "255.255.255.255" |
+//	| `IP_CIDR`	 | Classless Inter-Domain Routing (CIDR) [notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) IP address ranges to blacklist.  | 	"cidr": "255.255.255.255/32" |
+//	| `USER`	   | 	Series of fields that a Unit21 user entity will be matched against.     | 	user_data object                |
+//	| `BUSINESS` | Series of fields that a Unit21 business entity will be matched against.  | 	business_data object            |
 func (s *blacklistsAPI) AddBlacklistValues(ctx context.Context, request operations.AddBlacklistValuesRequest) (*operations.AddBlacklistValuesResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/blacklists/{unit21_id}/add-values", request, nil)
@@ -103,12 +101,11 @@ func (s *blacklistsAPI) AddBlacklistValues(ctx context.Context, request operatio
 //
 // Unit21 currently supports 5 types of blacklists:
 //
-//   * `STRING`: Plain strings to match against any text-type field.
-//   * `IP_INET`: IPv4 or IPv6 IP addresses to blacklist.
-//   * `IP_CIDR`: [Classless Inter-Domain Routing (CIDR) notation IP address ranges](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) to blacklist,
-//   * `USER`: Series of fields that a Unit21 user entity will be matched against.
-//   * `BUSINESS`: Series of fields that a Unit21 business entity will be matched against.
-//
+//   - `STRING`: Plain strings to match against any text-type field.
+//   - `IP_INET`: IPv4 or IPv6 IP addresses to blacklist.
+//   - `IP_CIDR`: [Classless Inter-Domain Routing (CIDR) notation IP address ranges](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) to blacklist,
+//   - `USER`: Series of fields that a Unit21 user entity will be matched against.
+//   - `BUSINESS`: Series of fields that a Unit21 business entity will be matched against.
 //
 // If the `/blacklists/create` API is called multiple times, it will create a new blacklist each time.  This endpoint does not support updates/upserts.
 //
@@ -116,11 +113,9 @@ func (s *blacklistsAPI) AddBlacklistValues(ctx context.Context, request operatio
 //
 // The response will consist of the following fields:
 //
-//   | Field           | Type     | Description                                           |
-//   |-----------------|----------|-------------------------------------------------------|
-//   | `blacklist_id`  | String   | 	Unique identifier of the entity on your platform     |
-//
-
+//	| Field           | Type     | Description                                           |
+//	|-----------------|----------|-------------------------------------------------------|
+//	| `blacklist_id`  | String   | 	Unique identifier of the entity on your platform     |
 func (s *blacklistsAPI) CreateBlacklist(ctx context.Context, request shared.CreateBlacklist) (*operations.CreateBlacklistResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/blacklists/create"
@@ -182,8 +177,6 @@ func (s *blacklistsAPI) CreateBlacklist(ctx context.Context, request shared.Crea
 // * `offset` indicates the offset for pagination. An `offset` value of 1 starts with the environment's first record.
 //
 // The `total_count` field contains the total number of blacklists where the  `response_count` field contains the number of blacklists included in the response.
-//
-
 func (s *blacklistsAPI) ListBlacklists(ctx context.Context, request shared.ListRequest) (*operations.ListBlacklistsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/blacklists/list"

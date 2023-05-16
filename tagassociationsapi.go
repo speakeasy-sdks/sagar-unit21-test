@@ -41,21 +41,18 @@ func newTagAssociationsAPI(defaultClient, securityClient HTTPClient, serverURL, 
 //
 // To narrow down your tag association search, we provide filter parameters to this endpoint.
 //
-//   | Field                   | Type        | Description                                                                                                       |
-//   | ----------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------- |
-//   | `created_after`         | Numeric     | Tag associations created on or after this unix timestamp                                                          |
-//   | `created_before`        | Numeric     | Tag associations created before this unix timestamp                                                               |
-//   | `object_types`          | String[]    | List of object types to match against. Supported values are `alert`, `case`, `sar`, `rule`, `agent`, `event`, `entity`, and `instrument`. Specifying [`entity`, `alert`] means that we will only match against tags associated with entities and alerts in the system, and will not return results of tags associated with rules, events etc. If more than one value is provided to `object_types` and `object_id` is specified, an error will be thrown.     |
-//   | `object_id`             | String      | String representing the unit21 ID of the object you want to get tag associations for. If this is specified and `object_types` contains more than one value, an error will be thrown.                    |
-//   | `tag_filters`           | String[]    | List of string tags (`key:value`) or keys to associate this case with (e.g. `case_type:high_velocity` or `case_type`). If only the key is provided, we will match against all tags with that key        |
-//   | `limit`                 | Numeric     | A limit on the number of objects to be returned. Limit can range between 1 and 50, and the default is 10          |
-//   | `offset`                | Numeric     | The offset for pagination. Default is 1                                                                           |
-//   | `options`               | Object      | Options for the data included in the returned cases. Removing unneeded options can improve response speed         |
-//
+//	| Field                   | Type        | Description                                                                                                       |
+//	| ----------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------- |
+//	| `created_after`         | Numeric     | Tag associations created on or after this unix timestamp                                                          |
+//	| `created_before`        | Numeric     | Tag associations created before this unix timestamp                                                               |
+//	| `object_types`          | String[]    | List of object types to match against. Supported values are `alert`, `case`, `sar`, `rule`, `agent`, `event`, `entity`, and `instrument`. Specifying [`entity`, `alert`] means that we will only match against tags associated with entities and alerts in the system, and will not return results of tags associated with rules, events etc. If more than one value is provided to `object_types` and `object_id` is specified, an error will be thrown.     |
+//	| `object_id`             | String      | String representing the unit21 ID of the object you want to get tag associations for. If this is specified and `object_types` contains more than one value, an error will be thrown.                    |
+//	| `tag_filters`           | String[]    | List of string tags (`key:value`) or keys to associate this case with (e.g. `case_type:high_velocity` or `case_type`). If only the key is provided, we will match against all tags with that key        |
+//	| `limit`                 | Numeric     | A limit on the number of objects to be returned. Limit can range between 1 and 50, and the default is 10          |
+//	| `offset`                | Numeric     | The offset for pagination. Default is 1                                                                           |
+//	| `options`               | Object      | Options for the data included in the returned cases. Removing unneeded options can improve response speed         |
 //
 // The `total_count` field contains the total number of tags where the  `response_count` field contains the number of tags included in the response.
-//
-
 func (s *tagAssociationsAPI) ListTags(ctx context.Context, request operations.ListTagsRequestBody) (*operations.ListTagsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/tag-associations/list"

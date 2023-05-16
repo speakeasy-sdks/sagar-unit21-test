@@ -41,8 +41,6 @@ func newRulesAPI(defaultClient, securityClient HTTPClient, serverURL, language, 
 // Either the `filters` or the list of `rule IDs` are required for the export.
 //
 // Custom data filters are not supported for bulk exports at this time.
-//
-
 func (s *rulesAPI) ExportRules(ctx context.Context, request operations.ExportRulesRequestBody) (*operations.ExportRulesResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/rules/bulk-export"
@@ -91,7 +89,6 @@ func (s *rulesAPI) ExportRules(ctx context.Context, request operations.ExportRul
 // * `offset` indicates the offset for pagination. An `offset` value of 1 starts with the environment's first record. The offset is relative to the number of pages (not the total count of objects).
 //
 // The `total_count` field contains the total number of rules where the  `response_count` field contains the number of rules included in the response.
-
 func (s *rulesAPI) ListRules(ctx context.Context, request shared.ListRequest) (*operations.ListRulesResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/rules/list"
@@ -158,7 +155,6 @@ func (s *rulesAPI) ListRules(ctx context.Context, request shared.ListRequest) (*
 // Returns all data objects belonging to a single rule.
 //
 // This endpoint requires the `unit21_id` which is a unique ID created by Unit21 when the rule is first created.
-
 func (s *rulesAPI) ReadOneRule(ctx context.Context, request operations.ReadOneRuleRequest) (*operations.ReadOneRuleResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/rules/{unit21_id}", request, nil)
