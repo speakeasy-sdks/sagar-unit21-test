@@ -12,7 +12,7 @@ type MediaDataProperties struct {
 	//
 	// Though you can provide any string, Unit21 processes and display recognized `media_type` values with custom formatting. Unit21 can also use recognized media object types for dedicated requests, like document verification.
 	//
-	MediaType *MediaTypeEnum `json:"media_type,omitempty"`
+	MediaType *MediaType `json:"media_type,omitempty"`
 	// Media file name
 	Name *string `json:"name,omitempty"`
 }

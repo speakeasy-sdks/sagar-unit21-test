@@ -7,19 +7,19 @@ import (
 	"fmt"
 )
 
-// InstrumentBasicSourceEnum - LEGACY. If your platform owns and administers this instrument, the instrument is `internal`, otherwise it is `external`.
-type InstrumentBasicSourceEnum string
+// InstrumentBasicSource - LEGACY. If your platform owns and administers this instrument, the instrument is `internal`, otherwise it is `external`.
+type InstrumentBasicSource string
 
 const (
-	InstrumentBasicSourceEnumInternal InstrumentBasicSourceEnum = "internal"
-	InstrumentBasicSourceEnumExternal InstrumentBasicSourceEnum = "external"
+	InstrumentBasicSourceInternal InstrumentBasicSource = "internal"
+	InstrumentBasicSourceExternal InstrumentBasicSource = "external"
 )
 
-func (e InstrumentBasicSourceEnum) ToPointer() *InstrumentBasicSourceEnum {
+func (e InstrumentBasicSource) ToPointer() *InstrumentBasicSource {
 	return &e
 }
 
-func (e *InstrumentBasicSourceEnum) UnmarshalJSON(data []byte) error {
+func (e *InstrumentBasicSource) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -28,10 +28,10 @@ func (e *InstrumentBasicSourceEnum) UnmarshalJSON(data []byte) error {
 	case "internal":
 		fallthrough
 	case "external":
-		*e = InstrumentBasicSourceEnum(v)
+		*e = InstrumentBasicSource(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for InstrumentBasicSourceEnum: %v", v)
+		return fmt.Errorf("invalid value for InstrumentBasicSource: %v", v)
 	}
 }
 
@@ -47,7 +47,7 @@ type InstrumentBasic struct {
 	// Date in seconds since 1 Jan 1970 00:00:00 UTC (i.e. in [Unix time](https://en.wikipedia.org/wiki/Unix_time)).
 	RegisteredAt *int64 `json:"registered_at,omitempty"`
 	// LEGACY. If your platform owns and administers this instrument, the instrument is `internal`, otherwise it is `external`.
-	Source *InstrumentBasicSourceEnum `json:"source,omitempty"`
+	Source *InstrumentBasicSource `json:"source,omitempty"`
 	// Status of the object on your system. You MAY enter any string value.
 	Status *string `json:"status,omitempty"`
 	// List of string tags, in the format `keyString:valueString` (note that the Key strings are NOT enclosed in `"`)

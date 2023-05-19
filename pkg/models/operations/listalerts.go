@@ -17,19 +17,19 @@ type ListAlertsRequestBodyOptions struct {
 	IncludeAssociations *bool `json:"include_associations,omitempty"`
 }
 
-type ListAlertsRequestBodyTypesEnum string
+type ListAlertsRequestBodyTypes string
 
 const (
-	ListAlertsRequestBodyTypesEnumTm          ListAlertsRequestBodyTypesEnum = "tm"
-	ListAlertsRequestBodyTypesEnumKyc         ListAlertsRequestBodyTypesEnum = "kyc"
-	ListAlertsRequestBodyTypesEnumChainalysis ListAlertsRequestBodyTypesEnum = "chainalysis"
+	ListAlertsRequestBodyTypesTm          ListAlertsRequestBodyTypes = "tm"
+	ListAlertsRequestBodyTypesKyc         ListAlertsRequestBodyTypes = "kyc"
+	ListAlertsRequestBodyTypesChainalysis ListAlertsRequestBodyTypes = "chainalysis"
 )
 
-func (e ListAlertsRequestBodyTypesEnum) ToPointer() *ListAlertsRequestBodyTypesEnum {
+func (e ListAlertsRequestBodyTypes) ToPointer() *ListAlertsRequestBodyTypes {
 	return &e
 }
 
-func (e *ListAlertsRequestBodyTypesEnum) UnmarshalJSON(data []byte) error {
+func (e *ListAlertsRequestBodyTypes) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -40,10 +40,10 @@ func (e *ListAlertsRequestBodyTypesEnum) UnmarshalJSON(data []byte) error {
 	case "kyc":
 		fallthrough
 	case "chainalysis":
-		*e = ListAlertsRequestBodyTypesEnum(v)
+		*e = ListAlertsRequestBodyTypes(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ListAlertsRequestBodyTypesEnum: %v", v)
+		return fmt.Errorf("invalid value for ListAlertsRequestBodyTypes: %v", v)
 	}
 }
 
@@ -78,13 +78,13 @@ type ListAlertsRequestBody struct {
 	// Only objects associated with the listed rules' `unit21_id` values.
 	Rules []int64 `json:"rules,omitempty"`
 	// Only `INTERNAL`, only `EXTERNAL`, or both.
-	Sources []shared.SourceArrayEnum `json:"sources,omitempty"`
+	Sources []shared.SourceArray `json:"sources,omitempty"`
 	// Only objects from the listed set of `status` values. E.g. only `OPEN`
-	Statuses []shared.InvestigationStatusEnum `json:"statuses,omitempty"`
+	Statuses []shared.InvestigationStatus `json:"statuses,omitempty"`
 	// List of string tags, in the format `keyString:valueString` (note that the Key strings are NOT enclosed in `"`)
 	TagFilters []string `json:"tag_filters,omitempty"`
 	// The `alert_types` to include─any or all of `tm`, `chainalysis`, and `kyc`
-	Types []ListAlertsRequestBodyTypesEnum `json:"types,omitempty"`
+	Types []ListAlertsRequestBodyTypes `json:"types,omitempty"`
 }
 
 type ListAlertsResponse struct {

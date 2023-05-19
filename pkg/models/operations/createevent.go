@@ -39,7 +39,7 @@ type CreateEventEventOptionsGeneralDataParents struct {
 	EventID *string `json:"event_id,omitempty"`
 	// `transaction` for monetary flows, `action` for other state changes, like new logins.
 	//
-	EventType *shared.EventTypeEnum `json:"event_type,omitempty"`
+	EventType *shared.EventType `json:"event_type,omitempty"`
 }
 
 // CreateEventEventOptionsGeneralData - General data is required for any request made to the v1/events/create endpoint. This defines any pieces of information that allows you to link up any event on Unit21's system to transactions or user activities on your platform.
@@ -53,7 +53,7 @@ type CreateEventEventOptionsGeneralData struct {
 	EventTime int64 `json:"event_time"`
 	// `transaction` for monetary flows, `action` for other state changes, like new logins.
 	//
-	EventType shared.EventTypeEnum `json:"event_type"`
+	EventType shared.EventType `json:"event_type"`
 	// The parent object consists of two fields─`event_id` for parent unique identifier  and `event_type`.
 	Parents []CreateEventEventOptionsGeneralDataParents `json:"parents,omitempty"`
 	// Status of the object on your system. You MAY enter any string value.
@@ -62,20 +62,20 @@ type CreateEventEventOptionsGeneralData struct {
 	Tags []string `json:"tags,omitempty"`
 }
 
-// CreateEventEventOptionsOptionsLinkedEntityEnum - Possible values are `sender`, `receiver`, and `both`. Defaults to `both`. If `link_digital_data_to_entity` is flagged on transaction events, this specifies which entities to associate the `digital_data` to. If there is no `digital_data` or entities, no exception is thrown.
-type CreateEventEventOptionsOptionsLinkedEntityEnum string
+// CreateEventEventOptionsOptionsLinkedEntity - Possible values are `sender`, `receiver`, and `both`. Defaults to `both`. If `link_digital_data_to_entity` is flagged on transaction events, this specifies which entities to associate the `digital_data` to. If there is no `digital_data` or entities, no exception is thrown.
+type CreateEventEventOptionsOptionsLinkedEntity string
 
 const (
-	CreateEventEventOptionsOptionsLinkedEntityEnumSender   CreateEventEventOptionsOptionsLinkedEntityEnum = "sender"
-	CreateEventEventOptionsOptionsLinkedEntityEnumReceiver CreateEventEventOptionsOptionsLinkedEntityEnum = "receiver"
-	CreateEventEventOptionsOptionsLinkedEntityEnumBoth     CreateEventEventOptionsOptionsLinkedEntityEnum = "both"
+	CreateEventEventOptionsOptionsLinkedEntitySender   CreateEventEventOptionsOptionsLinkedEntity = "sender"
+	CreateEventEventOptionsOptionsLinkedEntityReceiver CreateEventEventOptionsOptionsLinkedEntity = "receiver"
+	CreateEventEventOptionsOptionsLinkedEntityBoth     CreateEventEventOptionsOptionsLinkedEntity = "both"
 )
 
-func (e CreateEventEventOptionsOptionsLinkedEntityEnum) ToPointer() *CreateEventEventOptionsOptionsLinkedEntityEnum {
+func (e CreateEventEventOptionsOptionsLinkedEntity) ToPointer() *CreateEventEventOptionsOptionsLinkedEntity {
 	return &e
 }
 
-func (e *CreateEventEventOptionsOptionsLinkedEntityEnum) UnmarshalJSON(data []byte) error {
+func (e *CreateEventEventOptionsOptionsLinkedEntity) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -86,10 +86,10 @@ func (e *CreateEventEventOptionsOptionsLinkedEntityEnum) UnmarshalJSON(data []by
 	case "receiver":
 		fallthrough
 	case "both":
-		*e = CreateEventEventOptionsOptionsLinkedEntityEnum(v)
+		*e = CreateEventEventOptionsOptionsLinkedEntity(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreateEventEventOptionsOptionsLinkedEntityEnum: %v", v)
+		return fmt.Errorf("invalid value for CreateEventEventOptionsOptionsLinkedEntity: %v", v)
 	}
 }
 
@@ -97,7 +97,7 @@ type CreateEventEventOptionsOptions struct {
 	// Whether or not to link the included `digital_data` with the related entities. Includes geoip information if resolve_geoip is enabled as well. On action events, defaults to `true`
 	LinkDigitalDataToEntity *bool `json:"link_digital_data_to_entity,omitempty"`
 	// Possible values are `sender`, `receiver`, and `both`. Defaults to `both`. If `link_digital_data_to_entity` is flagged on transaction events, this specifies which entities to associate the `digital_data` to. If there is no `digital_data` or entities, no exception is thrown.
-	LinkedEntity *CreateEventEventOptionsOptionsLinkedEntityEnum `json:"linked_entity,omitempty"`
+	LinkedEntity *CreateEventEventOptionsOptionsLinkedEntity `json:"linked_entity,omitempty"`
 	// Only relevant for updates/upserts, ignored otherwise. See [custom data merge strategy](doc:how-data-merges-on-updates#custom-data-merge-strategy) for more details. **Default**: `false`
 	MergeCustomData *bool `json:"merge_custom_data,omitempty"`
 	// Whether or not to monitor this event (defaults to `true`). Typically used to signal Unit21 to not flag such events or include them in calculations i.e. to prevent double counting, or to ignore applying monitoring to unimportant events that you still want to associate with users

@@ -98,13 +98,13 @@ pkg/models/operations/listtags.go
 pkg/models/operations/createverificationform.go
 pkg/models/operations/updatewebhook.go
 pkg/models/shared/createalertresponse.go
-pkg/models/shared/investigationstatusenum.go
-pkg/models/shared/eventtypeenum.go
+pkg/models/shared/investigationstatus.go
+pkg/models/shared/eventtype.go
 pkg/models/shared/linkmediajson.go
-pkg/models/shared/mediatypeenum.go
+pkg/models/shared/mediatype.go
 pkg/models/shared/linkmediaform.go
 pkg/models/shared/listresponse.go
-pkg/models/shared/sourcearrayenum.go
+pkg/models/shared/sourcearray.go
 pkg/models/shared/alerts.go
 pkg/models/shared/customdata.go
 pkg/models/shared/blacklistuser.go

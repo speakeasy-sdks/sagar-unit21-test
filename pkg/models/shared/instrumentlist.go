@@ -7,19 +7,19 @@ import (
 	"fmt"
 )
 
-// InstrumentListSourceEnum - LEGACY. If your platform owns and administers this instrument, the instrument is `internal`, otherwise it is `external`.
-type InstrumentListSourceEnum string
+// InstrumentListSource - LEGACY. If your platform owns and administers this instrument, the instrument is `internal`, otherwise it is `external`.
+type InstrumentListSource string
 
 const (
-	InstrumentListSourceEnumInternal InstrumentListSourceEnum = "internal"
-	InstrumentListSourceEnumExternal InstrumentListSourceEnum = "external"
+	InstrumentListSourceInternal InstrumentListSource = "internal"
+	InstrumentListSourceExternal InstrumentListSource = "external"
 )
 
-func (e InstrumentListSourceEnum) ToPointer() *InstrumentListSourceEnum {
+func (e InstrumentListSource) ToPointer() *InstrumentListSource {
 	return &e
 }
 
-func (e *InstrumentListSourceEnum) UnmarshalJSON(data []byte) error {
+func (e *InstrumentListSource) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -28,10 +28,10 @@ func (e *InstrumentListSourceEnum) UnmarshalJSON(data []byte) error {
 	case "internal":
 		fallthrough
 	case "external":
-		*e = InstrumentListSourceEnum(v)
+		*e = InstrumentListSource(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for InstrumentListSourceEnum: %v", v)
+		return fmt.Errorf("invalid value for InstrumentListSource: %v", v)
 	}
 }
 
@@ -49,7 +49,7 @@ type InstrumentList struct {
 	// Date in seconds since 1 Jan 1970 00:00:00 UTC (i.e. in [Unix time](https://en.wikipedia.org/wiki/Unix_time)).
 	RegisteredAt *int64 `json:"registered_at,omitempty"`
 	// LEGACY. If your platform owns and administers this instrument, the instrument is `internal`, otherwise it is `external`.
-	Source *InstrumentListSourceEnum `json:"source,omitempty"`
+	Source *InstrumentListSource `json:"source,omitempty"`
 	// Status of the object on your system. You MAY enter any string value.
 	Status *string `json:"status,omitempty"`
 	// List of string tags, in the format `keyString:valueString` (note that the Key strings are NOT enclosed in `"`)

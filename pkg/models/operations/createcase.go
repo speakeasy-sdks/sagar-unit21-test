@@ -28,7 +28,7 @@ type CreateCaseCaseData struct {
 	// Date in seconds since 1 Jan 1970 00:00:00 UTC (i.e. in [Unix time](https://en.wikipedia.org/wiki/Unix_time)).
 	StartDate int64 `json:"start_date"`
 	// Investigation status, either `OPEN` or `ClOSED`
-	Status *shared.InvestigationStatusEnum `json:"status,omitempty"`
+	Status *shared.InvestigationStatus `json:"status,omitempty"`
 	// List of string tags, in the format `keyString:valueString` (note that the Key strings are NOT enclosed in `"`)
 	Tags []string `json:"tags,omitempty"`
 	// Title of the case

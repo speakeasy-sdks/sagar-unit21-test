@@ -86,7 +86,7 @@ func main() {
             697631,
         },
         StartDate: 1623365011,
-        Status: shared.InvestigationStatusEnumOpen.ToPointer(),
+        Status: shared.InvestigationStatusOpen.ToPointer(),
         Tags: []string{
             "Sector:Europe",
         },
@@ -158,8 +158,8 @@ func main() {
             },
             StartDate: sdk.String("2019-11-05 04:13:46"),
             Status: sdk.String("OPEN"),
-            Statuses: []ExportCasesRequestBodyFiltersStatusesEnum{
-                operations.ExportCasesRequestBodyFiltersStatusesEnumOpen,
+            Statuses: []ExportCasesRequestBodyFiltersStatuses{
+                operations.ExportCasesRequestBodyFiltersStatusesOpen,
             },
             TagIds: []int64{
                 9,
@@ -389,14 +389,14 @@ func main() {
         Rules: []int64{
             995300,
         },
-        Sources: []shared.SourceArrayEnum{
-            shared.SourceArrayEnumExternal,
-            shared.SourceArrayEnumInternal,
-            shared.SourceArrayEnumInternal,
+        Sources: []shared.SourceArray{
+            shared.SourceArrayExternal,
+            shared.SourceArrayInternal,
+            shared.SourceArrayInternal,
         },
-        Statuses: []shared.InvestigationStatusEnum{
-            shared.InvestigationStatusEnumOpen,
-            shared.InvestigationStatusEnumOpen,
+        Statuses: []shared.InvestigationStatus{
+            shared.InvestigationStatusOpen,
+            shared.InvestigationStatusOpen,
         },
     })
     if err != nil {
@@ -463,7 +463,7 @@ func main() {
             DispositionNotes: sdk.String("User confirmed that they did not initiate transaction"),
             EndDate: sdk.Int64(1623365011),
             StartDate: 1623365011,
-            Status: shared.InvestigationStatusEnumOpen.ToPointer(),
+            Status: shared.InvestigationStatusOpen.ToPointer(),
             Tags: []string{
                 "Sector:Europe",
             },

@@ -7,20 +7,20 @@ import (
 	"fmt"
 )
 
-// AlertsAlertTypeEnum - Either transaction monitoring, `tm`, or know-your-customer `kyc`. Default is `tm`
-type AlertsAlertTypeEnum string
+// AlertsAlertType - Either transaction monitoring, `tm`, or know-your-customer `kyc`. Default is `tm`
+type AlertsAlertType string
 
 const (
-	AlertsAlertTypeEnumTm          AlertsAlertTypeEnum = "tm"
-	AlertsAlertTypeEnumKyc         AlertsAlertTypeEnum = "kyc"
-	AlertsAlertTypeEnumChainalysis AlertsAlertTypeEnum = "chainalysis"
+	AlertsAlertTypeTm          AlertsAlertType = "tm"
+	AlertsAlertTypeKyc         AlertsAlertType = "kyc"
+	AlertsAlertTypeChainalysis AlertsAlertType = "chainalysis"
 )
 
-func (e AlertsAlertTypeEnum) ToPointer() *AlertsAlertTypeEnum {
+func (e AlertsAlertType) ToPointer() *AlertsAlertType {
 	return &e
 }
 
-func (e *AlertsAlertTypeEnum) UnmarshalJSON(data []byte) error {
+func (e *AlertsAlertType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -31,10 +31,10 @@ func (e *AlertsAlertTypeEnum) UnmarshalJSON(data []byte) error {
 	case "kyc":
 		fallthrough
 	case "chainalysis":
-		*e = AlertsAlertTypeEnum(v)
+		*e = AlertsAlertType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AlertsAlertTypeEnum: %v", v)
+		return fmt.Errorf("invalid value for AlertsAlertType: %v", v)
 	}
 }
 
@@ -42,7 +42,7 @@ type Alerts struct {
 	// Unique identifier of the alert on the customer's platform.
 	AlertID string `json:"alert_id"`
 	// Either transaction monitoring, `tm`, or know-your-customer `kyc`. Default is `tm`
-	AlertType AlertsAlertTypeEnum `json:"alert_type"`
+	AlertType AlertsAlertType `json:"alert_type"`
 	// Date in seconds since 1 Jan 1970 00:00:00 UTC (i.e. in [Unix time](https://en.wikipedia.org/wiki/Unix_time)).
 	CreatedAt int64 `json:"created_at"`
 	// Description of the alert
@@ -52,7 +52,7 @@ type Alerts struct {
 	// Free form text documenting reasoning and investigation notes
 	DispositionNotes *string `json:"disposition_notes,omitempty"`
 	// Investigation status, either `OPEN` or `ClOSED`
-	Status InvestigationStatusEnum `json:"status"`
+	Status InvestigationStatus `json:"status"`
 	// List of string tags, in the format `keyString:valueString` (note that the Key strings are NOT enclosed in `"`)
 	Tags []string `json:"tags,omitempty"`
 	// Title of the alert

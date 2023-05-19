@@ -7,19 +7,19 @@ import (
 	"fmt"
 )
 
-// CreateInstrumentRequestSourceEnum - LEGACY. If your platform owns and administers this instrument, the instrument is `internal`, otherwise it is `external`.
-type CreateInstrumentRequestSourceEnum string
+// CreateInstrumentRequestSource - LEGACY. If your platform owns and administers this instrument, the instrument is `internal`, otherwise it is `external`.
+type CreateInstrumentRequestSource string
 
 const (
-	CreateInstrumentRequestSourceEnumInternal CreateInstrumentRequestSourceEnum = "internal"
-	CreateInstrumentRequestSourceEnumExternal CreateInstrumentRequestSourceEnum = "external"
+	CreateInstrumentRequestSourceInternal CreateInstrumentRequestSource = "internal"
+	CreateInstrumentRequestSourceExternal CreateInstrumentRequestSource = "external"
 )
 
-func (e CreateInstrumentRequestSourceEnum) ToPointer() *CreateInstrumentRequestSourceEnum {
+func (e CreateInstrumentRequestSource) ToPointer() *CreateInstrumentRequestSource {
 	return &e
 }
 
-func (e *CreateInstrumentRequestSourceEnum) UnmarshalJSON(data []byte) error {
+func (e *CreateInstrumentRequestSource) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -28,10 +28,10 @@ func (e *CreateInstrumentRequestSourceEnum) UnmarshalJSON(data []byte) error {
 	case "internal":
 		fallthrough
 	case "external":
-		*e = CreateInstrumentRequestSourceEnum(v)
+		*e = CreateInstrumentRequestSource(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreateInstrumentRequestSourceEnum: %v", v)
+		return fmt.Errorf("invalid value for CreateInstrumentRequestSource: %v", v)
 	}
 }
 
@@ -56,7 +56,7 @@ type CreateInstrumentRequest struct {
 	// Date in seconds since 1 Jan 1970 00:00:00 UTC (i.e. in [Unix time](https://en.wikipedia.org/wiki/Unix_time)).
 	RegisteredAt *int64 `json:"registered_at,omitempty"`
 	// LEGACY. If your platform owns and administers this instrument, the instrument is `internal`, otherwise it is `external`.
-	Source *CreateInstrumentRequestSourceEnum `json:"source,omitempty"`
+	Source *CreateInstrumentRequestSource `json:"source,omitempty"`
 	// Status of the object on your system. You MAY enter any string value.
 	Status *string `json:"status,omitempty"`
 	// List of string tags, in the format `keyString:valueString` (note that the Key strings are NOT enclosed in `"`)

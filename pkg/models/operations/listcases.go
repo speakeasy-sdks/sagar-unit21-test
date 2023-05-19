@@ -44,9 +44,9 @@ type ListCasesRequestBody struct {
 	// Only objects associated with the listed rules' `unit21_id` values.
 	Rules []int64 `json:"rules,omitempty"`
 	// Only `INTERNAL`, only `EXTERNAL`, or both.
-	Sources []shared.SourceArrayEnum `json:"sources,omitempty"`
+	Sources []shared.SourceArray `json:"sources,omitempty"`
 	// Only objects from the listed set of `status` values. E.g. only `OPEN`
-	Statuses []shared.InvestigationStatusEnum `json:"statuses,omitempty"`
+	Statuses []shared.InvestigationStatus `json:"statuses,omitempty"`
 }
 
 type ListCasesResponse struct {

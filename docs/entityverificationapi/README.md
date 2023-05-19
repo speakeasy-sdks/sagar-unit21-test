@@ -52,7 +52,7 @@ func main() {
             },
             ProviderName: "FAKE_PROVIDER",
             VerificationTimestamp: sdk.Int64(1623365011),
-            VerificationType: shared.LinkVerificationResultVerificationTypeEnumWatchlistScreening,
+            VerificationType: shared.LinkVerificationResultVerificationTypeWatchlistScreening,
         },
         Unit21ID: "quos",
     })

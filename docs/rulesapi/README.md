@@ -55,11 +55,11 @@ func main() {
             },
             StartDate: sdk.String("2019-11-05 04:13:46"),
             Status: sdk.String("OPEN"),
-            Statuses: []ExportRulesRequestBodyFiltersStatusesEnum{
-                operations.ExportRulesRequestBodyFiltersStatusesEnumInactive,
-                operations.ExportRulesRequestBodyFiltersStatusesEnumActive,
-                operations.ExportRulesRequestBodyFiltersStatusesEnumInactive,
-                operations.ExportRulesRequestBodyFiltersStatusesEnumActive,
+            Statuses: []ExportRulesRequestBodyFiltersStatuses{
+                operations.ExportRulesRequestBodyFiltersStatusesInactive,
+                operations.ExportRulesRequestBodyFiltersStatusesActive,
+                operations.ExportRulesRequestBodyFiltersStatusesInactive,
+                operations.ExportRulesRequestBodyFiltersStatusesActive,
             },
             TagIds: []int64{
                 9,

@@ -9,20 +9,20 @@ import (
 	"unit21/pkg/models/shared"
 )
 
-// CreateAlertRulesAlertTypeEnum - Either transaction monitoring, `tm`, or know-your-customer `kyc`. Default is `tm`
-type CreateAlertRulesAlertTypeEnum string
+// CreateAlertRulesAlertType - Either transaction monitoring, `tm`, or know-your-customer `kyc`. Default is `tm`
+type CreateAlertRulesAlertType string
 
 const (
-	CreateAlertRulesAlertTypeEnumTm          CreateAlertRulesAlertTypeEnum = "tm"
-	CreateAlertRulesAlertTypeEnumKyc         CreateAlertRulesAlertTypeEnum = "kyc"
-	CreateAlertRulesAlertTypeEnumChainalysis CreateAlertRulesAlertTypeEnum = "chainalysis"
+	CreateAlertRulesAlertTypeTm          CreateAlertRulesAlertType = "tm"
+	CreateAlertRulesAlertTypeKyc         CreateAlertRulesAlertType = "kyc"
+	CreateAlertRulesAlertTypeChainalysis CreateAlertRulesAlertType = "chainalysis"
 )
 
-func (e CreateAlertRulesAlertTypeEnum) ToPointer() *CreateAlertRulesAlertTypeEnum {
+func (e CreateAlertRulesAlertType) ToPointer() *CreateAlertRulesAlertType {
 	return &e
 }
 
-func (e *CreateAlertRulesAlertTypeEnum) UnmarshalJSON(data []byte) error {
+func (e *CreateAlertRulesAlertType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -33,10 +33,10 @@ func (e *CreateAlertRulesAlertTypeEnum) UnmarshalJSON(data []byte) error {
 	case "kyc":
 		fallthrough
 	case "chainalysis":
-		*e = CreateAlertRulesAlertTypeEnum(v)
+		*e = CreateAlertRulesAlertType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreateAlertRulesAlertTypeEnum: %v", v)
+		return fmt.Errorf("invalid value for CreateAlertRulesAlertType: %v", v)
 	}
 }
 
@@ -49,14 +49,14 @@ type CreateAlertRulesEvents struct {
 	EventID string `json:"event_id"`
 	// `transaction` for monetary flows, `action` for other state changes, like new logins.
 	//
-	EventType shared.EventTypeEnum `json:"event_type"`
+	EventType shared.EventType `json:"event_type"`
 }
 
 type CreateAlertRules struct {
 	// Unique identifier of the alert on the customer's platform.
 	AlertID string `json:"alert_id"`
 	// Either transaction monitoring, `tm`, or know-your-customer `kyc`. Default is `tm`
-	AlertType CreateAlertRulesAlertTypeEnum `json:"alert_type"`
+	AlertType CreateAlertRulesAlertType `json:"alert_type"`
 	// Date in seconds since 1 Jan 1970 00:00:00 UTC (i.e. in [Unix time](https://en.wikipedia.org/wiki/Unix_time)).
 	CreatedAt int64 `json:"created_at"`
 	// Description of the alert
@@ -74,7 +74,7 @@ type CreateAlertRules struct {
 	// Array of "rule_id" strings
 	Rules []string `json:"rules,omitempty"`
 	// Investigation status, either `OPEN` or `ClOSED`
-	Status shared.InvestigationStatusEnum `json:"status"`
+	Status shared.InvestigationStatus `json:"status"`
 	// List of string tags, in the format `keyString:valueString` (note that the Key strings are NOT enclosed in `"`)
 	Tags []string `json:"tags,omitempty"`
 	// Title of the alert

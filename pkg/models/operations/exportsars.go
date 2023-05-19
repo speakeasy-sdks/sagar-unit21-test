@@ -8,21 +8,21 @@ import (
 	"net/http"
 )
 
-// ExportSarsRequestBodyFiltersReportTypeEnum - Type of report.
-type ExportSarsRequestBodyFiltersReportTypeEnum string
+// ExportSarsRequestBodyFiltersReportType - Type of report.
+type ExportSarsRequestBodyFiltersReportType string
 
 const (
-	ExportSarsRequestBodyFiltersReportTypeEnumFincenSar   ExportSarsRequestBodyFiltersReportTypeEnum = "FINCEN_SAR"
-	ExportSarsRequestBodyFiltersReportTypeEnumEstonianFiu ExportSarsRequestBodyFiltersReportTypeEnum = "ESTONIAN_FIU"
-	ExportSarsRequestBodyFiltersReportTypeEnumGoamlStr    ExportSarsRequestBodyFiltersReportTypeEnum = "GOAML_STR"
-	ExportSarsRequestBodyFiltersReportTypeEnumNcaSar      ExportSarsRequestBodyFiltersReportTypeEnum = "NCA_SAR"
+	ExportSarsRequestBodyFiltersReportTypeFincenSar   ExportSarsRequestBodyFiltersReportType = "FINCEN_SAR"
+	ExportSarsRequestBodyFiltersReportTypeEstonianFiu ExportSarsRequestBodyFiltersReportType = "ESTONIAN_FIU"
+	ExportSarsRequestBodyFiltersReportTypeGoamlStr    ExportSarsRequestBodyFiltersReportType = "GOAML_STR"
+	ExportSarsRequestBodyFiltersReportTypeNcaSar      ExportSarsRequestBodyFiltersReportType = "NCA_SAR"
 )
 
-func (e ExportSarsRequestBodyFiltersReportTypeEnum) ToPointer() *ExportSarsRequestBodyFiltersReportTypeEnum {
+func (e ExportSarsRequestBodyFiltersReportType) ToPointer() *ExportSarsRequestBodyFiltersReportType {
 	return &e
 }
 
-func (e *ExportSarsRequestBodyFiltersReportTypeEnum) UnmarshalJSON(data []byte) error {
+func (e *ExportSarsRequestBodyFiltersReportType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -35,39 +35,39 @@ func (e *ExportSarsRequestBodyFiltersReportTypeEnum) UnmarshalJSON(data []byte) 
 	case "GOAML_STR":
 		fallthrough
 	case "NCA_SAR":
-		*e = ExportSarsRequestBodyFiltersReportTypeEnum(v)
+		*e = ExportSarsRequestBodyFiltersReportType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ExportSarsRequestBodyFiltersReportTypeEnum: %v", v)
+		return fmt.Errorf("invalid value for ExportSarsRequestBodyFiltersReportType: %v", v)
 	}
 }
 
-type ExportSarsRequestBodyFiltersStatusesEnum string
+type ExportSarsRequestBodyFiltersStatuses string
 
 const (
-	ExportSarsRequestBodyFiltersStatusesEnumArchived                     ExportSarsRequestBodyFiltersStatusesEnum = "ARCHIVED"
-	ExportSarsRequestBodyFiltersStatusesEnumPrefilingValidationPending   ExportSarsRequestBodyFiltersStatusesEnum = "PREFILING_VALIDATION_PENDING"
-	ExportSarsRequestBodyFiltersStatusesEnumPrefilingValidationInProcess ExportSarsRequestBodyFiltersStatusesEnum = "PREFILING_VALIDATION_IN_PROCESS"
-	ExportSarsRequestBodyFiltersStatusesEnumPrefilingValidationFailed    ExportSarsRequestBodyFiltersStatusesEnum = "PREFILING_VALIDATION_FAILED"
-	ExportSarsRequestBodyFiltersStatusesEnumPrefilingValidationSuccess   ExportSarsRequestBodyFiltersStatusesEnum = "PREFILING_VALIDATION_SUCCESS"
-	ExportSarsRequestBodyFiltersStatusesEnumQueuedForFiling              ExportSarsRequestBodyFiltersStatusesEnum = "QUEUED_FOR_FILING"
-	ExportSarsRequestBodyFiltersStatusesEnumReadyForReview               ExportSarsRequestBodyFiltersStatusesEnum = "READY_FOR_REVIEW"
-	ExportSarsRequestBodyFiltersStatusesEnumSendingToFincen              ExportSarsRequestBodyFiltersStatusesEnum = "SENDING_TO_FINCEN"
-	ExportSarsRequestBodyFiltersStatusesEnumSentToFincen                 ExportSarsRequestBodyFiltersStatusesEnum = "SENT_TO_FINCEN"
-	ExportSarsRequestBodyFiltersStatusesEnumFilingFailed                 ExportSarsRequestBodyFiltersStatusesEnum = "FILING_FAILED"
-	ExportSarsRequestBodyFiltersStatusesEnumFilingMaxRetriesExceeded     ExportSarsRequestBodyFiltersStatusesEnum = "FILING_MAX_RETRIES_EXCEEDED"
-	ExportSarsRequestBodyFiltersStatusesEnumFilingSuccess                ExportSarsRequestBodyFiltersStatusesEnum = "FILING_SUCCESS"
-	ExportSarsRequestBodyFiltersStatusesEnumFincenValidationFailed       ExportSarsRequestBodyFiltersStatusesEnum = "FINCEN_VALIDATION_FAILED"
-	ExportSarsRequestBodyFiltersStatusesEnumFincenRejected               ExportSarsRequestBodyFiltersStatusesEnum = "FINCEN_REJECTED"
-	ExportSarsRequestBodyFiltersStatusesEnumFincenStatusOther            ExportSarsRequestBodyFiltersStatusesEnum = "FINCEN_STATUS_OTHER"
-	ExportSarsRequestBodyFiltersStatusesEnumFincenAccepted               ExportSarsRequestBodyFiltersStatusesEnum = "FINCEN_ACCEPTED"
+	ExportSarsRequestBodyFiltersStatusesArchived                     ExportSarsRequestBodyFiltersStatuses = "ARCHIVED"
+	ExportSarsRequestBodyFiltersStatusesPrefilingValidationPending   ExportSarsRequestBodyFiltersStatuses = "PREFILING_VALIDATION_PENDING"
+	ExportSarsRequestBodyFiltersStatusesPrefilingValidationInProcess ExportSarsRequestBodyFiltersStatuses = "PREFILING_VALIDATION_IN_PROCESS"
+	ExportSarsRequestBodyFiltersStatusesPrefilingValidationFailed    ExportSarsRequestBodyFiltersStatuses = "PREFILING_VALIDATION_FAILED"
+	ExportSarsRequestBodyFiltersStatusesPrefilingValidationSuccess   ExportSarsRequestBodyFiltersStatuses = "PREFILING_VALIDATION_SUCCESS"
+	ExportSarsRequestBodyFiltersStatusesQueuedForFiling              ExportSarsRequestBodyFiltersStatuses = "QUEUED_FOR_FILING"
+	ExportSarsRequestBodyFiltersStatusesReadyForReview               ExportSarsRequestBodyFiltersStatuses = "READY_FOR_REVIEW"
+	ExportSarsRequestBodyFiltersStatusesSendingToFincen              ExportSarsRequestBodyFiltersStatuses = "SENDING_TO_FINCEN"
+	ExportSarsRequestBodyFiltersStatusesSentToFincen                 ExportSarsRequestBodyFiltersStatuses = "SENT_TO_FINCEN"
+	ExportSarsRequestBodyFiltersStatusesFilingFailed                 ExportSarsRequestBodyFiltersStatuses = "FILING_FAILED"
+	ExportSarsRequestBodyFiltersStatusesFilingMaxRetriesExceeded     ExportSarsRequestBodyFiltersStatuses = "FILING_MAX_RETRIES_EXCEEDED"
+	ExportSarsRequestBodyFiltersStatusesFilingSuccess                ExportSarsRequestBodyFiltersStatuses = "FILING_SUCCESS"
+	ExportSarsRequestBodyFiltersStatusesFincenValidationFailed       ExportSarsRequestBodyFiltersStatuses = "FINCEN_VALIDATION_FAILED"
+	ExportSarsRequestBodyFiltersStatusesFincenRejected               ExportSarsRequestBodyFiltersStatuses = "FINCEN_REJECTED"
+	ExportSarsRequestBodyFiltersStatusesFincenStatusOther            ExportSarsRequestBodyFiltersStatuses = "FINCEN_STATUS_OTHER"
+	ExportSarsRequestBodyFiltersStatusesFincenAccepted               ExportSarsRequestBodyFiltersStatuses = "FINCEN_ACCEPTED"
 )
 
-func (e ExportSarsRequestBodyFiltersStatusesEnum) ToPointer() *ExportSarsRequestBodyFiltersStatusesEnum {
+func (e ExportSarsRequestBodyFiltersStatuses) ToPointer() *ExportSarsRequestBodyFiltersStatuses {
 	return &e
 }
 
-func (e *ExportSarsRequestBodyFiltersStatusesEnum) UnmarshalJSON(data []byte) error {
+func (e *ExportSarsRequestBodyFiltersStatuses) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -104,10 +104,10 @@ func (e *ExportSarsRequestBodyFiltersStatusesEnum) UnmarshalJSON(data []byte) er
 	case "FINCEN_STATUS_OTHER":
 		fallthrough
 	case "FINCEN_ACCEPTED":
-		*e = ExportSarsRequestBodyFiltersStatusesEnum(v)
+		*e = ExportSarsRequestBodyFiltersStatuses(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ExportSarsRequestBodyFiltersStatusesEnum: %v", v)
+		return fmt.Errorf("invalid value for ExportSarsRequestBodyFiltersStatuses: %v", v)
 	}
 }
 
@@ -122,11 +122,11 @@ type ExportSarsRequestBodyFilters struct {
 	// Report file start date.
 	FiledAtStart *string `json:"filed_at_start,omitempty"`
 	// Type of report.
-	ReportType *ExportSarsRequestBodyFiltersReportTypeEnum `json:"report_type,omitempty"`
+	ReportType *ExportSarsRequestBodyFiltersReportType `json:"report_type,omitempty"`
 	// Status of the sar.
 	Status *string `json:"status,omitempty"`
 	// Status for the sars.
-	Statuses []ExportSarsRequestBodyFiltersStatusesEnum `json:"statuses,omitempty"`
+	Statuses []ExportSarsRequestBodyFiltersStatuses `json:"statuses,omitempty"`
 	// Report submited?
 	Submitted *bool `json:"submitted,omitempty"`
 	// Numerical IDs of the tags.

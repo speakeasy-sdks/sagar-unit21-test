@@ -132,7 +132,7 @@ func main() {
         },
         ParentInstrumentID: sdk.String("3234-sdghfdf-3331"),
         RegisteredAt: sdk.Int64(1623365011),
-        Source: shared.CreateInstrumentRequestSourceEnumInternal.ToPointer(),
+        Source: shared.CreateInstrumentRequestSourceInternal.ToPointer(),
         Status: sdk.String("active"),
         Tags: []string{
             "Sector:Europe",
@@ -194,10 +194,10 @@ func main() {
             },
             StartDate: sdk.String("2019-11-05 04:13:46"),
             Status: sdk.String("active"),
-            Statuses: []ExportInstrumentsRequestBodyFiltersStatusesEnum{
-                operations.ExportInstrumentsRequestBodyFiltersStatusesEnumInactive,
-                operations.ExportInstrumentsRequestBodyFiltersStatusesEnumActive,
-                operations.ExportInstrumentsRequestBodyFiltersStatusesEnumInactive,
+            Statuses: []ExportInstrumentsRequestBodyFiltersStatuses{
+                operations.ExportInstrumentsRequestBodyFiltersStatusesInactive,
+                operations.ExportInstrumentsRequestBodyFiltersStatusesActive,
+                operations.ExportInstrumentsRequestBodyFiltersStatusesInactive,
             },
             TagIds: []int64{
                 9,

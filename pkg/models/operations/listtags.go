@@ -8,24 +8,24 @@ import (
 	"net/http"
 )
 
-type ListTagsRequestBodyObjectTypesEnum string
+type ListTagsRequestBodyObjectTypes string
 
 const (
-	ListTagsRequestBodyObjectTypesEnumAlert      ListTagsRequestBodyObjectTypesEnum = "alert"
-	ListTagsRequestBodyObjectTypesEnumCase       ListTagsRequestBodyObjectTypesEnum = "case"
-	ListTagsRequestBodyObjectTypesEnumSar        ListTagsRequestBodyObjectTypesEnum = "sar"
-	ListTagsRequestBodyObjectTypesEnumRule       ListTagsRequestBodyObjectTypesEnum = "rule"
-	ListTagsRequestBodyObjectTypesEnumAgent      ListTagsRequestBodyObjectTypesEnum = "agent"
-	ListTagsRequestBodyObjectTypesEnumEvent      ListTagsRequestBodyObjectTypesEnum = "event"
-	ListTagsRequestBodyObjectTypesEnumEntity     ListTagsRequestBodyObjectTypesEnum = "entity"
-	ListTagsRequestBodyObjectTypesEnumInstrument ListTagsRequestBodyObjectTypesEnum = "instrument"
+	ListTagsRequestBodyObjectTypesAlert      ListTagsRequestBodyObjectTypes = "alert"
+	ListTagsRequestBodyObjectTypesCase       ListTagsRequestBodyObjectTypes = "case"
+	ListTagsRequestBodyObjectTypesSar        ListTagsRequestBodyObjectTypes = "sar"
+	ListTagsRequestBodyObjectTypesRule       ListTagsRequestBodyObjectTypes = "rule"
+	ListTagsRequestBodyObjectTypesAgent      ListTagsRequestBodyObjectTypes = "agent"
+	ListTagsRequestBodyObjectTypesEvent      ListTagsRequestBodyObjectTypes = "event"
+	ListTagsRequestBodyObjectTypesEntity     ListTagsRequestBodyObjectTypes = "entity"
+	ListTagsRequestBodyObjectTypesInstrument ListTagsRequestBodyObjectTypes = "instrument"
 )
 
-func (e ListTagsRequestBodyObjectTypesEnum) ToPointer() *ListTagsRequestBodyObjectTypesEnum {
+func (e ListTagsRequestBodyObjectTypes) ToPointer() *ListTagsRequestBodyObjectTypes {
 	return &e
 }
 
-func (e *ListTagsRequestBodyObjectTypesEnum) UnmarshalJSON(data []byte) error {
+func (e *ListTagsRequestBodyObjectTypes) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -46,10 +46,10 @@ func (e *ListTagsRequestBodyObjectTypesEnum) UnmarshalJSON(data []byte) error {
 	case "entity":
 		fallthrough
 	case "instrument":
-		*e = ListTagsRequestBodyObjectTypesEnum(v)
+		*e = ListTagsRequestBodyObjectTypes(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ListTagsRequestBodyObjectTypesEnum: %v", v)
+		return fmt.Errorf("invalid value for ListTagsRequestBodyObjectTypes: %v", v)
 	}
 }
 
@@ -65,7 +65,7 @@ type ListTagsRequestBody struct {
 	//
 	ObjectID *int64 `json:"object_id,omitempty"`
 	// Limit response to only tags associated with the set of listed Unit21 objects. The accepted values are `alert`, `case`, `sar`, `rule`, `agent`, `event`, `entity`, and `instrument`. If an `object_id` is specified,  and more than one value is provided to `object_types`, the API returns an error.
-	ObjectTypes []ListTagsRequestBodyObjectTypesEnum `json:"object_types,omitempty"`
+	ObjectTypes []ListTagsRequestBodyObjectTypes `json:"object_types,omitempty"`
 	// Pagination offset. A value of 1 returns a response beginning with the first record. The offset is relative to the number of pages (not the total count of objects)
 	Offset *int64 `json:"offset,omitempty"`
 	// List of string tags in the format `key:value` or `key` to match against (e.g. `alert_type:high_velocity` or `alert_type`). If only the key is provided, the API matches against all tags with that key.

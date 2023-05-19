@@ -7,20 +7,20 @@ import (
 	"fmt"
 )
 
-// UserDataPropertiesGenderEnum - MALE, FEMALE, or OTHER
-type UserDataPropertiesGenderEnum string
+// UserDataPropertiesGender - MALE, FEMALE, or OTHER
+type UserDataPropertiesGender string
 
 const (
-	UserDataPropertiesGenderEnumMale   UserDataPropertiesGenderEnum = "male"
-	UserDataPropertiesGenderEnumFemale UserDataPropertiesGenderEnum = "female"
-	UserDataPropertiesGenderEnumOther  UserDataPropertiesGenderEnum = "other"
+	UserDataPropertiesGenderMale   UserDataPropertiesGender = "male"
+	UserDataPropertiesGenderFemale UserDataPropertiesGender = "female"
+	UserDataPropertiesGenderOther  UserDataPropertiesGender = "other"
 )
 
-func (e UserDataPropertiesGenderEnum) ToPointer() *UserDataPropertiesGenderEnum {
+func (e UserDataPropertiesGender) ToPointer() *UserDataPropertiesGender {
 	return &e
 }
 
-func (e *UserDataPropertiesGenderEnum) UnmarshalJSON(data []byte) error {
+func (e *UserDataPropertiesGender) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -31,10 +31,10 @@ func (e *UserDataPropertiesGenderEnum) UnmarshalJSON(data []byte) error {
 	case "female":
 		fallthrough
 	case "other":
-		*e = UserDataPropertiesGenderEnum(v)
+		*e = UserDataPropertiesGender(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for UserDataPropertiesGenderEnum: %v", v)
+		return fmt.Errorf("invalid value for UserDataPropertiesGender: %v", v)
 	}
 }
 
@@ -45,7 +45,7 @@ type UserDataProperties struct {
 	// User's associated first name
 	FirstName *string `json:"first_name,omitempty"`
 	// MALE, FEMALE, or OTHER
-	Gender *UserDataPropertiesGenderEnum `json:"gender,omitempty"`
+	Gender *UserDataPropertiesGender `json:"gender,omitempty"`
 	// User's associated last name
 	LastName *string `json:"last_name,omitempty"`
 	// User's associated middle name

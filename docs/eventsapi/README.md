@@ -78,19 +78,19 @@ func main() {
             EventID: "t-9daaebad-478d-4ea3-bbf9-e6320d3f1cea",
             EventSubtype: sdk.String("payment"),
             EventTime: 1623365011,
-            EventType: shared.EventTypeEnumTransaction,
+            EventType: shared.EventTypeTransaction,
             Parents: []CreateEventEventOptionsGeneralDataParents{
                 operations.CreateEventEventOptionsGeneralDataParents{
                     EventID: sdk.String("t-9daaebad-478d-4ea3-bbf9-e6320d3f1cea"),
-                    EventType: shared.EventTypeEnumTransaction.ToPointer(),
+                    EventType: shared.EventTypeTransaction.ToPointer(),
                 },
                 operations.CreateEventEventOptionsGeneralDataParents{
                     EventID: sdk.String("t-9daaebad-478d-4ea3-bbf9-e6320d3f1cea"),
-                    EventType: shared.EventTypeEnumTransaction.ToPointer(),
+                    EventType: shared.EventTypeTransaction.ToPointer(),
                 },
                 operations.CreateEventEventOptionsGeneralDataParents{
                     EventID: sdk.String("t-9daaebad-478d-4ea3-bbf9-e6320d3f1cea"),
-                    EventType: shared.EventTypeEnumTransaction.ToPointer(),
+                    EventType: shared.EventTypeTransaction.ToPointer(),
                 },
             },
             Status: sdk.String("active"),
@@ -112,7 +112,7 @@ func main() {
         },
         Options: &operations.CreateEventEventOptionsOptions{
             LinkDigitalDataToEntity: sdk.Bool(true),
-            LinkedEntity: operations.CreateEventEventOptionsOptionsLinkedEntityEnumSender.ToPointer(),
+            LinkedEntity: operations.CreateEventEventOptionsOptionsLinkedEntitySender.ToPointer(),
             MergeCustomData: sdk.Bool(false),
             Monitor: sdk.Bool(false),
             ResolveGeoip: sdk.Bool(true),
@@ -421,7 +421,7 @@ func main() {
         RequestBody: &operations.UpdateEventEventOptions{
             Options: &operations.UpdateEventEventOptionsOptions{
                 LinkDigitalDataToEntity: sdk.Bool(true),
-                LinkedEntity: operations.UpdateEventEventOptionsOptionsLinkedEntityEnumSender.ToPointer(),
+                LinkedEntity: operations.UpdateEventEventOptionsOptionsLinkedEntitySender.ToPointer(),
                 MergeCustomData: sdk.Bool(false),
                 Monitor: sdk.Bool(false),
                 ResolveGeoip: sdk.Bool(true),

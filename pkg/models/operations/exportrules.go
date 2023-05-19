@@ -8,19 +8,19 @@ import (
 	"net/http"
 )
 
-type ExportRulesRequestBodyFiltersStatusesEnum string
+type ExportRulesRequestBodyFiltersStatuses string
 
 const (
-	ExportRulesRequestBodyFiltersStatusesEnumActive     ExportRulesRequestBodyFiltersStatusesEnum = "ACTIVE"
-	ExportRulesRequestBodyFiltersStatusesEnumInactive   ExportRulesRequestBodyFiltersStatusesEnum = "INACTIVE"
-	ExportRulesRequestBodyFiltersStatusesEnumValidation ExportRulesRequestBodyFiltersStatusesEnum = "VALIDATION"
+	ExportRulesRequestBodyFiltersStatusesActive     ExportRulesRequestBodyFiltersStatuses = "ACTIVE"
+	ExportRulesRequestBodyFiltersStatusesInactive   ExportRulesRequestBodyFiltersStatuses = "INACTIVE"
+	ExportRulesRequestBodyFiltersStatusesValidation ExportRulesRequestBodyFiltersStatuses = "VALIDATION"
 )
 
-func (e ExportRulesRequestBodyFiltersStatusesEnum) ToPointer() *ExportRulesRequestBodyFiltersStatusesEnum {
+func (e ExportRulesRequestBodyFiltersStatuses) ToPointer() *ExportRulesRequestBodyFiltersStatuses {
 	return &e
 }
 
-func (e *ExportRulesRequestBodyFiltersStatusesEnum) UnmarshalJSON(data []byte) error {
+func (e *ExportRulesRequestBodyFiltersStatuses) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -31,10 +31,10 @@ func (e *ExportRulesRequestBodyFiltersStatusesEnum) UnmarshalJSON(data []byte) e
 	case "INACTIVE":
 		fallthrough
 	case "VALIDATION":
-		*e = ExportRulesRequestBodyFiltersStatusesEnum(v)
+		*e = ExportRulesRequestBodyFiltersStatuses(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ExportRulesRequestBodyFiltersStatusesEnum: %v", v)
+		return fmt.Errorf("invalid value for ExportRulesRequestBodyFiltersStatuses: %v", v)
 	}
 }
 
@@ -51,7 +51,7 @@ type ExportRulesRequestBodyFilters struct {
 	// Status for the rule.
 	Status *string `json:"status,omitempty"`
 	// Status for the rule.
-	Statuses []ExportRulesRequestBodyFiltersStatusesEnum `json:"statuses,omitempty"`
+	Statuses []ExportRulesRequestBodyFiltersStatuses `json:"statuses,omitempty"`
 	// Numerical IDs of the tags.
 	TagIds []int64 `json:"tag_ids,omitempty"`
 }

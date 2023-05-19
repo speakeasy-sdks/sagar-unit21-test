@@ -120,7 +120,7 @@ func main() {
     res, err := s.BlacklistsAPI.CreateBlacklist(ctx, shared.CreateBlacklist{
         Description: sdk.String("Unit21 rules will check against items in this list"),
         Name: sdk.String("New Blacklist"),
-        Type: shared.CreateBlacklistTypeEnumIPInet.ToPointer(),
+        Type: shared.CreateBlacklistTypeIPInet.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)

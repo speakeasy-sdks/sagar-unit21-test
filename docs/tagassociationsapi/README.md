@@ -59,9 +59,9 @@ func main() {
         CreatedBefore: sdk.Int64(1623365011),
         Limit: sdk.Int64(2),
         ObjectID: sdk.Int64(714242),
-        ObjectTypes: []ListTagsRequestBodyObjectTypesEnum{
-            operations.ListTagsRequestBodyObjectTypesEnumInstrument,
-            operations.ListTagsRequestBodyObjectTypesEnumEntity,
+        ObjectTypes: []ListTagsRequestBodyObjectTypes{
+            operations.ListTagsRequestBodyObjectTypesInstrument,
+            operations.ListTagsRequestBodyObjectTypesEntity,
         },
         Offset: sdk.Int64(149448),
         TagFilters: []string{

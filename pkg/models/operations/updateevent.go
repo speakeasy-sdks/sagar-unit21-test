@@ -8,20 +8,20 @@ import (
 	"net/http"
 )
 
-// UpdateEventEventOptionsOptionsLinkedEntityEnum - Possible values are `sender`, `receiver`, and `both`. Defaults to `both`. If `link_digital_data_to_entity` is flagged on transaction events, this specifies which entities to associate the `digital_data` to. If there is no `digital_data` or entities, no exception is thrown.
-type UpdateEventEventOptionsOptionsLinkedEntityEnum string
+// UpdateEventEventOptionsOptionsLinkedEntity - Possible values are `sender`, `receiver`, and `both`. Defaults to `both`. If `link_digital_data_to_entity` is flagged on transaction events, this specifies which entities to associate the `digital_data` to. If there is no `digital_data` or entities, no exception is thrown.
+type UpdateEventEventOptionsOptionsLinkedEntity string
 
 const (
-	UpdateEventEventOptionsOptionsLinkedEntityEnumSender   UpdateEventEventOptionsOptionsLinkedEntityEnum = "sender"
-	UpdateEventEventOptionsOptionsLinkedEntityEnumReceiver UpdateEventEventOptionsOptionsLinkedEntityEnum = "receiver"
-	UpdateEventEventOptionsOptionsLinkedEntityEnumBoth     UpdateEventEventOptionsOptionsLinkedEntityEnum = "both"
+	UpdateEventEventOptionsOptionsLinkedEntitySender   UpdateEventEventOptionsOptionsLinkedEntity = "sender"
+	UpdateEventEventOptionsOptionsLinkedEntityReceiver UpdateEventEventOptionsOptionsLinkedEntity = "receiver"
+	UpdateEventEventOptionsOptionsLinkedEntityBoth     UpdateEventEventOptionsOptionsLinkedEntity = "both"
 )
 
-func (e UpdateEventEventOptionsOptionsLinkedEntityEnum) ToPointer() *UpdateEventEventOptionsOptionsLinkedEntityEnum {
+func (e UpdateEventEventOptionsOptionsLinkedEntity) ToPointer() *UpdateEventEventOptionsOptionsLinkedEntity {
 	return &e
 }
 
-func (e *UpdateEventEventOptionsOptionsLinkedEntityEnum) UnmarshalJSON(data []byte) error {
+func (e *UpdateEventEventOptionsOptionsLinkedEntity) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -32,10 +32,10 @@ func (e *UpdateEventEventOptionsOptionsLinkedEntityEnum) UnmarshalJSON(data []by
 	case "receiver":
 		fallthrough
 	case "both":
-		*e = UpdateEventEventOptionsOptionsLinkedEntityEnum(v)
+		*e = UpdateEventEventOptionsOptionsLinkedEntity(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for UpdateEventEventOptionsOptionsLinkedEntityEnum: %v", v)
+		return fmt.Errorf("invalid value for UpdateEventEventOptionsOptionsLinkedEntity: %v", v)
 	}
 }
 
@@ -43,7 +43,7 @@ type UpdateEventEventOptionsOptions struct {
 	// Whether or not to link the included `digital_data` with the related entities. Includes geoip information if resolve_geoip is enabled as well. On action events, defaults to `true`
 	LinkDigitalDataToEntity *bool `json:"link_digital_data_to_entity,omitempty"`
 	// Possible values are `sender`, `receiver`, and `both`. Defaults to `both`. If `link_digital_data_to_entity` is flagged on transaction events, this specifies which entities to associate the `digital_data` to. If there is no `digital_data` or entities, no exception is thrown.
-	LinkedEntity *UpdateEventEventOptionsOptionsLinkedEntityEnum `json:"linked_entity,omitempty"`
+	LinkedEntity *UpdateEventEventOptionsOptionsLinkedEntity `json:"linked_entity,omitempty"`
 	// Only relevant for updates/upserts, ignored otherwise. See [custom data merge strategy](doc:how-data-merges-on-updates#custom-data-merge-strategy) for more details. **Default**: `false`
 	MergeCustomData *bool `json:"merge_custom_data,omitempty"`
 	// Whether or not to monitor this event (defaults to `true`). Typically used to signal Unit21 to not flag such events or include them in calculations i.e. to prevent double counting, or to ignore applying monitoring to unimportant events that you still want to associate with users

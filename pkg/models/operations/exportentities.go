@@ -9,18 +9,18 @@ import (
 	"unit21/pkg/models/shared"
 )
 
-type ExportEntitiesRequestBodyFiltersStatusesEnum string
+type ExportEntitiesRequestBodyFiltersStatuses string
 
 const (
-	ExportEntitiesRequestBodyFiltersStatusesEnumActive   ExportEntitiesRequestBodyFiltersStatusesEnum = "active"
-	ExportEntitiesRequestBodyFiltersStatusesEnumInactive ExportEntitiesRequestBodyFiltersStatusesEnum = "inactive"
+	ExportEntitiesRequestBodyFiltersStatusesActive   ExportEntitiesRequestBodyFiltersStatuses = "active"
+	ExportEntitiesRequestBodyFiltersStatusesInactive ExportEntitiesRequestBodyFiltersStatuses = "inactive"
 )
 
-func (e ExportEntitiesRequestBodyFiltersStatusesEnum) ToPointer() *ExportEntitiesRequestBodyFiltersStatusesEnum {
+func (e ExportEntitiesRequestBodyFiltersStatuses) ToPointer() *ExportEntitiesRequestBodyFiltersStatuses {
 	return &e
 }
 
-func (e *ExportEntitiesRequestBodyFiltersStatusesEnum) UnmarshalJSON(data []byte) error {
+func (e *ExportEntitiesRequestBodyFiltersStatuses) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -29,10 +29,10 @@ func (e *ExportEntitiesRequestBodyFiltersStatusesEnum) UnmarshalJSON(data []byte
 	case "active":
 		fallthrough
 	case "inactive":
-		*e = ExportEntitiesRequestBodyFiltersStatusesEnum(v)
+		*e = ExportEntitiesRequestBodyFiltersStatuses(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ExportEntitiesRequestBodyFiltersStatusesEnum: %v", v)
+		return fmt.Errorf("invalid value for ExportEntitiesRequestBodyFiltersStatuses: %v", v)
 	}
 }
 
@@ -55,7 +55,7 @@ type ExportEntitiesRequestBodyFilters struct {
 	// Status of the entities.
 	Status *string `json:"status,omitempty"`
 	// Statuses for the entities.
-	Statuses []ExportEntitiesRequestBodyFiltersStatusesEnum `json:"statuses,omitempty"`
+	Statuses []ExportEntitiesRequestBodyFiltersStatuses `json:"statuses,omitempty"`
 	// Numerical IDs of the tags.
 	TagIds []int64 `json:"tag_ids,omitempty"`
 }

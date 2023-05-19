@@ -311,7 +311,7 @@ func main() {
         UserData: &shared.UserDataProperties{
             DayOfBirth: sdk.Int64(23),
             FirstName: sdk.String("John"),
-            Gender: shared.UserDataPropertiesGenderEnumFemale.ToPointer(),
+            Gender: shared.UserDataPropertiesGenderFemale.ToPointer(),
             LastName: sdk.String("Smith"),
             MiddleName: sdk.String("Joseph"),
             MonthOfBirth: sdk.Int64(12),
@@ -430,10 +430,10 @@ func main() {
             },
             StartDate: sdk.String("2019-11-05 04:13:46"),
             Status: sdk.String("active"),
-            Statuses: []ExportEntitiesRequestBodyFiltersStatusesEnum{
-                operations.ExportEntitiesRequestBodyFiltersStatusesEnumInactive,
-                operations.ExportEntitiesRequestBodyFiltersStatusesEnumActive,
-                operations.ExportEntitiesRequestBodyFiltersStatusesEnumInactive,
+            Statuses: []ExportEntitiesRequestBodyFiltersStatuses{
+                operations.ExportEntitiesRequestBodyFiltersStatusesInactive,
+                operations.ExportEntitiesRequestBodyFiltersStatusesActive,
+                operations.ExportEntitiesRequestBodyFiltersStatusesInactive,
             },
             TagIds: []int64{
                 9,

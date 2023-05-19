@@ -8,21 +8,21 @@ import (
 	"net/http"
 )
 
-type ExportAlertsRequestBodyFiltersAlertTypesEnum string
+type ExportAlertsRequestBodyFiltersAlertTypes string
 
 const (
-	ExportAlertsRequestBodyFiltersAlertTypesEnumChainalysis ExportAlertsRequestBodyFiltersAlertTypesEnum = "CHAINALYSIS"
-	ExportAlertsRequestBodyFiltersAlertTypesEnumTm          ExportAlertsRequestBodyFiltersAlertTypesEnum = "TM"
-	ExportAlertsRequestBodyFiltersAlertTypesEnumKyc         ExportAlertsRequestBodyFiltersAlertTypesEnum = "KYC"
-	ExportAlertsRequestBodyFiltersAlertTypesEnumManual      ExportAlertsRequestBodyFiltersAlertTypesEnum = "MANUAL"
-	ExportAlertsRequestBodyFiltersAlertTypesEnumCar         ExportAlertsRequestBodyFiltersAlertTypesEnum = "CAR"
+	ExportAlertsRequestBodyFiltersAlertTypesChainalysis ExportAlertsRequestBodyFiltersAlertTypes = "CHAINALYSIS"
+	ExportAlertsRequestBodyFiltersAlertTypesTm          ExportAlertsRequestBodyFiltersAlertTypes = "TM"
+	ExportAlertsRequestBodyFiltersAlertTypesKyc         ExportAlertsRequestBodyFiltersAlertTypes = "KYC"
+	ExportAlertsRequestBodyFiltersAlertTypesManual      ExportAlertsRequestBodyFiltersAlertTypes = "MANUAL"
+	ExportAlertsRequestBodyFiltersAlertTypesCar         ExportAlertsRequestBodyFiltersAlertTypes = "CAR"
 )
 
-func (e ExportAlertsRequestBodyFiltersAlertTypesEnum) ToPointer() *ExportAlertsRequestBodyFiltersAlertTypesEnum {
+func (e ExportAlertsRequestBodyFiltersAlertTypes) ToPointer() *ExportAlertsRequestBodyFiltersAlertTypes {
 	return &e
 }
 
-func (e *ExportAlertsRequestBodyFiltersAlertTypesEnum) UnmarshalJSON(data []byte) error {
+func (e *ExportAlertsRequestBodyFiltersAlertTypes) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -37,25 +37,25 @@ func (e *ExportAlertsRequestBodyFiltersAlertTypesEnum) UnmarshalJSON(data []byte
 	case "MANUAL":
 		fallthrough
 	case "CAR":
-		*e = ExportAlertsRequestBodyFiltersAlertTypesEnum(v)
+		*e = ExportAlertsRequestBodyFiltersAlertTypes(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ExportAlertsRequestBodyFiltersAlertTypesEnum: %v", v)
+		return fmt.Errorf("invalid value for ExportAlertsRequestBodyFiltersAlertTypes: %v", v)
 	}
 }
 
-type ExportAlertsRequestBodyFiltersSourcesEnum string
+type ExportAlertsRequestBodyFiltersSources string
 
 const (
-	ExportAlertsRequestBodyFiltersSourcesEnumInternal ExportAlertsRequestBodyFiltersSourcesEnum = "INTERNAL"
-	ExportAlertsRequestBodyFiltersSourcesEnumExternal ExportAlertsRequestBodyFiltersSourcesEnum = "EXTERNAL"
+	ExportAlertsRequestBodyFiltersSourcesInternal ExportAlertsRequestBodyFiltersSources = "INTERNAL"
+	ExportAlertsRequestBodyFiltersSourcesExternal ExportAlertsRequestBodyFiltersSources = "EXTERNAL"
 )
 
-func (e ExportAlertsRequestBodyFiltersSourcesEnum) ToPointer() *ExportAlertsRequestBodyFiltersSourcesEnum {
+func (e ExportAlertsRequestBodyFiltersSources) ToPointer() *ExportAlertsRequestBodyFiltersSources {
 	return &e
 }
 
-func (e *ExportAlertsRequestBodyFiltersSourcesEnum) UnmarshalJSON(data []byte) error {
+func (e *ExportAlertsRequestBodyFiltersSources) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -64,25 +64,25 @@ func (e *ExportAlertsRequestBodyFiltersSourcesEnum) UnmarshalJSON(data []byte) e
 	case "INTERNAL":
 		fallthrough
 	case "EXTERNAL":
-		*e = ExportAlertsRequestBodyFiltersSourcesEnum(v)
+		*e = ExportAlertsRequestBodyFiltersSources(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ExportAlertsRequestBodyFiltersSourcesEnum: %v", v)
+		return fmt.Errorf("invalid value for ExportAlertsRequestBodyFiltersSources: %v", v)
 	}
 }
 
-type ExportAlertsRequestBodyFiltersStatusesEnum string
+type ExportAlertsRequestBodyFiltersStatuses string
 
 const (
-	ExportAlertsRequestBodyFiltersStatusesEnumOpen   ExportAlertsRequestBodyFiltersStatusesEnum = "OPEN"
-	ExportAlertsRequestBodyFiltersStatusesEnumClosed ExportAlertsRequestBodyFiltersStatusesEnum = "CLOSED"
+	ExportAlertsRequestBodyFiltersStatusesOpen   ExportAlertsRequestBodyFiltersStatuses = "OPEN"
+	ExportAlertsRequestBodyFiltersStatusesClosed ExportAlertsRequestBodyFiltersStatuses = "CLOSED"
 )
 
-func (e ExportAlertsRequestBodyFiltersStatusesEnum) ToPointer() *ExportAlertsRequestBodyFiltersStatusesEnum {
+func (e ExportAlertsRequestBodyFiltersStatuses) ToPointer() *ExportAlertsRequestBodyFiltersStatuses {
 	return &e
 }
 
-func (e *ExportAlertsRequestBodyFiltersStatusesEnum) UnmarshalJSON(data []byte) error {
+func (e *ExportAlertsRequestBodyFiltersStatuses) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -91,10 +91,10 @@ func (e *ExportAlertsRequestBodyFiltersStatusesEnum) UnmarshalJSON(data []byte) 
 	case "OPEN":
 		fallthrough
 	case "CLOSED":
-		*e = ExportAlertsRequestBodyFiltersStatusesEnum(v)
+		*e = ExportAlertsRequestBodyFiltersStatuses(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ExportAlertsRequestBodyFiltersStatusesEnum: %v", v)
+		return fmt.Errorf("invalid value for ExportAlertsRequestBodyFiltersStatuses: %v", v)
 	}
 }
 
@@ -107,7 +107,7 @@ type ExportAlertsRequestBodyFilters struct {
 	// Numerical IDs of the alert queues.
 	AlertQueueIds []int64 `json:"alert_queue_ids,omitempty"`
 	// Sources for the alerts.
-	AlertTypes []ExportAlertsRequestBodyFiltersAlertTypesEnum `json:"alert_types,omitempty"`
+	AlertTypes []ExportAlertsRequestBodyFiltersAlertTypes `json:"alert_types,omitempty"`
 	// Numerical ID of the alerting org.
 	AlertingOrgIds []int64 `json:"alerting_org_ids,omitempty"`
 	// Disposition name.
@@ -129,13 +129,13 @@ type ExportAlertsRequestBodyFilters struct {
 	// Numerical IDs of the rules.
 	RuleIds []int64 `json:"rule_ids,omitempty"`
 	// Sources for the alerts.
-	Sources []ExportAlertsRequestBodyFiltersSourcesEnum `json:"sources,omitempty"`
+	Sources []ExportAlertsRequestBodyFiltersSources `json:"sources,omitempty"`
 	// Alert creation start date.
 	StartDate *string `json:"start_date,omitempty"`
 	// Status for the alert.
 	Status *string `json:"status,omitempty"`
 	// Statuses for the alerts.
-	Statuses []ExportAlertsRequestBodyFiltersStatusesEnum `json:"statuses,omitempty"`
+	Statuses []ExportAlertsRequestBodyFiltersStatuses `json:"statuses,omitempty"`
 	// Numerical IDs of the agents.
 	SubdispositionIds []int64 `json:"subdisposition_ids,omitempty"`
 	// Numerical IDs of the subdisposition.

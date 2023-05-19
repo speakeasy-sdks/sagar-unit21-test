@@ -48,13 +48,13 @@ func main() {
             CreatedAtStart: sdk.String("2019-11-05 04:13:46"),
             FiledAtEnd: sdk.String("2021-11-05 04:13:46"),
             FiledAtStart: sdk.String("2019-11-05 04:13:46"),
-            ReportType: operations.ExportSarsRequestBodyFiltersReportTypeEnumFincenSar.ToPointer(),
+            ReportType: operations.ExportSarsRequestBodyFiltersReportTypeFincenSar.ToPointer(),
             Status: sdk.String("active"),
-            Statuses: []ExportSarsRequestBodyFiltersStatusesEnum{
-                operations.ExportSarsRequestBodyFiltersStatusesEnumFincenStatusOther,
-                operations.ExportSarsRequestBodyFiltersStatusesEnumPrefilingValidationSuccess,
-                operations.ExportSarsRequestBodyFiltersStatusesEnumFincenValidationFailed,
-                operations.ExportSarsRequestBodyFiltersStatusesEnumSentToFincen,
+            Statuses: []ExportSarsRequestBodyFiltersStatuses{
+                operations.ExportSarsRequestBodyFiltersStatusesFincenStatusOther,
+                operations.ExportSarsRequestBodyFiltersStatusesPrefilingValidationSuccess,
+                operations.ExportSarsRequestBodyFiltersStatusesFincenValidationFailed,
+                operations.ExportSarsRequestBodyFiltersStatusesSentToFincen,
             },
             Submitted: sdk.Bool(true),
             TagIds: []int64{

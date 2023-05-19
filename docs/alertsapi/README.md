@@ -73,7 +73,7 @@ func main() {
     ctx := context.Background()
     res, err := s.AlertsAPI.CreateAlert(ctx, operations.CreateAlertRules{
         AlertID: "alertA-028eb01a-f8d3-42fb-b398-785b596ee4cb",
-        AlertType: operations.CreateAlertRulesAlertTypeEnumTm,
+        AlertType: operations.CreateAlertRulesAlertTypeTm,
         CreatedAt: 1623365011,
         Description: sdk.String("Flagged 2 transactions in last hour that were 3 standard deviations outside 3 month mean."),
         Disposition: sdk.String("TRUE_POSITIVE"),
@@ -92,19 +92,19 @@ func main() {
         Events: []CreateAlertRulesEvents{
             operations.CreateAlertRulesEvents{
                 EventID: "event-1063e4e3e1",
-                EventType: shared.EventTypeEnumTransaction,
+                EventType: shared.EventTypeTransaction,
             },
             operations.CreateAlertRulesEvents{
                 EventID: "event-1063e4e3e1",
-                EventType: shared.EventTypeEnumTransaction,
+                EventType: shared.EventTypeTransaction,
             },
             operations.CreateAlertRulesEvents{
                 EventID: "event-1063e4e3e1",
-                EventType: shared.EventTypeEnumTransaction,
+                EventType: shared.EventTypeTransaction,
             },
             operations.CreateAlertRulesEvents{
                 EventID: "event-1063e4e3e1",
-                EventType: shared.EventTypeEnumTransaction,
+                EventType: shared.EventTypeTransaction,
             },
         },
         Instruments: []string{
@@ -118,7 +118,7 @@ func main() {
             "r3-0ddfn3",
             "r3-0ddfn3",
         },
-        Status: shared.InvestigationStatusEnumOpen,
+        Status: shared.InvestigationStatusOpen,
         Tags: []string{
             "Sector:Europe",
             "Sector:Europe",
@@ -190,8 +190,8 @@ func main() {
                 125,
                 125,
             },
-            AlertTypes: []ExportAlertsRequestBodyFiltersAlertTypesEnum{
-                operations.ExportAlertsRequestBodyFiltersAlertTypesEnumCar,
+            AlertTypes: []ExportAlertsRequestBodyFiltersAlertTypes{
+                operations.ExportAlertsRequestBodyFiltersAlertTypesCar,
             },
             AlertingOrgIds: []int64{
                 45,
@@ -212,17 +212,17 @@ func main() {
                 371,
                 371,
             },
-            Sources: []ExportAlertsRequestBodyFiltersSourcesEnum{
-                operations.ExportAlertsRequestBodyFiltersSourcesEnumExternal,
-                operations.ExportAlertsRequestBodyFiltersSourcesEnumExternal,
-                operations.ExportAlertsRequestBodyFiltersSourcesEnumInternal,
-                operations.ExportAlertsRequestBodyFiltersSourcesEnumExternal,
+            Sources: []ExportAlertsRequestBodyFiltersSources{
+                operations.ExportAlertsRequestBodyFiltersSourcesExternal,
+                operations.ExportAlertsRequestBodyFiltersSourcesExternal,
+                operations.ExportAlertsRequestBodyFiltersSourcesInternal,
+                operations.ExportAlertsRequestBodyFiltersSourcesExternal,
             },
             StartDate: sdk.String("2019-11-05 04:13:46"),
             Status: sdk.String("OPEN"),
-            Statuses: []ExportAlertsRequestBodyFiltersStatusesEnum{
-                operations.ExportAlertsRequestBodyFiltersStatusesEnumClosed,
-                operations.ExportAlertsRequestBodyFiltersStatusesEnumClosed,
+            Statuses: []ExportAlertsRequestBodyFiltersStatuses{
+                operations.ExportAlertsRequestBodyFiltersStatusesClosed,
+                operations.ExportAlertsRequestBodyFiltersStatusesClosed,
             },
             SubdispositionIds: []int64{
                 2,
@@ -468,22 +468,22 @@ func main() {
             143353,
             537373,
         },
-        Sources: []shared.SourceArrayEnum{
-            shared.SourceArrayEnumExternal,
-            shared.SourceArrayEnumExternal,
-            shared.SourceArrayEnumInternal,
-            shared.SourceArrayEnumInternal,
+        Sources: []shared.SourceArray{
+            shared.SourceArrayExternal,
+            shared.SourceArrayExternal,
+            shared.SourceArrayInternal,
+            shared.SourceArrayInternal,
         },
-        Statuses: []shared.InvestigationStatusEnum{
-            shared.InvestigationStatusEnumOpen,
-            shared.InvestigationStatusEnumOpen,
+        Statuses: []shared.InvestigationStatus{
+            shared.InvestigationStatusOpen,
+            shared.InvestigationStatusOpen,
         },
         TagFilters: []string{
             "Sector:Europe",
             "Sector:Europe",
         },
-        Types: []ListAlertsRequestBodyTypesEnum{
-            operations.ListAlertsRequestBodyTypesEnumChainalysis,
+        Types: []ListAlertsRequestBodyTypes{
+            operations.ListAlertsRequestBodyTypesChainalysis,
         },
     })
     if err != nil {

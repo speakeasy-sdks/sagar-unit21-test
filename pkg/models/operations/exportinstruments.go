@@ -9,18 +9,18 @@ import (
 	"unit21/pkg/models/shared"
 )
 
-type ExportInstrumentsRequestBodyFiltersStatusesEnum string
+type ExportInstrumentsRequestBodyFiltersStatuses string
 
 const (
-	ExportInstrumentsRequestBodyFiltersStatusesEnumActive   ExportInstrumentsRequestBodyFiltersStatusesEnum = "active"
-	ExportInstrumentsRequestBodyFiltersStatusesEnumInactive ExportInstrumentsRequestBodyFiltersStatusesEnum = "inactive"
+	ExportInstrumentsRequestBodyFiltersStatusesActive   ExportInstrumentsRequestBodyFiltersStatuses = "active"
+	ExportInstrumentsRequestBodyFiltersStatusesInactive ExportInstrumentsRequestBodyFiltersStatuses = "inactive"
 )
 
-func (e ExportInstrumentsRequestBodyFiltersStatusesEnum) ToPointer() *ExportInstrumentsRequestBodyFiltersStatusesEnum {
+func (e ExportInstrumentsRequestBodyFiltersStatuses) ToPointer() *ExportInstrumentsRequestBodyFiltersStatuses {
 	return &e
 }
 
-func (e *ExportInstrumentsRequestBodyFiltersStatusesEnum) UnmarshalJSON(data []byte) error {
+func (e *ExportInstrumentsRequestBodyFiltersStatuses) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -29,10 +29,10 @@ func (e *ExportInstrumentsRequestBodyFiltersStatusesEnum) UnmarshalJSON(data []b
 	case "active":
 		fallthrough
 	case "inactive":
-		*e = ExportInstrumentsRequestBodyFiltersStatusesEnum(v)
+		*e = ExportInstrumentsRequestBodyFiltersStatuses(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ExportInstrumentsRequestBodyFiltersStatusesEnum: %v", v)
+		return fmt.Errorf("invalid value for ExportInstrumentsRequestBodyFiltersStatuses: %v", v)
 	}
 }
 
@@ -51,7 +51,7 @@ type ExportInstrumentsRequestBodyFilters struct {
 	// Status of the instruments.
 	Status *string `json:"status,omitempty"`
 	// Statuses for the instruments.
-	Statuses []ExportInstrumentsRequestBodyFiltersStatusesEnum `json:"statuses,omitempty"`
+	Statuses []ExportInstrumentsRequestBodyFiltersStatuses `json:"statuses,omitempty"`
 	// Numerical IDs of the tags.
 	TagIds []int64 `json:"tag_ids,omitempty"`
 }

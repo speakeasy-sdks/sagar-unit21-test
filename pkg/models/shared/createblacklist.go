@@ -7,22 +7,22 @@ import (
 	"fmt"
 )
 
-// CreateBlacklistTypeEnum - A value indicating what type of fields the blacklist will contain. One of `STRING`, `IP_INET`, `IP_CIDR`, `USER`, or `BUSINESS`.
-type CreateBlacklistTypeEnum string
+// CreateBlacklistType - A value indicating what type of fields the blacklist will contain. One of `STRING`, `IP_INET`, `IP_CIDR`, `USER`, or `BUSINESS`.
+type CreateBlacklistType string
 
 const (
-	CreateBlacklistTypeEnumString   CreateBlacklistTypeEnum = "STRING"
-	CreateBlacklistTypeEnumIPInet   CreateBlacklistTypeEnum = "IP_INET"
-	CreateBlacklistTypeEnumIPCidr   CreateBlacklistTypeEnum = "IP_CIDR"
-	CreateBlacklistTypeEnumUser     CreateBlacklistTypeEnum = "USER"
-	CreateBlacklistTypeEnumBusiness CreateBlacklistTypeEnum = "BUSINESS"
+	CreateBlacklistTypeString   CreateBlacklistType = "STRING"
+	CreateBlacklistTypeIPInet   CreateBlacklistType = "IP_INET"
+	CreateBlacklistTypeIPCidr   CreateBlacklistType = "IP_CIDR"
+	CreateBlacklistTypeUser     CreateBlacklistType = "USER"
+	CreateBlacklistTypeBusiness CreateBlacklistType = "BUSINESS"
 )
 
-func (e CreateBlacklistTypeEnum) ToPointer() *CreateBlacklistTypeEnum {
+func (e CreateBlacklistType) ToPointer() *CreateBlacklistType {
 	return &e
 }
 
-func (e *CreateBlacklistTypeEnum) UnmarshalJSON(data []byte) error {
+func (e *CreateBlacklistType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -37,10 +37,10 @@ func (e *CreateBlacklistTypeEnum) UnmarshalJSON(data []byte) error {
 	case "USER":
 		fallthrough
 	case "BUSINESS":
-		*e = CreateBlacklistTypeEnum(v)
+		*e = CreateBlacklistType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreateBlacklistTypeEnum: %v", v)
+		return fmt.Errorf("invalid value for CreateBlacklistType: %v", v)
 	}
 }
 
@@ -50,5 +50,5 @@ type CreateBlacklist struct {
 	// A human-readable name for the blacklist.
 	Name *string `json:"name,omitempty"`
 	// A value indicating what type of fields the blacklist will contain. One of `STRING`, `IP_INET`, `IP_CIDR`, `USER`, or `BUSINESS`.
-	Type *CreateBlacklistTypeEnum `json:"type,omitempty"`
+	Type *CreateBlacklistType `json:"type,omitempty"`
 }

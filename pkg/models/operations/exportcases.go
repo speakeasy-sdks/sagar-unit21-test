@@ -8,18 +8,18 @@ import (
 	"net/http"
 )
 
-type ExportCasesRequestBodyFiltersStatusesEnum string
+type ExportCasesRequestBodyFiltersStatuses string
 
 const (
-	ExportCasesRequestBodyFiltersStatusesEnumOpen   ExportCasesRequestBodyFiltersStatusesEnum = "open"
-	ExportCasesRequestBodyFiltersStatusesEnumClosed ExportCasesRequestBodyFiltersStatusesEnum = "closed"
+	ExportCasesRequestBodyFiltersStatusesOpen   ExportCasesRequestBodyFiltersStatuses = "open"
+	ExportCasesRequestBodyFiltersStatusesClosed ExportCasesRequestBodyFiltersStatuses = "closed"
 )
 
-func (e ExportCasesRequestBodyFiltersStatusesEnum) ToPointer() *ExportCasesRequestBodyFiltersStatusesEnum {
+func (e ExportCasesRequestBodyFiltersStatuses) ToPointer() *ExportCasesRequestBodyFiltersStatuses {
 	return &e
 }
 
-func (e *ExportCasesRequestBodyFiltersStatusesEnum) UnmarshalJSON(data []byte) error {
+func (e *ExportCasesRequestBodyFiltersStatuses) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -28,10 +28,10 @@ func (e *ExportCasesRequestBodyFiltersStatusesEnum) UnmarshalJSON(data []byte) e
 	case "open":
 		fallthrough
 	case "closed":
-		*e = ExportCasesRequestBodyFiltersStatusesEnum(v)
+		*e = ExportCasesRequestBodyFiltersStatuses(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ExportCasesRequestBodyFiltersStatusesEnum: %v", v)
+		return fmt.Errorf("invalid value for ExportCasesRequestBodyFiltersStatuses: %v", v)
 	}
 }
 
@@ -54,7 +54,7 @@ type ExportCasesRequestBodyFilters struct {
 	// Status for the case.
 	Status *string `json:"status,omitempty"`
 	// Statuses for the cases.
-	Statuses []ExportCasesRequestBodyFiltersStatusesEnum `json:"statuses,omitempty"`
+	Statuses []ExportCasesRequestBodyFiltersStatuses `json:"statuses,omitempty"`
 	// Numerical IDs of the tags.
 	TagIds []int64 `json:"tag_ids,omitempty"`
 	// Numerical IDs of the teams.
