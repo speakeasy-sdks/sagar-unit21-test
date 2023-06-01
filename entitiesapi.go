@@ -3,8 +3,10 @@
 package sdk
 
 import (
+	"bytes"
 	"context"
 	"fmt"
+	"io"
 	"net/http"
 	"strings"
 	"unit21/pkg/models/operations"
@@ -71,7 +73,13 @@ func (s *entitiesAPI) AddInstruments(ctx context.Context, request operations.Add
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -102,7 +110,7 @@ func (s *entitiesAPI) AddInstruments(ctx context.Context, request operations.Add
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ErrorResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -164,7 +172,13 @@ func (s *entitiesAPI) CreateEntity(ctx context.Context, request shared.CreateEnt
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -178,7 +192,7 @@ func (s *entitiesAPI) CreateEntity(ctx context.Context, request shared.CreateEnt
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.CreateEntityResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -188,7 +202,7 @@ func (s *entitiesAPI) CreateEntity(ctx context.Context, request shared.CreateEnt
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *operations.CreateEntityMessageGeneralResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -239,7 +253,13 @@ func (s *entitiesAPI) DelMediaEntity(ctx context.Context, request operations.Del
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -270,7 +290,7 @@ func (s *entitiesAPI) DelMediaEntity(ctx context.Context, request operations.Del
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ErrorResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -316,7 +336,13 @@ func (s *entitiesAPI) ExportEntities(ctx context.Context, request operations.Exp
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -330,7 +356,7 @@ func (s *entitiesAPI) ExportEntities(ctx context.Context, request operations.Exp
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.MessageResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -340,7 +366,7 @@ func (s *entitiesAPI) ExportEntities(ctx context.Context, request operations.Exp
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *operations.ExportEntitiesMessageGeneralResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -393,7 +419,13 @@ func (s *entitiesAPI) GetEntity(ctx context.Context, request operations.GetEntit
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -407,7 +439,7 @@ func (s *entitiesAPI) GetEntity(ctx context.Context, request operations.GetEntit
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.EntityList
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -417,7 +449,7 @@ func (s *entitiesAPI) GetEntity(ctx context.Context, request operations.GetEntit
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *operations.GetEntityMessageGeneralResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -523,7 +555,13 @@ func (s *entitiesAPI) LinkMediaToEntity(ctx context.Context, request operations.
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -554,7 +592,7 @@ func (s *entitiesAPI) LinkMediaToEntity(ctx context.Context, request operations.
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ErrorResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -604,7 +642,13 @@ func (s *entitiesAPI) ListEntities(ctx context.Context, request shared.ListEntit
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -618,7 +662,7 @@ func (s *entitiesAPI) ListEntities(ctx context.Context, request shared.ListEntit
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.ListEntityResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -628,7 +672,7 @@ func (s *entitiesAPI) ListEntities(ctx context.Context, request shared.ListEntit
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *operations.ListEntitiesMessageGeneralResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -703,7 +747,13 @@ func (s *entitiesAPI) UpdateEntity(ctx context.Context, request operations.Updat
 	if httpRes == nil {
 		return nil, fmt.Errorf("error sending request: no response")
 	}
-	defer httpRes.Body.Close()
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
 	contentType := httpRes.Header.Get("Content-Type")
 
@@ -717,7 +767,7 @@ func (s *entitiesAPI) UpdateEntity(ctx context.Context, request operations.Updat
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.UpdateEntityResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
@@ -727,7 +777,7 @@ func (s *entitiesAPI) UpdateEntity(ctx context.Context, request operations.Updat
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *operations.UpdateEntityMessageGeneralResponse
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
 				return nil, err
 			}
 
