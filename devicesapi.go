@@ -16,22 +16,12 @@ import (
 
 // devicesAPI - Devices representing any computer or physical device used to execute an event. Devices are most suitable when events can be traced back to a specific device fingerprint. The `/devices` endpoint can create, list, and update instruments.
 type devicesAPI struct {
-	defaultClient  HTTPClient
-	securityClient HTTPClient
-	serverURL      string
-	language       string
-	sdkVersion     string
-	genVersion     string
+	sdkConfiguration sdkConfiguration
 }
 
-func newDevicesAPI(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *devicesAPI {
+func newDevicesAPI(sdkConfig sdkConfiguration) *devicesAPI {
 	return &devicesAPI{
-		defaultClient:  defaultClient,
-		securityClient: securityClient,
-		serverURL:      serverURL,
-		language:       language,
-		sdkVersion:     sdkVersion,
-		genVersion:     genVersion,
+		sdkConfiguration: sdkConfig,
 	}
 }
 
@@ -60,7 +50,7 @@ func newDevicesAPI(defaultClient, securityClient HTTPClient, serverURL, language
 //	| `unit21_id`	             | String   | 	Internal ID of the device within Unit21's system     |
 //	| `previously_existed`	   | Boolean  | 	If entity (with the same `device_id`) already exists |
 func (s *devicesAPI) CreateDevice(ctx context.Context, request operations.CreateDeviceDeviceData) (*operations.CreateDeviceResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/devices/create"
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
@@ -76,11 +66,11 @@ func (s *devicesAPI) CreateDevice(ctx context.Context, request operations.Create
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -127,7 +117,7 @@ func (s *devicesAPI) CreateDevice(ctx context.Context, request operations.Create
 //
 // Either the `filters` or the list of `device IDs` are required for the export.
 func (s *devicesAPI) ExportDevices(ctx context.Context, request operations.ExportDevicesRequestBody) (*operations.ExportDevicesResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/devices/bulk-export"
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
@@ -140,11 +130,11 @@ func (s *devicesAPI) ExportDevices(ctx context.Context, request operations.Expor
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "*/*")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -180,7 +170,7 @@ func (s *devicesAPI) ExportDevices(ctx context.Context, request operations.Expor
 //
 // This endpoint requires the `device_id` which is a unique ID created by your organization to identify the device. The `org_name` is your Unit21 appointed organization name such as `google` or `acme`.
 func (s *devicesAPI) GetDeviceByExternal(ctx context.Context, request operations.GetDeviceByExternalRequest) (*operations.GetDeviceByExternalResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/{org_name}/devices/{device_id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -191,9 +181,9 @@ func (s *devicesAPI) GetDeviceByExternal(ctx context.Context, request operations
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "*/*")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -232,7 +222,7 @@ func (s *devicesAPI) GetDeviceByExternal(ctx context.Context, request operations
 //
 // The `total_count` field contains the total number of devices where the  `response_count` field contains the number of devices included in the response.
 func (s *devicesAPI) ListDevices(ctx context.Context, request shared.ListRequest) (*operations.ListDevicesResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/devices/list"
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
@@ -248,11 +238,11 @@ func (s *devicesAPI) ListDevices(ctx context.Context, request shared.ListRequest
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -315,7 +305,7 @@ func (s *devicesAPI) ListDevices(ctx context.Context, request shared.ListRequest
 //	| `unit21_id`	             | String   | 	Internal ID of the device within Unit21's system     |
 //	| `previously_existed`	   | Boolean  | 	If entity (with the same `device_id`) already exists |
 func (s *devicesAPI) UpdateDeviceByExternal(ctx context.Context, request operations.UpdateDeviceByExternalRequest) (*operations.UpdateDeviceByExternalResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/{org_name}/devices/{device_id}/update", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -331,11 +321,11 @@ func (s *devicesAPI) UpdateDeviceByExternal(ctx context.Context, request operati
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "*/*")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {

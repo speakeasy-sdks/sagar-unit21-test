@@ -16,22 +16,12 @@ import (
 
 // casesAPI - Cases are usually active investigations, which may span multiple events, entities and documents. They can be directly escalated into a suspicious activity report. The `/cases` endpoint can create, list, and update cases.
 type casesAPI struct {
-	defaultClient  HTTPClient
-	securityClient HTTPClient
-	serverURL      string
-	language       string
-	sdkVersion     string
-	genVersion     string
+	sdkConfiguration sdkConfiguration
 }
 
-func newCasesAPI(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *casesAPI {
+func newCasesAPI(sdkConfig sdkConfiguration) *casesAPI {
 	return &casesAPI{
-		defaultClient:  defaultClient,
-		securityClient: securityClient,
-		serverURL:      serverURL,
-		language:       language,
-		sdkVersion:     sdkVersion,
-		genVersion:     genVersion,
+		sdkConfiguration: sdkConfig,
 	}
 }
 
@@ -63,7 +53,7 @@ func newCasesAPI(defaultClient, securityClient HTTPClient, serverURL, language, 
 //	| `case_id`	               | String   | 	Unique identifier of the case on your platform     |
 //	| `previously_existed`	   | Boolean  | 	If case (with the same `case_id`) already exists   |
 func (s *casesAPI) CreateCase(ctx context.Context, request operations.CreateCaseCaseData) (*operations.CreateCaseResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/cases/create"
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
@@ -79,11 +69,11 @@ func (s *casesAPI) CreateCase(ctx context.Context, request operations.CreateCase
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -132,7 +122,7 @@ func (s *casesAPI) CreateCase(ctx context.Context, request operations.CreateCase
 //
 // Custom data filters are not supported for bulk exports at this time.
 func (s *casesAPI) ExportCases(ctx context.Context, request operations.ExportCasesRequestBody) (*operations.ExportCasesResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/cases/bulk-export"
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
@@ -145,11 +135,11 @@ func (s *casesAPI) ExportCases(ctx context.Context, request operations.ExportCas
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "*/*")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -185,7 +175,7 @@ func (s *casesAPI) ExportCases(ctx context.Context, request operations.ExportCas
 //
 // This endpoint requires the `unit21_id` which is a unique ID created by Unit21 when the case is first created.
 func (s *casesAPI) GetCaseByUnit21ID(ctx context.Context, request operations.GetCaseByUnit21IDRequest) (*operations.GetCaseByUnit21IDResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/cases/{unit21_id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -196,9 +186,9 @@ func (s *casesAPI) GetCaseByUnit21ID(ctx context.Context, request operations.Get
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -282,7 +272,7 @@ func (s *casesAPI) GetCaseByUnit21ID(ctx context.Context, request operations.Get
 //	| IMAGE_ID_CARD_BACK            |
 //	| IMAGE_FACE_IMAGE              |
 func (s *casesAPI) LinkMediaToCase(ctx context.Context, request operations.LinkMediaToCaseRequest) (*operations.LinkMediaToCaseResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/cases/{unit21_id}/link-media", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -298,11 +288,11 @@ func (s *casesAPI) LinkMediaToCase(ctx context.Context, request operations.LinkM
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -375,7 +365,7 @@ func (s *casesAPI) LinkMediaToCase(ctx context.Context, request operations.LinkM
 // Follow the links for more information:
 //   - [Endpoint options](https://docs.unit21.ai/reference/endpoint-options)
 func (s *casesAPI) ListCases(ctx context.Context, request operations.ListCasesRequestBody) (*operations.ListCasesResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/cases/list"
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
@@ -388,11 +378,11 @@ func (s *casesAPI) ListCases(ctx context.Context, request operations.ListCasesRe
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -454,7 +444,7 @@ func (s *casesAPI) ListCases(ctx context.Context, request operations.ListCasesRe
 //	| `case_id`	               | String   | 	Unique identifier of the case on your platform     |
 //	| `previously_existed`	   | Boolean  | 	If entity (with the same `case_id`) already exists |
 func (s *casesAPI) UpdateCase(ctx context.Context, request operations.UpdateCaseRequest) (*operations.UpdateCaseResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/cases/{unit21_id}/update", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -470,11 +460,11 @@ func (s *casesAPI) UpdateCase(ctx context.Context, request operations.UpdateCase
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {

@@ -16,22 +16,12 @@ import (
 
 // alertsAPI - Alerts have two origins. Typically, alerts are generated whenever a Unit21 detection tool (like a rule) flags an object, like an entity. However, your organization can also send alerts generated from your in-house detection systems. The `/alerts` endpoint can create, list, and update alerts.
 type alertsAPI struct {
-	defaultClient  HTTPClient
-	securityClient HTTPClient
-	serverURL      string
-	language       string
-	sdkVersion     string
-	genVersion     string
+	sdkConfiguration sdkConfiguration
 }
 
-func newAlertsAPI(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *alertsAPI {
+func newAlertsAPI(sdkConfig sdkConfiguration) *alertsAPI {
 	return &alertsAPI{
-		defaultClient:  defaultClient,
-		securityClient: securityClient,
-		serverURL:      serverURL,
-		language:       language,
-		sdkVersion:     sdkVersion,
-		genVersion:     genVersion,
+		sdkConfiguration: sdkConfig,
 	}
 }
 
@@ -67,7 +57,7 @@ func newAlertsAPI(defaultClient, securityClient HTTPClient, serverURL, language,
 //	| `unit21_id`	             | String   | Internal ID of the alert within Unit21's system         |
 //	| `previously_existed`	   | Boolean  | If alert (with the same `alert_id`) already exists      |
 func (s *alertsAPI) CreateAlert(ctx context.Context, request operations.CreateAlertRules) (*operations.CreateAlertResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/alerts/create"
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
@@ -83,11 +73,11 @@ func (s *alertsAPI) CreateAlert(ctx context.Context, request operations.CreateAl
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -136,7 +126,7 @@ func (s *alertsAPI) CreateAlert(ctx context.Context, request operations.CreateAl
 //
 // Custom data filters are not supported for bulk exports at this time.
 func (s *alertsAPI) ExportAlerts(ctx context.Context, request operations.ExportAlertsRequestBody) (*operations.ExportAlertsResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/alerts/bulk-export"
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
@@ -149,11 +139,11 @@ func (s *alertsAPI) ExportAlerts(ctx context.Context, request operations.ExportA
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "*/*")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -189,7 +179,7 @@ func (s *alertsAPI) ExportAlerts(ctx context.Context, request operations.ExportA
 //
 // This endpoint requires the `unit21_id` which is a unique ID created by Unit21 when the entity is first created.
 func (s *alertsAPI) GetAlertByUnit21ID(ctx context.Context, request operations.GetAlertByUnit21IDRequest) (*operations.GetAlertByUnit21IDResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/alerts/{unit21_id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -200,9 +190,9 @@ func (s *alertsAPI) GetAlertByUnit21ID(ctx context.Context, request operations.G
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -286,7 +276,7 @@ func (s *alertsAPI) GetAlertByUnit21ID(ctx context.Context, request operations.G
 //	| IMAGE_ID_CARD_BACK          |
 //	| IMAGE_FACE_IMAGE            |
 func (s *alertsAPI) LinkMediaToAlert(ctx context.Context, request operations.LinkMediaToAlertRequest) (*operations.LinkMediaToAlertResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/alerts/{unit21_id}/link-media", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -302,11 +292,11 @@ func (s *alertsAPI) LinkMediaToAlert(ctx context.Context, request operations.Lin
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "*/*")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -372,7 +362,7 @@ func (s *alertsAPI) LinkMediaToAlert(ctx context.Context, request operations.Lin
 // Follow the links for more information:
 //   - [Endpoint options](https://docs.unit21.ai/reference/endpoint-options)
 func (s *alertsAPI) ListAlerts(ctx context.Context, request operations.ListAlertsRequestBody) (*operations.ListAlertsResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/alerts/list"
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
@@ -385,11 +375,11 @@ func (s *alertsAPI) ListAlerts(ctx context.Context, request operations.ListAlert
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -452,7 +442,7 @@ func (s *alertsAPI) ListAlerts(ctx context.Context, request operations.ListAlert
 //	| `unit21_id`	             | String   | Internal ID of the alert within Unit21's system         |
 //	| `previously_existed`	   | Boolean  | If alert (with the same `alert_id`) already exists      |
 func (s *alertsAPI) UpdateAlert(ctx context.Context, request operations.UpdateAlertRequest) (*operations.UpdateAlertResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/alerts/{unit21_id}/update", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -468,11 +458,11 @@ func (s *alertsAPI) UpdateAlert(ctx context.Context, request operations.UpdateAl
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {

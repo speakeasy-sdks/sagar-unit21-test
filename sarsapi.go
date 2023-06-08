@@ -16,22 +16,12 @@ import (
 
 // sarsAPI - Sars are cases that have been investigated and turned into a Suspicious Activity report with the intent to file it to FinCen. The `/sars` endpoint can get and list sars.
 type sarsAPI struct {
-	defaultClient  HTTPClient
-	securityClient HTTPClient
-	serverURL      string
-	language       string
-	sdkVersion     string
-	genVersion     string
+	sdkConfiguration sdkConfiguration
 }
 
-func newSarsAPI(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *sarsAPI {
+func newSarsAPI(sdkConfig sdkConfiguration) *sarsAPI {
 	return &sarsAPI{
-		defaultClient:  defaultClient,
-		securityClient: securityClient,
-		serverURL:      serverURL,
-		language:       language,
-		sdkVersion:     sdkVersion,
-		genVersion:     genVersion,
+		sdkConfiguration: sdkConfig,
 	}
 }
 
@@ -44,7 +34,7 @@ func newSarsAPI(defaultClient, securityClient HTTPClient, serverURL, language, s
 //
 // Custom data filters are not supported for bulk exports at this time.
 func (s *sarsAPI) ExportSars(ctx context.Context, request operations.ExportSarsRequestBody) (*operations.ExportSarsResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/sars/bulk-export"
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
@@ -57,11 +47,11 @@ func (s *sarsAPI) ExportSars(ctx context.Context, request operations.ExportSarsR
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "*/*")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -115,7 +105,7 @@ func (s *sarsAPI) ExportSars(ctx context.Context, request operations.ExportSarsR
 // Follow the links for more information:
 //   - [Endpoint options](https://docs.unit21.ai/reference/endpoint-options)
 func (s *sarsAPI) ListSars(ctx context.Context, request shared.ListRequest) (*operations.ListSarsResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/sars/list"
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
@@ -131,11 +121,11 @@ func (s *sarsAPI) ListSars(ctx context.Context, request shared.ListRequest) (*op
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "*/*")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -189,7 +179,7 @@ func (s *sarsAPI) ListSars(ctx context.Context, request shared.ListRequest) (*op
 //
 // This endpoint requires the `unit21_id` which is a unique ID created by Unit21 when the sar is first created.
 func (s *sarsAPI) ReadOneSar(ctx context.Context, request operations.ReadOneSarRequest) (*operations.ReadOneSarResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/sars/{unit21_id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -200,9 +190,9 @@ func (s *sarsAPI) ReadOneSar(ctx context.Context, request operations.ReadOneSarR
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {

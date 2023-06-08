@@ -16,22 +16,12 @@ import (
 
 // rulesAPI - Rules are the model logic that will find fraudulent and suspicious transactions and actions. Rules create alerts that can turn into cases with flagged entities, transactions and instruments. The `/rules` endpoint can get and list rules.
 type rulesAPI struct {
-	defaultClient  HTTPClient
-	securityClient HTTPClient
-	serverURL      string
-	language       string
-	sdkVersion     string
-	genVersion     string
+	sdkConfiguration sdkConfiguration
 }
 
-func newRulesAPI(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *rulesAPI {
+func newRulesAPI(sdkConfig sdkConfiguration) *rulesAPI {
 	return &rulesAPI{
-		defaultClient:  defaultClient,
-		securityClient: securityClient,
-		serverURL:      serverURL,
-		language:       language,
-		sdkVersion:     sdkVersion,
-		genVersion:     genVersion,
+		sdkConfiguration: sdkConfig,
 	}
 }
 
@@ -44,7 +34,7 @@ func newRulesAPI(defaultClient, securityClient HTTPClient, serverURL, language, 
 //
 // Custom data filters are not supported for bulk exports at this time.
 func (s *rulesAPI) ExportRules(ctx context.Context, request operations.ExportRulesRequestBody) (*operations.ExportRulesResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/rules/bulk-export"
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
@@ -57,11 +47,11 @@ func (s *rulesAPI) ExportRules(ctx context.Context, request operations.ExportRul
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "*/*")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -100,7 +90,7 @@ func (s *rulesAPI) ExportRules(ctx context.Context, request operations.ExportRul
 //
 // The `total_count` field contains the total number of rules where the  `response_count` field contains the number of rules included in the response.
 func (s *rulesAPI) ListRules(ctx context.Context, request shared.ListRequest) (*operations.ListRulesResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/rules/list"
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
@@ -116,11 +106,11 @@ func (s *rulesAPI) ListRules(ctx context.Context, request shared.ListRequest) (*
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "*/*")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -174,7 +164,7 @@ func (s *rulesAPI) ListRules(ctx context.Context, request shared.ListRequest) (*
 //
 // This endpoint requires the `unit21_id` which is a unique ID created by Unit21 when the rule is first created.
 func (s *rulesAPI) ReadOneRule(ctx context.Context, request operations.ReadOneRuleRequest) (*operations.ReadOneRuleResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/rules/{unit21_id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -185,9 +175,9 @@ func (s *rulesAPI) ReadOneRule(ctx context.Context, request operations.ReadOneRu
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {

@@ -15,22 +15,12 @@ import (
 
 // datafilesAPI - If you want to bulk upload multiple objects, you can send them via a POST to the `/datafiles` endpoint. For the fastest processing, the datafile SHOULD be a JSON file in the format of a typical POST request to this API.
 type datafilesAPI struct {
-	defaultClient  HTTPClient
-	securityClient HTTPClient
-	serverURL      string
-	language       string
-	sdkVersion     string
-	genVersion     string
+	sdkConfiguration sdkConfiguration
 }
 
-func newDatafilesAPI(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *datafilesAPI {
+func newDatafilesAPI(sdkConfig sdkConfiguration) *datafilesAPI {
 	return &datafilesAPI{
-		defaultClient:  defaultClient,
-		securityClient: securityClient,
-		serverURL:      serverURL,
-		language:       language,
-		sdkVersion:     sdkVersion,
-		genVersion:     genVersion,
+		sdkConfiguration: sdkConfig,
 	}
 }
 
@@ -43,7 +33,7 @@ func newDatafilesAPI(defaultClient, securityClient HTTPClient, serverURL, langua
 //
 // We support JSON format only.
 func (s *datafilesAPI) CreateDatafiles(ctx context.Context, request operations.CreateDatafilesRequestBody) (*operations.CreateDatafilesResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/datafiles/create"
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "multipart")
@@ -59,11 +49,11 @@ func (s *datafilesAPI) CreateDatafiles(ctx context.Context, request operations.C
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "*/*")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -99,7 +89,7 @@ func (s *datafilesAPI) CreateDatafiles(ctx context.Context, request operations.C
 //
 // This endpoint requires the `unit21_id` which is a unique ID created by Unit21 when the datafile is first created.
 func (s *datafilesAPI) GetDatafileByUnit21ID(ctx context.Context, request operations.GetDatafileByUnit21IDRequest) (*operations.GetDatafileByUnit21IDResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/datafiles/{unit21_id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -110,9 +100,9 @@ func (s *datafilesAPI) GetDatafileByUnit21ID(ctx context.Context, request operat
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "*/*")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -152,7 +142,7 @@ func (s *datafilesAPI) GetDatafileByUnit21ID(ctx context.Context, request operat
 //
 // Please note that an empty response `{}` will be returned if the datafile is not yet processed.
 func (s *datafilesAPI) GetDatafileMappings(ctx context.Context, request operations.GetDatafileMappingsRequest) (*operations.GetDatafileMappingsResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/datafiles/{unit21_id}/mappings", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -168,11 +158,11 @@ func (s *datafilesAPI) GetDatafileMappings(ctx context.Context, request operatio
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "*/*")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {

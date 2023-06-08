@@ -19,22 +19,12 @@ import (
 //   - IPs (single or ranges)
 //   - strings
 type blacklistsAPI struct {
-	defaultClient  HTTPClient
-	securityClient HTTPClient
-	serverURL      string
-	language       string
-	sdkVersion     string
-	genVersion     string
+	sdkConfiguration sdkConfiguration
 }
 
-func newBlacklistsAPI(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *blacklistsAPI {
+func newBlacklistsAPI(sdkConfig sdkConfiguration) *blacklistsAPI {
 	return &blacklistsAPI{
-		defaultClient:  defaultClient,
-		securityClient: securityClient,
-		serverURL:      serverURL,
-		language:       language,
-		sdkVersion:     sdkVersion,
-		genVersion:     genVersion,
+		sdkConfiguration: sdkConfig,
 	}
 }
 
@@ -55,7 +45,7 @@ func newBlacklistsAPI(defaultClient, securityClient HTTPClient, serverURL, langu
 //	| `USER`	   | 	Series of fields that a Unit21 user entity will be matched against.     | 	user_data object                |
 //	| `BUSINESS` | Series of fields that a Unit21 business entity will be matched against.  | 	business_data object            |
 func (s *blacklistsAPI) AddBlacklistValues(ctx context.Context, request operations.AddBlacklistValuesRequest) (*operations.AddBlacklistValuesResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/blacklists/{unit21_id}/add-values", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -71,11 +61,11 @@ func (s *blacklistsAPI) AddBlacklistValues(ctx context.Context, request operatio
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "*/*")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -127,7 +117,7 @@ func (s *blacklistsAPI) AddBlacklistValues(ctx context.Context, request operatio
 //	|-----------------|----------|-------------------------------------------------------|
 //	| `blacklist_id`  | String   | 	Unique identifier of the entity on your platform     |
 func (s *blacklistsAPI) CreateBlacklist(ctx context.Context, request shared.CreateBlacklist) (*operations.CreateBlacklistResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/blacklists/create"
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
@@ -143,11 +133,11 @@ func (s *blacklistsAPI) CreateBlacklist(ctx context.Context, request shared.Crea
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -196,7 +186,7 @@ func (s *blacklistsAPI) CreateBlacklist(ctx context.Context, request shared.Crea
 //
 // The `total_count` field contains the total number of blacklists where the  `response_count` field contains the number of blacklists included in the response.
 func (s *blacklistsAPI) ListBlacklists(ctx context.Context, request shared.ListRequest) (*operations.ListBlacklistsResponse, error) {
-	baseURL := s.serverURL
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/blacklists/list"
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
@@ -212,11 +202,11 @@ func (s *blacklistsAPI) ListBlacklists(ctx context.Context, request shared.ListR
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s", s.language, s.sdkVersion, s.genVersion))
+	req.Header.Set("user-agent", fmt.Sprintf("speakeasy-sdk/%s %s %s %s", s.sdkConfiguration.Language, s.sdkConfiguration.SDKVersion, s.sdkConfiguration.GenVersion, s.sdkConfiguration.OpenAPIDocVersion))
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s.securityClient
+	client := s.sdkConfiguration.SecurityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
