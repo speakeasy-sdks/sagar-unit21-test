@@ -2,6 +2,10 @@
 
 package shared
 
+// LinkVerificationResponseFullResponse - Full response from the verification provider running the verification
+type LinkVerificationResponseFullResponse struct {
+}
+
 // LinkVerificationResponse - OK
 type LinkVerificationResponse struct {
 	// Date in seconds since 1 Jan 1970 00:00:00 UTC (i.e. in [Unix time](https://en.wikipedia.org/wiki/Unix_time)).
@@ -9,7 +13,7 @@ type LinkVerificationResponse struct {
 	// Unit21 ID of the entity that the verification was run on.
 	EntityID *string `json:"entity_id,omitempty"`
 	// Full response from the verification provider running the verification
-	FullResponse map[string]interface{} `json:"full_response,omitempty"`
+	FullResponse *LinkVerificationResponseFullResponse `json:"full_response,omitempty"`
 	// Provider that ran the verification (IDOLOGY, TRULIOO, etc.)
 	Source *string `json:"source,omitempty"`
 	// Type of verification executed (DOC_VERIFICATION, ID_VERIFICATION, etc.)

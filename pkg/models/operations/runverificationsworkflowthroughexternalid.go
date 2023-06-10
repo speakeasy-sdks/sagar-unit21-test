@@ -14,16 +14,24 @@ type RunVerificationsWorkflowThroughExternalIDRequest struct {
 	OrgName string `pathParam:"style=simple,explode=false,name=org_name"`
 }
 
+// RunVerificationsWorkflowThroughExternalID200ApplicationJSONFullResponse - The raw response from the verification provider. Contents depend on the verification source and type.
+type RunVerificationsWorkflowThroughExternalID200ApplicationJSONFullResponse struct {
+}
+
+// RunVerificationsWorkflowThroughExternalID200ApplicationJSONResults - Object mapping from the executed verifications (e.g. IDOLOGY:DOC_VERIFICATION)
+type RunVerificationsWorkflowThroughExternalID200ApplicationJSONResults struct {
+}
+
 // RunVerificationsWorkflowThroughExternalID200ApplicationJSON - OK
 type RunVerificationsWorkflowThroughExternalID200ApplicationJSON struct {
 	// The end result of the workflow, one of a set of end results defined by the workflow
 	EndAction *string `json:"end_action,omitempty"`
 	// The raw response from the verification provider. Contents depend on the verification source and type.
-	FullResponse map[string]interface{} `json:"full_response,omitempty"`
+	FullResponse *RunVerificationsWorkflowThroughExternalID200ApplicationJSONFullResponse `json:"full_response,omitempty"`
 	// Whether or not the workflow successful completed. Workflows rely on external services, which may at times fail
 	IsSuccess *bool `json:"is_success,omitempty"`
 	// Object mapping from the executed verifications (e.g. IDOLOGY:DOC_VERIFICATION)
-	Results map[string]interface{} `json:"results,omitempty"`
+	Results *RunVerificationsWorkflowThroughExternalID200ApplicationJSONResults `json:"results,omitempty"`
 }
 
 type RunVerificationsWorkflowThroughExternalIDResponse struct {

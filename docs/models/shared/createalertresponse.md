@@ -1,0 +1,12 @@
+# CreateAlertResponse
+
+OK
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               | Example                                                                                   |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `AlertID`                                                                                 | **string*                                                                                 | :heavy_minus_sign:                                                                        | Unique identifier of the alert on the customer's platform.                                | alertA-028eb01a-f8d3-42fb-b398-785b596ee4cb                                               |
+| `PreviouslyExisted`                                                                       | **bool*                                                                                   | :heavy_minus_sign:                                                                        | During upserts, `true` when object already existed at the ID field specified in the POST. |                                                                                           |
+| `Unit21ID`                                                                                | **string*                                                                                 | :heavy_minus_sign:                                                                        | A Unit21 internally-assigned unique identifier for an object within the Unit21 system.    | 1237466                                                                                   |

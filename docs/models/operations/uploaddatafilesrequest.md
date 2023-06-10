@@ -1,0 +1,9 @@
+# UploadDatafilesRequest
+
+
+## Fields
+
+| Field                                                                                                 | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `RequestBody`                                                                                         | [*UploadDatafilesRequestBody](../../models/operations/uploaddatafilesrequestbody.md)                  | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |
+| `PreSignedURL`                                                                                        | *string*                                                                                              | :heavy_check_mark:                                                                                    | A Unit21 internally-assigned unique url for an AWS S3 bucket where your organization can upload data. |

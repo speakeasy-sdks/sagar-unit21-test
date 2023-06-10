@@ -1,0 +1,12 @@
+# CreateCaseResponse
+
+OK
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               | Example                                                                                   |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `CaseID`                                                                                  | **string*                                                                                 | :heavy_minus_sign:                                                                        | Unique identifier of the case on the customer's platform                                  | CaseA-123                                                                                 |
+| `PreviouslyExisted`                                                                       | **bool*                                                                                   | :heavy_minus_sign:                                                                        | During upserts, `true` when object already existed at the ID field specified in the POST. |                                                                                           |
+| `Unit21ID`                                                                                | **string*                                                                                 | :heavy_minus_sign:                                                                        | A Unit21 internally-assigned unique identifier for an object within the Unit21 system.    | 1237466                                                                                   |

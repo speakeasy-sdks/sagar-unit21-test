@@ -1,0 +1,9 @@
+# CreateAlertRulesEvents
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `EventID`                                                                             | *string*                                                                              | :heavy_check_mark:                                                                    | N/A                                                                                   | event-1063e4e3e1                                                                      |
+| `EventType`                                                                           | [shared.EventType](../../models/shared/eventtype.md)                                  | :heavy_check_mark:                                                                    | `transaction` for monetary flows, `action` for other state changes, like new logins.<br/> | transaction                                                                           |

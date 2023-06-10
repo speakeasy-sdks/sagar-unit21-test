@@ -46,123 +46,123 @@ func main() {
 ## Available Resources and Operations
 
 
-### [AgentsAPI](docs/agentsapi/README.md)
+### [AgentsAPI](docs/sdks/agentsapi/README.md)
 
-* [DeactivateAgent](docs/agentsapi/README.md#deactivateagent) - Deactivate an agent
-* [ListAgents](docs/agentsapi/README.md#listagents) - List agents
+* [DeactivateAgent](docs/sdks/agentsapi/README.md#deactivateagent) - Deactivate an agent
+* [ListAgents](docs/sdks/agentsapi/README.md#listagents) - List agents
 
-### [AlertsAPI](docs/alertsapi/README.md)
+### [AlertsAPI](docs/sdks/alertsapi/README.md)
 
-* [CreateAlert](docs/alertsapi/README.md#createalert) - Create alerts
-* [ExportAlerts](docs/alertsapi/README.md#exportalerts) - Bulk export alerts
-* [GetAlertByUnit21ID](docs/alertsapi/README.md#getalertbyunit21id) - Get an alert
-* [LinkMediaToAlert](docs/alertsapi/README.md#linkmediatoalert) - Add media to an alert
-* [ListAlerts](docs/alertsapi/README.md#listalerts) - List alerts
-* [UpdateAlert](docs/alertsapi/README.md#updatealert) - Update alert
+* [CreateAlert](docs/sdks/alertsapi/README.md#createalert) - Create alerts
+* [ExportAlerts](docs/sdks/alertsapi/README.md#exportalerts) - Bulk export alerts
+* [GetAlertByUnit21ID](docs/sdks/alertsapi/README.md#getalertbyunit21id) - Get an alert
+* [LinkMediaToAlert](docs/sdks/alertsapi/README.md#linkmediatoalert) - Add media to an alert
+* [ListAlerts](docs/sdks/alertsapi/README.md#listalerts) - List alerts
+* [UpdateAlert](docs/sdks/alertsapi/README.md#updatealert) - Update alert
 
-### [BlacklistsAPI](docs/blacklistsapi/README.md)
+### [BlacklistsAPI](docs/sdks/blacklistsapi/README.md)
 
-* [AddBlacklistValues](docs/blacklistsapi/README.md#addblacklistvalues) - Add items to a blacklist
-* [CreateBlacklist](docs/blacklistsapi/README.md#createblacklist) - Create a blacklist
-* [ListBlacklists](docs/blacklistsapi/README.md#listblacklists) - List blacklists
+* [AddBlacklistValues](docs/sdks/blacklistsapi/README.md#addblacklistvalues) - Add items to a blacklist
+* [CreateBlacklist](docs/sdks/blacklistsapi/README.md#createblacklist) - Create a blacklist
+* [ListBlacklists](docs/sdks/blacklistsapi/README.md#listblacklists) - List blacklists
 
-### [CasesAPI](docs/casesapi/README.md)
+### [CasesAPI](docs/sdks/casesapi/README.md)
 
-* [CreateCase](docs/casesapi/README.md#createcase) - Create a case
-* [ExportCases](docs/casesapi/README.md#exportcases) - Bulk export cases
-* [GetCaseByUnit21ID](docs/casesapi/README.md#getcasebyunit21id) - Get a case
-* [LinkMediaToCase](docs/casesapi/README.md#linkmediatocase) - Add media to a case
-* [ListCases](docs/casesapi/README.md#listcases) - List cases
-* [UpdateCase](docs/casesapi/README.md#updatecase) - Update case
+* [CreateCase](docs/sdks/casesapi/README.md#createcase) - Create a case
+* [ExportCases](docs/sdks/casesapi/README.md#exportcases) - Bulk export cases
+* [GetCaseByUnit21ID](docs/sdks/casesapi/README.md#getcasebyunit21id) - Get a case
+* [LinkMediaToCase](docs/sdks/casesapi/README.md#linkmediatocase) - Add media to a case
+* [ListCases](docs/sdks/casesapi/README.md#listcases) - List cases
+* [UpdateCase](docs/sdks/casesapi/README.md#updatecase) - Update case
 
-### [DatafilesAPI](docs/datafilesapi/README.md)
+### [DatafilesAPI](docs/sdks/datafilesapi/README.md)
 
-* [CreateDatafiles](docs/datafilesapi/README.md#createdatafiles) - Upload datafiles
-* [GetDatafileByUnit21ID](docs/datafilesapi/README.md#getdatafilebyunit21id) - Get datafile
-* [GetDatafileMappings](docs/datafilesapi/README.md#getdatafilemappings) - Retrieve datafile mappings
+* [CreateDatafiles](docs/sdks/datafilesapi/README.md#createdatafiles) - Upload datafiles
+* [GetDatafileByUnit21ID](docs/sdks/datafilesapi/README.md#getdatafilebyunit21id) - Get datafile
+* [GetDatafileMappings](docs/sdks/datafilesapi/README.md#getdatafilemappings) - Retrieve datafile mappings
 
-### [DevicesAPI](docs/devicesapi/README.md)
+### [DevicesAPI](docs/sdks/devicesapi/README.md)
 
-* [CreateDevice](docs/devicesapi/README.md#createdevice) - Create a device
-* [ExportDevices](docs/devicesapi/README.md#exportdevices) - Bulk export devices
-* [GetDeviceByExternal](docs/devicesapi/README.md#getdevicebyexternal) - Get a device using external ID
-* [ListDevices](docs/devicesapi/README.md#listdevices) - List devices
-* [UpdateDeviceByExternal](docs/devicesapi/README.md#updatedevicebyexternal) - Update device using external ID
+* [CreateDevice](docs/sdks/devicesapi/README.md#createdevice) - Create a device
+* [ExportDevices](docs/sdks/devicesapi/README.md#exportdevices) - Bulk export devices
+* [GetDeviceByExternal](docs/sdks/devicesapi/README.md#getdevicebyexternal) - Get a device using external ID
+* [ListDevices](docs/sdks/devicesapi/README.md#listdevices) - List devices
+* [UpdateDeviceByExternal](docs/sdks/devicesapi/README.md#updatedevicebyexternal) - Update device using external ID
 
-### [EntitiesAPI](docs/entitiesapi/README.md)
+### [EntitiesAPI](docs/sdks/entitiesapi/README.md)
 
-* [AddInstruments](docs/entitiesapi/README.md#addinstruments) - Add instruments to entity
-* [CreateEntity](docs/entitiesapi/README.md#createentity) - Create an entity
-* [DelMediaEntity](docs/entitiesapi/README.md#delmediaentity) - Delete entity media
-* [ExportEntities](docs/entitiesapi/README.md#exportentities) - Bulk export entities
-* [GetEntity](docs/entitiesapi/README.md#getentity) - Get an entity
-* [LinkMediaToEntity](docs/entitiesapi/README.md#linkmediatoentity) - Add media to an entity
-* [ListEntities](docs/entitiesapi/README.md#listentities) - List entities
-* [UpdateEntity](docs/entitiesapi/README.md#updateentity) - Update entity
+* [AddInstruments](docs/sdks/entitiesapi/README.md#addinstruments) - Add instruments to entity
+* [CreateEntity](docs/sdks/entitiesapi/README.md#createentity) - Create an entity
+* [DelMediaEntity](docs/sdks/entitiesapi/README.md#delmediaentity) - Delete entity media
+* [ExportEntities](docs/sdks/entitiesapi/README.md#exportentities) - Bulk export entities
+* [GetEntity](docs/sdks/entitiesapi/README.md#getentity) - Get an entity
+* [LinkMediaToEntity](docs/sdks/entitiesapi/README.md#linkmediatoentity) - Add media to an entity
+* [ListEntities](docs/sdks/entitiesapi/README.md#listentities) - List entities
+* [UpdateEntity](docs/sdks/entitiesapi/README.md#updateentity) - Update entity
 
-### [EntityVerificationAPI](docs/entityverificationapi/README.md)
+### [EntityVerificationAPI](docs/sdks/entityverificationapi/README.md)
 
-* [AddVerificationResultToEntity](docs/entityverificationapi/README.md#addverificationresulttoentity) - Link external verification
-* [GetEntityVerificationWorkflowExecutions](docs/entityverificationapi/README.md#getentityverificationworkflowexecutions) - Get entity verification workflow IDs
-* [GetVerificationResult](docs/entityverificationapi/README.md#getverificationresult) - Get verification results by result id
-* [GetVerificationResultFromWorkflowExecution](docs/entityverificationapi/README.md#getverificationresultfromworkflowexecution) - Get verification results from workflow
-* [GetVerificationWorkflowExecution](docs/entityverificationapi/README.md#getverificationworkflowexecution) - Get verification workflow execution details
-* [RunVerificationsWorkflowThroughExternalID](docs/entityverificationapi/README.md#runverificationsworkflowthroughexternalid) - Verify an entity
-* [UpdateContinuousMonitoring](docs/entityverificationapi/README.md#updatecontinuousmonitoring) - Update continuous monitoring
-* [UpdateSuppressedProviderEntities](docs/entityverificationapi/README.md#updatesuppressedproviderentities) - Suppress provider entity
+* [AddVerificationResultToEntity](docs/sdks/entityverificationapi/README.md#addverificationresulttoentity) - Link external verification
+* [GetEntityVerificationWorkflowExecutions](docs/sdks/entityverificationapi/README.md#getentityverificationworkflowexecutions) - Get entity verification workflow IDs
+* [GetVerificationResult](docs/sdks/entityverificationapi/README.md#getverificationresult) - Get verification results by result id
+* [GetVerificationResultFromWorkflowExecution](docs/sdks/entityverificationapi/README.md#getverificationresultfromworkflowexecution) - Get verification results from workflow
+* [GetVerificationWorkflowExecution](docs/sdks/entityverificationapi/README.md#getverificationworkflowexecution) - Get verification workflow execution details
+* [RunVerificationsWorkflowThroughExternalID](docs/sdks/entityverificationapi/README.md#runverificationsworkflowthroughexternalid) - Verify an entity
+* [UpdateContinuousMonitoring](docs/sdks/entityverificationapi/README.md#updatecontinuousmonitoring) - Update continuous monitoring
+* [UpdateSuppressedProviderEntities](docs/sdks/entityverificationapi/README.md#updatesuppressedproviderentities) - Suppress provider entity
 
-### [EventsAPI](docs/eventsapi/README.md)
+### [EventsAPI](docs/sdks/eventsapi/README.md)
 
-* [CreateEvent](docs/eventsapi/README.md#createevent) - Create an event
-* [ExportEvents](docs/eventsapi/README.md#exportevents) - Bulk export events
-* [ExportTransactions](docs/eventsapi/README.md#exporttransactions) - Bulk export transactions
-* [GetEvent](docs/eventsapi/README.md#getevent) - Get an event
-* [ListEvents](docs/eventsapi/README.md#listevents) - List events
-* [UpdateEvent](docs/eventsapi/README.md#updateevent) - Update event
+* [CreateEvent](docs/sdks/eventsapi/README.md#createevent) - Create an event
+* [ExportEvents](docs/sdks/eventsapi/README.md#exportevents) - Bulk export events
+* [ExportTransactions](docs/sdks/eventsapi/README.md#exporttransactions) - Bulk export transactions
+* [GetEvent](docs/sdks/eventsapi/README.md#getevent) - Get an event
+* [ListEvents](docs/sdks/eventsapi/README.md#listevents) - List events
+* [UpdateEvent](docs/sdks/eventsapi/README.md#updateevent) - Update event
 
-### [ExportsAPI](docs/exportsapi/README.md)
+### [ExportsAPI](docs/sdks/exportsapi/README.md)
 
-* [DownloadFileExport](docs/exportsapi/README.md#downloadfileexport) - Download export
-* [ListExports](docs/exportsapi/README.md#listexports) - List exports
+* [DownloadFileExport](docs/sdks/exportsapi/README.md#downloadfileexport) - Download export
+* [ListExports](docs/sdks/exportsapi/README.md#listexports) - List exports
 
-### [ImportAPI](docs/importapi/README.md)
+### [ImportAPI](docs/sdks/importapi/README.md)
 
-* [DatafileStatus](docs/importapi/README.md#datafilestatus) - Retrieve datafile status
-* [GetPreSignedURL](docs/importapi/README.md#getpresignedurl) - Get pre-signed URL
-* [ListDatafiles](docs/importapi/README.md#listdatafiles) - Retrieve datafiles list
-* [UploadDatafiles](docs/importapi/README.md#uploaddatafiles) - Upload data to URL
+* [DatafileStatus](docs/sdks/importapi/README.md#datafilestatus) - Retrieve datafile status
+* [GetPreSignedURL](docs/sdks/importapi/README.md#getpresignedurl) - Get pre-signed URL
+* [ListDatafiles](docs/sdks/importapi/README.md#listdatafiles) - Retrieve datafiles list
+* [UploadDatafiles](docs/sdks/importapi/README.md#uploaddatafiles) - Upload data to URL
 
-### [InstrumentsAPI](docs/instrumentsapi/README.md)
+### [InstrumentsAPI](docs/sdks/instrumentsapi/README.md)
 
-* [CreateInstrument](docs/instrumentsapi/README.md#createinstrument) - Create an instrument
-* [ExportInstruments](docs/instrumentsapi/README.md#exportinstruments) - Bulk export instruments
-* [GetInstrument](docs/instrumentsapi/README.md#getinstrument) - Get an instrument
-* [ListInstruments](docs/instrumentsapi/README.md#listinstruments) - List instruments
-* [UpdateInstrument](docs/instrumentsapi/README.md#updateinstrument) - Update instrument
+* [CreateInstrument](docs/sdks/instrumentsapi/README.md#createinstrument) - Create an instrument
+* [ExportInstruments](docs/sdks/instrumentsapi/README.md#exportinstruments) - Bulk export instruments
+* [GetInstrument](docs/sdks/instrumentsapi/README.md#getinstrument) - Get an instrument
+* [ListInstruments](docs/sdks/instrumentsapi/README.md#listinstruments) - List instruments
+* [UpdateInstrument](docs/sdks/instrumentsapi/README.md#updateinstrument) - Update instrument
 
-### [RulesAPI](docs/rulesapi/README.md)
+### [RulesAPI](docs/sdks/rulesapi/README.md)
 
-* [ExportRules](docs/rulesapi/README.md#exportrules) - Bulk export rules
-* [ListRules](docs/rulesapi/README.md#listrules) - List rules
-* [ReadOneRule](docs/rulesapi/README.md#readonerule) - Get a rule
+* [ExportRules](docs/sdks/rulesapi/README.md#exportrules) - Bulk export rules
+* [ListRules](docs/sdks/rulesapi/README.md#listrules) - List rules
+* [ReadOneRule](docs/sdks/rulesapi/README.md#readonerule) - Get a rule
 
-### [SarsAPI](docs/sarsapi/README.md)
+### [SarsAPI](docs/sdks/sarsapi/README.md)
 
-* [ExportSars](docs/sarsapi/README.md#exportsars) - Bulk export sars
-* [ListSars](docs/sarsapi/README.md#listsars) - List sars
-* [ReadOneSar](docs/sarsapi/README.md#readonesar) - Get a sars
+* [ExportSars](docs/sdks/sarsapi/README.md#exportsars) - Bulk export sars
+* [ListSars](docs/sdks/sarsapi/README.md#listsars) - List sars
+* [ReadOneSar](docs/sdks/sarsapi/README.md#readonesar) - Get a sars
 
-### [TagAssociationsAPI](docs/tagassociationsapi/README.md)
+### [TagAssociationsAPI](docs/sdks/tagassociationsapi/README.md)
 
-* [ListTags](docs/tagassociationsapi/README.md#listtags) - List tags
+* [ListTags](docs/sdks/tagassociationsapi/README.md#listtags) - List tags
 
-### [VerificationFormsAPI](docs/verificationformsapi/README.md)
+### [VerificationFormsAPI](docs/sdks/verificationformsapi/README.md)
 
-* [CreateVerificationForm](docs/verificationformsapi/README.md#createverificationform) - Verification Forms API
+* [CreateVerificationForm](docs/sdks/verificationformsapi/README.md#createverificationform) - Verification Forms API
 
-### [WebhooksAPI](docs/webhooksapi/README.md)
+### [WebhooksAPI](docs/sdks/webhooksapi/README.md)
 
-* [UpdateWebhook](docs/webhooksapi/README.md#updatewebhook) - Update webhook URL
+* [UpdateWebhook](docs/sdks/webhooksapi/README.md#updatewebhook) - Update webhook URL
 <!-- End SDK Available Operations -->
 
 ### Maturity

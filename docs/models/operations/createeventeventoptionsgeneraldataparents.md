@@ -1,0 +1,9 @@
+# CreateEventEventOptionsGeneralDataParents
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `EventID`                                                                             | **string*                                                                             | :heavy_minus_sign:                                                                    | Unique identifier of the event on your platform                                       | t-9daaebad-478d-4ea3-bbf9-e6320d3f1cea                                                |
+| `EventType`                                                                           | [*shared.EventType](../../models/shared/eventtype.md)                                 | :heavy_minus_sign:                                                                    | `transaction` for monetary flows, `action` for other state changes, like new logins.<br/> | transaction                                                                           |

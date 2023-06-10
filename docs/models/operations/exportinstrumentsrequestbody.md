@@ -1,0 +1,9 @@
+# ExportInstrumentsRequestBody
+
+
+## Fields
+
+| Field                                                                                                  | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `Filters`                                                                                              | [*ExportInstrumentsRequestBodyFilters](../../models/operations/exportinstrumentsrequestbodyfilters.md) | :heavy_minus_sign:                                                                                     | Filter to narrow down instruments in export                                                            |
+| `InstrumentIds`                                                                                        | []*string*                                                                                             | :heavy_minus_sign:                                                                                     | List of instrument_ids.                                                                                |

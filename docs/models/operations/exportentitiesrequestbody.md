@@ -1,0 +1,9 @@
+# ExportEntitiesRequestBody
+
+
+## Fields
+
+| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `EntityIds`                                                                                      | []*int64*                                                                                        | :heavy_minus_sign:                                                                               | Array of the unique identifiers of the entity IDs.                                               |
+| `Filters`                                                                                        | [*ExportEntitiesRequestBodyFilters](../../models/operations/exportentitiesrequestbodyfilters.md) | :heavy_minus_sign:                                                                               | Filter to narrow down entities in export                                                         |

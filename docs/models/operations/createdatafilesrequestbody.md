@@ -1,0 +1,9 @@
+# CreateDatafilesRequestBody
+
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `Datafile`                                                                                           | [*CreateDatafilesRequestBodyDatafile](../../models/operations/createdatafilesrequestbodydatafile.md) | :heavy_minus_sign:                                                                                   | Path to datafile                                                                                     |
+| `RunRules`                                                                                           | **bool*                                                                                              | :heavy_minus_sign:                                                                                   | Whether to run U21 rules on the datafile after processing                                            |

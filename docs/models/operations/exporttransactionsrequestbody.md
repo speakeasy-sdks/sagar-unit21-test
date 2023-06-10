@@ -1,0 +1,9 @@
+# ExportTransactionsRequestBody
+
+
+## Fields
+
+| Field                                                                                                    | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `EventIds`                                                                                               | []*int64*                                                                                                | :heavy_minus_sign:                                                                                       | Array of the unique identifiers of the event IDs.                                                        |
+| `Filters`                                                                                                | [*ExportTransactionsRequestBodyFilters](../../models/operations/exporttransactionsrequestbodyfilters.md) | :heavy_minus_sign:                                                                                       | Filter to narrow down events in export                                                                   |

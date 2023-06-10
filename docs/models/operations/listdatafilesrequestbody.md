@@ -1,0 +1,9 @@
+# ListDatafilesRequestBody
+
+
+## Fields
+
+| Field                                                                        | Type                                                                         | Required                                                                     | Description                                                                  | Example                                                                      |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `CreatedAfter`                                                               | **int64*                                                                     | :heavy_minus_sign:                                                           | Unix timestamp for the time range at which the pre-signed-url was requested. | 1623365011                                                                   |
+| `CreatedBefore`                                                              | **int64*                                                                     | :heavy_minus_sign:                                                           | Unix timestamp for the time range at which the pre-signed-url was requested. | 1621365011                                                                   |
